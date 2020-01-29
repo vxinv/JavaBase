@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+
+plist:
+ pairs:
+  -
+    sport: 6666
+    cport: 7777
+
+ local_port: 7788
