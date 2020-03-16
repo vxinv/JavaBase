@@ -11,8 +11,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import proxy.handler.PacketCodecHandler;
-import proxy.handler.ProxyHandler;
+import proxy.handler.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -30,33 +29,23 @@ public class TrafficServer {
 
     @PostConstruct
     public void init(){
-
         log.info("server 初始化开始");
-
         bossGroup = new NioEventLoopGroup(1);
         workerGroup = new NioEventLoopGroup();
-
         final ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap
                 .group(bossGroup, workerGroup)
-
                 .channel(NioServerSocketChannel.class)
-
                 .option(ChannelOption.SO_BACKLOG, 1024)
-
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
-
                 .childOption(ChannelOption.TCP_NODELAY, true)
-
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
-
                     protected void initChannel(NioSocketChannel ch) {
-                       // ch.pipeline().addLast(new SpliterHandler());
-                        ch.pipeline().addLast( PacketCodecHandler.INSTANCE);
-                        ch.pipeline().addLast(new ProxyHandler());
+                        ch.pipeline().addLast(WriteHandler.INSTANCE);
+                        ch.pipeline().addLast(NewRgisterHandler.INSTANCE);
+                        ch.pipeline().addLast(NewSingleProxyHandler.INSTANCE);
                     }
                 });
-
         try {
           serverChannel =  serverBootstrap.bind(trafficConfig.getLocalPort()).sync().channel();
           log.info("绑定端口:{}成功",trafficConfig.getLocalPort());

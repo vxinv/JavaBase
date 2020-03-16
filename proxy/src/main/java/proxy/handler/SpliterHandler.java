@@ -4,7 +4,7 @@ package proxy.handler;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import proxy.Constant.Protocal;
+import proxy.constant.Protocal;
 
 public class SpliterHandler extends LengthFieldBasedFrameDecoder {
 

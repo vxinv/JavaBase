@@ -1,0 +1,62 @@
+由于之前都是访问新浪和搜狐的数接口 最近被封了
+特此批评
+新浪 老是封号
+搜狐 获取不了前复权的数据 等于没有
+重大批评
+童话顺 数据加密了 本人破解无效 懒得去搞
+
+#雪球
+获取当前的时线数据 接口
+https://stock.xueqiu.com/v5/stock/chart/minute.json?symbol=SZ002239&period=1d
+股票代码
+获取日线的数据 https://stock.xueqiu.com/v5/stock/chart/kline.json
+?symbol=SZ002239
+&begin=1583067912499
+&period=day
+&type=before
+&count=-322
+&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance
+
+#东方财富
+获取日线 接口
+http://pdfm.eastmoney.com/EM_UBG_PDTI_Fast/api/js?
+token=4f1862fc3b5e77c150a2b985b12db0fd
+&rtntype=6
+&id=3000332
+&type=k
+&authorityType=fa
+&cb=jsonp1582982570364
+
+获取时线
+http://pdfm.eastmoney.com/EM_UBG_PDTI_Fast/api/js
+?token=4f1862fc3b5e77c150a2b985b12db0fd
+&rtntype=5
+&id=3000332
+&type=r
+&iscr=false
+&cb=jsonp1582983516081
+
+获取实时成交数量
+http://mdfm.eastmoney.com/EM_UBG_MinuteApi/Js/Get
+?dtype=25
+&style=tail
+&check=st
+&dtformat=HH:mm:ss
+&num=20
+&cb=jQuery331048806388579706117_1582982145376
+&id=3000332
+&_=1582982145401
+
+#招商证券
+获取天线
+https://hq.cmschina.com/market/json
+?funcno=20050
+&version=1
+&stock_list=SZ%253A002546
+&oldtype=day
+&type=1
+&field=1%253A2%253A4%253A3%253A5%253A6%253A7%253A8%253A9%253A10%253A12%253A13%253A14%253A15%253A16%253A18%253A19
+&count=327
+&FQType=2
+&date=20200228
+&timeStamp=1582986009269

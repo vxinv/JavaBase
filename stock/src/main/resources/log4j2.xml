@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置-->
+<!--monitorInterval：Log4j能够自动检测修改配置 文件和重新配置本身，设置间隔秒数-->
+<configuration status="off" monitorInterval="1800">
+    <Properties>
+        <Property name="APP_NAME">stock</Property>
+        <!--设置日志文件存储路径为tomcat/logs/${APP_NAME}-->
+        <Property name="LOG_FILE_PATH">logs</Property>
+        <!--设置日志输出格式-->
+        <Property name="PATTERN_FORMAT">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n</Property>
+    </Properties>
+
+
+    <appenders>
+
+        <Console name="Console" target="SYSTEM_OUT" >
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] [%M] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile name="RollingFile" fileName="logs/app.log"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="5 MB" />
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingFile>
+    </appenders>
+
+
+
+    <!--    logger代表用于输出日志信息的具体对象-->
+    <loggers>
+
+        <logger name="cn.springmvc" level="INFO" />
+        <logger name="org.springframework" level="INFO" />
+        <logger name="org.mybatis" level="INFO" />
+
+        <logger name="com.zaxxer.hikari" level="off"/>
+
+        <root level="INFO">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFile"/>
+        </root>
+
+    </loggers>
+
+</configuration>
