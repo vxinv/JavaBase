@@ -4,29 +4,60 @@ import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.lixin.constant.StockUrl;
 import com.lixin.entity.RealTimeInfo;
+import com.lixin.utils.Poster;
 import com.lixin.utils.StockUtils;
+import com.lixin.utils.YmlUtil;
+import org.springframework.stereotype.Service;
 
 import javax.sound.midi.SoundbankResource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class TXstockRealTime {
 
 
     /*从腾讯获取实时的交易数据*/
-    public static void getStockShortTimeInfo(String stockCode){
+    public static RealTimeInfo getStockShortTimeInfo(String stockCode) {
 
         String sinfo = HttpUtil.get(StockUrl.tx_hour_info_plus + StockUtils.getSH(stockCode) + stockCode);
         String[] split = sinfo.split("~");
 
         RealTimeInfo info = RealTimeInfo.build(split);
 
+/*
         System.out.println(JSON.toJSONString(info));
+*/
+
+
+        return info;
     }
 
-    public static void main(String[] args) {
-            getStockShortTimeInfo("600036");
+    /*监控指定的股票 当出现涨幅不大于9.8F 通知*/
+    public void MoniterStock() throws InterruptedException {
+        Poster.send("股票提醒", "开始提醒");
+        List<String> stockCodes = (List<String>) YmlUtil.get("stock.mlist", "stock");
+
+        while (stockCodes.size()>0){
+            Thread.sleep(3*1000);
+            for (int i = stockCodes.size() - 1; i >= 0; i--) {
+                String code = stockCodes.get(i);
+                RealTimeInfo info = getStockShortTimeInfo(code);
+                if (info.getSellOne()!= 0 && info.getIncreaseRatio() < 3F){
+                    Poster.send("股票提醒", info.getStockName()+"当前涨幅"+info.getIncreaseRatio());
+                    stockCodes.remove(code);
+                }
+            }
+
+        }
+        Poster.send("股票提醒", "结束提醒");
+
+
     }
+
+   /* public static void main(String[] args) {
+            getStockShortTimeInfo("600036");
+    }*/
 
     /**
      * v_sh600036="1~招商银行~600036~34.68~34.18~34.19~668298~345117~323181~34.68~613~34.67~3097~34.66~840~34.65~1007~34.64~346~34.69~149~34.70~703~34.71~177~

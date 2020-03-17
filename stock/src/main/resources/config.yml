@@ -1,0 +1,15 @@
+# 配置
+
+# 邮件通知配置
+poster:
+  # 通知配置
+  notice:
+    # 电子邮件配置
+    email:
+      sender:
+        from: woshilixin8866@163.com   # 发件人（必须正确，否则发送失败）
+        host: smtp.163.com    # 邮件服务器的SMTP地址，可选，默认为smtp.<发件人邮箱后缀>
+        port: 25    # 邮件服务器的SMTP端口，可选，默认25
+        user: woshilixin8866@163.com    # 用户名
+        pass: 188282aaa    # 密码（注意，某些邮箱需要为SMTP服务单独设置密码，详情查看相关帮助）
+      receiver: 1377204804@qq.com   #
