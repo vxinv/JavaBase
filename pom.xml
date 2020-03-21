@@ -9,6 +9,7 @@
         <module>client</module>
         <module>stock</module>
         <module>selinum</module>
+        <module>test4j</module>
     </modules>
 
     <parent>
