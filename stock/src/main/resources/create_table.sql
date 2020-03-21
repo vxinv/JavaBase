@@ -1,6 +1,6 @@
 /*创建股票信息表*/
 
-drop table  if exists  mysql_schemas.stock_info;
+drop table  if exists  stock_info;
 create table mysql_schemas.stock_info
 (
   id             bigint auto_increment     primary key,
@@ -18,13 +18,16 @@ create table mysql_schemas.stock_info
 );
 
 
-drop table if exists mysql_schemas.sim_stock_info;
+drop table if exists sim_stock_info;
 create table mysql_schemas.sim_stock_info(
     id             bigint auto_increment     primary key,
     code           varchar(8)                not null ,
     industry       varchar(16)                not null ,
     comName        varchar(16)                not null
 );
+
+
+
 delete from mysql_schemas.stock_info where code = '000659';
 
 

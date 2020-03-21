@@ -18,6 +18,10 @@ class TXstockRealTimeTest {
 
     @Test
     public void moniterStock() {
-        tXstockRealTime.MoniterStock();
+        try {
+            tXstockRealTime.MoniterStock();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
