@@ -24,7 +24,7 @@ public class OptionalTest {
      */
     @Test
     public void testMapOptional(){
-        Optional<String> string = Optional.ofNullable(null);
+        Optional<String> string = Optional.ofNullable("1");
         String s1 = string.map((s) -> {
             return "test_map";
         }).orElse("test");
