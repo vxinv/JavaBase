@@ -1,4 +1,4 @@
-package com.lixin.java8.concurrencyBase.demoComsumeProducer;
+package com.lixin.java8.concurrencyBase_16.demoComsumeProducer;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

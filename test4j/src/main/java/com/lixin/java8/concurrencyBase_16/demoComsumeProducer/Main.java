@@ -1,4 +1,4 @@
-package com.lixin.java8.concurrencyBase.demoComsumeProducer;
+package com.lixin.java8.concurrencyBase_16.demoComsumeProducer;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {

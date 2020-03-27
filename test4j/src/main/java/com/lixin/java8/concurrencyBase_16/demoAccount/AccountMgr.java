@@ -1,6 +1,4 @@
-package com.lixin.java8.concurrencyBase.demoAccount;
-
-import javax.sound.midi.SoundbankResource;
+package com.lixin.java8.concurrencyBase_16.demoAccount;
 
 /**
  * 转账的错误写法

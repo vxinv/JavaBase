@@ -1,4 +1,4 @@
-package com.lixin.java8.concurrencyBase.demoAccount;
+package com.lixin.java8.concurrencyBase_16.demoAccount;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
