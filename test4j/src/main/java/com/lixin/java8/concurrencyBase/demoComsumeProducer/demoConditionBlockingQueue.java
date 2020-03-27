@@ -24,11 +24,12 @@ public class demoConditionBlockingQueue<E> {
         this.limit = limit;
         queue = new ArrayDeque<>();
     }
+
     public void put(E e) throws  InterruptedException{
         lock.lockInterruptibly();
         try {
             while (queue.size() == limit){
-                notFull.wait();
+                notFull.await();
             }
             queue.add(e);
             notEmpty.signalAll();
@@ -41,7 +42,7 @@ public class demoConditionBlockingQueue<E> {
         lock.lockInterruptibly();
         try {
             while (queue.isEmpty()){
-                notEmpty.wait();
+                notEmpty.await();
             }
             E poll = queue.poll();
             notFull.signalAll();
