@@ -25,7 +25,13 @@ public class DynamicDataSourceContextHolder {
         CONTEXTHOLDER.set(DataSourceKey.slave.name());
     }
 
-    public static void clearDataSourcekey
+    public static void clearDataSourcekey(){
+        CONTEXTHOLDER.remove();
+    }
+
+    public static String getDataSourcekey(){
+        return CONTEXTHOLDER.get();
+    }
 
 
 }
