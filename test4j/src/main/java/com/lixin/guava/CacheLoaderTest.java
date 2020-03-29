@@ -1,10 +1,8 @@
 package com.lixin.guava;
-
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import org.junit.Test;
-
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -27,10 +25,7 @@ public class CacheLoaderTest {
         String hello = cache.getUnchecked("hello");
         System.out.println(hello);
 
-
-
         try {
-
             /*如果没有缓存 获取 缓存*/
             String s = cache.get("world", () -> "hello");
             System.out.println(s);
@@ -38,7 +33,6 @@ public class CacheLoaderTest {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
         String s1 = cache.getUnchecked("world");
         System.out.println(s1);
 

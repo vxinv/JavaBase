@@ -1,4 +1,4 @@
-package com.lixin.java8;
+package com.lixin.java8.Optional;
 
 import org.junit.Test;
 
