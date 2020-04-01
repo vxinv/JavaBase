@@ -40,7 +40,6 @@ public class DataSourceConfigurer  {
         config.addDataSourceProperty("cacheServerConfiguration", "true");
         config.addDataSourceProperty("elideSetAutoCommits", "true");
         config.addDataSourceProperty("maintainTimeStats", "false");
-
         HikariDataSource ds = new HikariDataSource(config);
         return ds;
     }
@@ -63,7 +62,6 @@ public class DataSourceConfigurer  {
         config.addDataSourceProperty("cacheServerConfiguration", "true");
         config.addDataSourceProperty("elideSetAutoCommits", "true");
         config.addDataSourceProperty("maintainTimeStats", "false");
-
         HikariDataSource ds = new HikariDataSource(config);
         return ds;
 
