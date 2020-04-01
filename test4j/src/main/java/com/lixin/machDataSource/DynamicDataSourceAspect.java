@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class DynamicDataSourceAspect {
+
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**

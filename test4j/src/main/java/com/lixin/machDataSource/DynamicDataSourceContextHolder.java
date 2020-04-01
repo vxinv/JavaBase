@@ -10,7 +10,7 @@ public class DynamicDataSourceContextHolder {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public static final ThreadLocal<String> CONTEXTHOLDER = ThreadLocal.withInitial(DataSourceKey.master::name);
+    public static final ThreadLocal<String> CONTEXTHOLDER = ThreadLocal.withInitial(DataSourceKey.master::getName);
 
     public static List<Object> dataSourceKeys  = new ArrayList<>();
 
