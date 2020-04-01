@@ -16,6 +16,4 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
         return DynamicDataSourceContextHolder.getDataSourcekey();
     }
 
-
-
 }

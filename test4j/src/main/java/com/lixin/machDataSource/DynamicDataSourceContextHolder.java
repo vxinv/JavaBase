@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DynamicDataSourceContextHolder {
+
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private static final ThreadLocal<String> CONTEXTHOLDER = ThreadLocal.withInitial(DataSourceKey.master::name);
+    public static final ThreadLocal<String> CONTEXTHOLDER = ThreadLocal.withInitial(DataSourceKey.master::name);
 
-    public static List<Object> slaveDataSourceKeys = new ArrayList<>();
+    public static List<Object> dataSourceKeys  = new ArrayList<>();
 
-    public static void setSlaveDataSourceKey(String key){
+    public static void setDataSourceKey(String key){
         CONTEXTHOLDER.set(key);
     }
 
@@ -21,7 +22,7 @@ public class DynamicDataSourceContextHolder {
         CONTEXTHOLDER.set(DataSourceKey.master.name());
     }
 
-    public static void useSlaveDataSource(){
+    public static void useDataSource(){
         CONTEXTHOLDER.set(DataSourceKey.slave.name());
     }
 
