@@ -10,7 +10,13 @@ public class DynamicDataSourceContextHolder {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public static final ThreadLocal<String> CONTEXTHOLDER = ThreadLocal.withInitial(DataSourceKey.master::getName);
+    /*
+     * ThreadLocal,叫线程本地变量或线程本地存储。
+     * ThreadLocal为变量在每个线程中都创建了一个副本，那么每个线程可以访问自己内部的副本变量。
+     * 这里使用它的子类InheritableThreadLocal用来保证父子线程都能拿到值。
+     */
+
+    public static final ThreadLocal<String> CONTEXTHOLDER = InheritableThreadLocal.withInitial(DataSourceKey.master::getName);
 
     public static List<Object> dataSourceKeys  = new ArrayList<>();
 

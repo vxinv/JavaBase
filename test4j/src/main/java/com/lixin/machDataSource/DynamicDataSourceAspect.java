@@ -25,6 +25,7 @@ public class DynamicDataSourceAspect {
      */
     @Before("@annotation(targetDataSource)")
     public void switchDataSource(JoinPoint point,TargetDataSource targetDataSource){
+        log.info("当前切面线程[{}]",Thread.currentThread().getName());
         if (!DynamicDataSourceContextHolder.dataSourceKeys.contains(targetDataSource.value())){
             log.error("datasource[{}] not exist,use default datasource", targetDataSource.value());
         }else {

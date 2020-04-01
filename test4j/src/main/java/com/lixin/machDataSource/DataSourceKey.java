@@ -1,6 +1,7 @@
 package com.lixin.machDataSource;
 
 public enum  DataSourceKey {
+
     master("master"),
     slave("slave");
 
