@@ -5,9 +5,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 public class SimpleJDKDynamicProxyDemo {
+
     static interface Iservice{
         public void sayHello();
     }
+
     static class  RealService implements Iservice{
 
         @Override

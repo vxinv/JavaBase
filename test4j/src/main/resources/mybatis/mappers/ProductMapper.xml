@@ -21,6 +21,7 @@
         FROM product
         WHERE id = #{id}
         LIMIT 1
+
     </select>
 
 </mapper>
