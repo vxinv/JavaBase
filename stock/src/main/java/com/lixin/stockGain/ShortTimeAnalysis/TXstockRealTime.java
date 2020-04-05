@@ -7,6 +7,8 @@ import com.lixin.entity.RealTimeInfo;
 import com.lixin.utils.Poster;
 import com.lixin.utils.StockUtils;
 import com.lixin.utils.YmlUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.sound.midi.SoundbankResource;
@@ -16,6 +18,8 @@ import java.util.List;
 @Service
 public class TXstockRealTime {
 
+
+    Logger log = LoggerFactory.getLogger(this.getClass());
 
     /*从腾讯获取实时的交易数据*/
     public static RealTimeInfo getStockShortTimeInfo(String stockCode) {
@@ -40,6 +44,7 @@ public class TXstockRealTime {
 
         while (stockCodes.size()>0){
             Thread.sleep(3*1000);
+            log.info("监控中[{}]",stockCodes);
             for (int i = stockCodes.size() - 1; i >= 0; i--) {
                 String code = stockCodes.get(i);
                 RealTimeInfo info = getStockShortTimeInfo(code);

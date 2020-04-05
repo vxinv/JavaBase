@@ -3,7 +3,7 @@ package com.lixin.java8.concurrencyBase_16.demoAccount;
 /**
  * 转账的错误写法
  * 如果两个账户同时给对方转账
- * 都先获取了第一个锁
+ * 都先获取了对方第一个锁
  * 会发生死锁
  */
 public class AccountMgr {
@@ -29,7 +29,7 @@ public class AccountMgr {
                     from.reduce(money);
                     to.add(money);
                     i++;
-                    //System.out.println("转账成功"+i);
+                    System.out.println("转账成功"+i);
                 }else {
                     throw new NoEnoughMoneyException();
                 }
@@ -53,7 +53,7 @@ public class AccountMgr {
                             from.reduce(money);
                             to.add(money);
                             i++;
-                            //System.out.println("转账成功"+i);
+                            System.out.println("转账成功"+i);
                         }else {
                             throw  new NoEnoughMoneyException();
                         }

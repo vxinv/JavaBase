@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Map;
 
 public class EnhancedMapDemo <K,V> {
+
     Map<K,V> map;
 
     public EnhancedMapDemo(Map<K, V> map) {
@@ -19,6 +20,7 @@ public class EnhancedMapDemo <K,V> {
             }
             return map.put(key,value);
         }
+
     }
 
     public V put(K key,V value){

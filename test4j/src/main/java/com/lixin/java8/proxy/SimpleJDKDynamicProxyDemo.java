@@ -26,19 +26,23 @@ public class SimpleJDKDynamicProxyDemo {
             this.realObject = object;
         }
 
+        public SimpleInvocationHandler() {
+        }
+
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             System.out.println("entering "+method.getName());
-            Object result = method.invoke(realObject, args);
+            System.out.println(proxy.getClass().getName());
+            //Object result = method.invoke(realObject, args);
             System.out.println("leaving "+method.getName());
-            return result;
+            return 1;
         }
     }
 
     public static void main(String[] args) {
         RealService realService = new RealService();
         Iservice proxyService = (Iservice) Proxy.newProxyInstance(Iservice.class.getClassLoader(), new Class<?>[]{Iservice.class},
-                new SimpleInvocationHandler(realService));
+                new SimpleInvocationHandler());
         System.out.println(proxyService.getClass().getName());
         proxyService.sayHello();
     }

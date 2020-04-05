@@ -12,12 +12,10 @@ import java.util.Properties;
 
 /**
  * Mybatis 的插件
- *
+ *Ls
  */
 // 用来拦截那个对象的那个方法
-@Intercepts({
-        @Signature(type = StatementHandler.class,method = "parameterize" ,args = Statement.class)
-})
+@Intercepts({@Signature(type = StatementHandler.class,method = "parameterize" ,args = Statement.class)})
 public class InteceptDemo1  implements Interceptor {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
@@ -39,9 +37,9 @@ public class InteceptDemo1  implements Interceptor {
         Object proceed = invocation.proceed();
         return proceed;
     }
-
     /**
-     * 插件包装
+     * 插件包装 四大对象的生成都会调用这个方法
+     *
      * @param target
      * @return
      */

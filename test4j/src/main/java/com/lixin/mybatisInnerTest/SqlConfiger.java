@@ -32,6 +32,10 @@ public class SqlConfiger {
     public DataSource dataSource(){
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://rm-2ze3kt2861n4gf13mpo.mysql.rds.aliyuncs.com:3306/product_slave_alpha"); //数据源
+        return getDataSource(config);
+    }
+
+    private static DataSource getDataSource(HikariConfig config) {
         config.setUsername("root"); //用户名
         config.setPassword("Wqkj2019"); //密码
         config.addDataSourceProperty("cachePrepStmts", "true"); //是否自定义配置，为true时下面两个参数才生效

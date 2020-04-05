@@ -15,7 +15,7 @@ public class CacheLoaderTest {
     @Test
     public void testCache(){
         LoadingCache<String, String> cache = CacheBuilder.newBuilder().maximumSize(100)
-                .expireAfterAccess(30, TimeUnit.MILLISECONDS).build(new CacheLoader<String, String>() {
+                .expireAfterWrite(30, TimeUnit.MILLISECONDS).build(new CacheLoader<String, String>() {
                     @Override
                     public String load(String key) {
                         return "world";
