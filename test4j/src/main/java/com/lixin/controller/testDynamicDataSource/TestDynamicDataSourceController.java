@@ -14,6 +14,7 @@ public class TestDynamicDataSourceController {
     @Resource
     private DynamicDataSourceService productService;
 
+
     @GetMapping("/{id}")
     public Product getProduct(@PathVariable("id") Long productId) {
         return productService.select(productId);

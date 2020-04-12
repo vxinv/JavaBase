@@ -5,20 +5,14 @@ import junit.framework.TestCase;
 
 import javax.sound.midi.SoundbankResource;
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.*;
 import java.util.function.Supplier;
 
 public class TestFuture extends TestCase {
 
-    public static ExecutorService executor = Executors.newFixedThreadPool(2,new NamedThreadFactory());
+    public static ExecutorService executor = Executors.newFixedThreadPool(3,new NamedThreadFactory());
 
-    static Supplier<Integer> externalTask = () -> {
-        int time  =delayRandom(20, 2000);
-        return time;
-    };
+    static Supplier<Integer> externalTask = () -> delayRandom(20, 2000);
 
     static Supplier<Integer> externalTask2Time = () ->{
         try {
@@ -31,9 +25,9 @@ public class TestFuture extends TestCase {
 
     static Supplier<Integer> externalTask3Time = () ->{
         try {
-            System.out.println(Thread.currentThread().getName()+"等待三秒开始");
+            System.out.println(Thread.currentThread().getName()+"等待3秒开始");
             Thread.sleep(3*1000);
-            System.out.println(Thread.currentThread().getName()+"等待三秒结束");
+            System.out.println(Thread.currentThread().getName()+"等待3秒结束");
         } catch (InterruptedException e) {
 
         }
@@ -112,12 +106,32 @@ public class TestFuture extends TestCase {
      * 模拟外部任务
      */
     private static Random rnd = new Random();
+
     static int delayRandom(int min,int max){
         int milli = max > min ? rnd.nextInt(max - min) : 0;
         try {
             Thread.sleep(milli);
         } catch (InterruptedException e) { }
         return milli;
+    }
+
+    public void  test_run_loop(){
+        CountDownLatch countDownLatch = new CountDownLatch(100);
+        for (int i = 0; i < 100; i++) {
+            Future<String> submit = executor.submit(() -> {
+                Thread.sleep(1000);
+                System.out.println(Thread.currentThread().getName());
+                countDownLatch.countDown();
+                return Thread.currentThread().getName();
+            });
+        }
+        try {
+            countDownLatch.await();
+            System.out.println("end");
+        } catch (InterruptedException e) {
+            System.out.println("response interrupt");
+            e.printStackTrace();
+        }
     }
 
 

@@ -13,6 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * 这样 代码清晰易读 避免不必要的唤醒和检查 提高效率
  */
 public class demoConditionBlockingQueue<E> {
+
     private Queue<E> queue = null;
     private int limit;
     private Lock lock = new ReentrantLock();

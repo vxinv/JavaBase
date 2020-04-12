@@ -9,6 +9,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 public class ReflectionDemo1  extends TestCase {
 
     private abstract static class StringList implements List<String> {}

@@ -1,3 +1,4 @@
+/*
 package com.lixin.mybatisInnerTest;
 
 import com.lixin.mapper.ProductDao;
@@ -20,9 +21,11 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
 
+*/
 /**
  * java代码配置
- */
+ *//*
+
 @Configuration
 public class SqlConfiger {
 
@@ -95,3 +98,4 @@ public class SqlConfiger {
 
 
 }
+*/

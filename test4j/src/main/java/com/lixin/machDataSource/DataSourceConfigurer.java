@@ -23,7 +23,7 @@ public class DataSourceConfigurer  {
     //@ConfigurationProperties(prefix = "spring.datasource.master")
     public DataSource master(){
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://rm-2ze3kt2861n4gf13mpo.mysql.rds.aliyuncs.com:3306/product_master"); //数据源
+        config.setJdbcUrl("jdbc:mysql://rm-2ze3kt2861n4gf13mpo.mysql.rds.aliyuncs.com:3306/product_master?useUnicode=true&characterEncoding=utf-8&useSSL=false"); //数据源
         return getDataSource(config);
     }
 
@@ -32,7 +32,7 @@ public class DataSourceConfigurer  {
     //@ConfigurationProperties(prefix = "spring.datasource.slave")
     public DataSource slave(){
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://rm-2ze3kt2861n4gf13mpo.mysql.rds.aliyuncs.com:3306/product_slave_alpha"); //数据源
+        config.setJdbcUrl("jdbc:mysql://rm-2ze3kt2861n4gf13mpo.mysql.rds.aliyuncs.com:3306/product_slave_alpha?useUnicode=true&characterEncoding=utf-8&useSSL=false"); //数据源
         return getDataSource(config);
 
     }

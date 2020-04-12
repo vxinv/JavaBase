@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import javax.sql.DataSource;
 import java.net.URL;
 
+/*
 public class MainTest {
 
     SqlConfiger sqlConfiger = new SqlConfiger();
@@ -36,9 +37,11 @@ public class MainTest {
 
     @Test
     public void testSessionFactory(){
-        /**
+        */
+/**
          * 如果是xml文件配置 解析xml保存在configure
-         */
+         *//*
+
         SqlSessionFactory sqlSessionFactory = sqlConfiger.sqlSessionFactoryBean();
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ProductDao mapper = sqlSession.getMapper(ProductDao.class);
@@ -48,7 +51,8 @@ public class MainTest {
 
     }
 
-    /**
+    */
+/**
      * public Object pluginAll(Object target) {
      *     for (Interceptor interceptor : interceptors) {
      *       target = interceptor.plugin(target);
@@ -56,7 +60,8 @@ public class MainTest {
      *     return target;
      *   }
      *
-     * */
+     * *//*
+
 
     @Test
     public void testPlugin(){
@@ -64,3 +69,4 @@ public class MainTest {
 
     }
 }
+*/

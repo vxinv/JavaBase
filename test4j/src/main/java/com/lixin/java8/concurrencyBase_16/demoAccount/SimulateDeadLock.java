@@ -35,7 +35,7 @@ public class SimulateDeadLock {
                         int money = rnd.nextInt(10);
                         if (j!=k){
                             try {
-                                // transer 是错误的写法
+                                // transfer 是错误的写法
                                 // transfer2 是正确的写法
                                 AccountMgr.transfer2(accounts[j],accounts[k],money);
                             } catch (AccountMgr.NoEnoughMoneyException e) {}
