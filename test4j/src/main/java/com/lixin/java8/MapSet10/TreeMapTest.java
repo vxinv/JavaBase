@@ -22,7 +22,7 @@ public class TreeMapTest extends TestCase {
              * 大于0 往右 小于0 往左 等于0 覆盖
              */
             public int compare(Integer o1, Integer o2) {
-               return -(o1-o2);
+               return o1-o2;
             }
         });
 
@@ -30,7 +30,7 @@ public class TreeMapTest extends TestCase {
         treeMap.put(1,"lixin");
         treeMap.put(2,"hello");
         treeMap.put(5,"java");
-
+        // 遍历 都是从左往右
         for (Map.Entry<Integer, String> integerStringEntry : treeMap.entrySet()) {
             System.out.println(integerStringEntry.getKey());
             System.out.println(integerStringEntry.getValue());

@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.lixin.constant.API.JSON;
+
 /*网页的分析 数据的获取*/
 @Service
 public class SimStockInfoProcessService {
@@ -52,7 +54,6 @@ public class SimStockInfoProcessService {
 
     public static void main(String[] args) {
         Map<String, String> industry = getIndustry();
-        System.out.println(JSON.toJSONString(industry));
         for (Map.Entry<String, String> stringStringEntry : industry.entrySet()){
             getAllCodeFromIndustrial(stringStringEntry.getKey(), stringStringEntry.getValue());
         }

@@ -38,7 +38,7 @@ public class Poster {
         Poster.send("邮件配置测试", "测试邮件是否能发送成功！收到邮件证明邮件信息配置正确！");
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         sendTest();
-    }*/
+    }
 }

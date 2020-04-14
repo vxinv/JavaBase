@@ -1,12 +1,13 @@
 package com.lixin.java8.LambdaTest;
 
 import junit.framework.TestCase;
-
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FilenameFilter;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 测试lambda表达式
@@ -35,6 +36,16 @@ public class LambdaTest extends TestCase {
          * java 会将msg的值建立副本 表达式访问的是这个副本 
          */
         executorService.submit(()-> System.out.println(msg));
+
+    }
+    public void test_demo_2(){
+        List<String> collect = Stream.of("one", "two", "three", "four")
+                .filter(e -> e.length() > 3)
+                .peek(e -> System.out.println("Filtered value: " + e))
+                .map(String::toUpperCase)
+                .peek(e -> System.out.println("Mapped value: " + e))
+                .collect(Collectors.toList());
+        System.out.println(collect);
 
     }
 }

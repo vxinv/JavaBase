@@ -20,6 +20,7 @@ public class MapTest {
         biMap.put("sina", "sina.com");
         biMap.put("qq","qq.com");
         biMap.put("al","ali.cn" );
+        biMap.forcePut("al1", "ali.cn");
         biMap.forcePut("qq", "qq.cn");
         BiMap<String, String> inverse = biMap.inverse();
         for (String value : inverse.keySet()) {

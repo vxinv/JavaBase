@@ -18,6 +18,7 @@
 
         <Console name="Console" target="SYSTEM_OUT" >
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] [%M] %-5level %logger{36} - %msg%n"/>
+            <!--<JsonLayout compact="true" locationInfo="true" complete="false" eventEol="true"/>-->
         </Console>
 
         <RollingFile name="RollingFileInfo" fileName="${sys:user.home}/stock_logs/info.log"

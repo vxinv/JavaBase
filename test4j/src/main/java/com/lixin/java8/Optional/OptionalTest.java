@@ -40,6 +40,7 @@ public class OptionalTest {
     public void testFilterOptional(){
         Optional<String> string = Optional.ofNullable(null);
         String s1 = string.filter((s) -> s.equals(null)).orElse("");
+        string.filter((s)-> s.equals("") ).orElse("");
         System.out.println(s1);
     }
 

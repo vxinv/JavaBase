@@ -3,7 +3,8 @@ package com.lixin.stockGain;
 import com.lixin.constant.API;
 import cn.hutool.http.HttpUtil;
 import com.lixin.entity.stockInfo.RealTimeStockInfo;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 /*
     获得实时数据
