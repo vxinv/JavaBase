@@ -13,7 +13,7 @@ public class RunnableThreadInterruptDemo extends Thread{
     public static void main(String[] args) throws InterruptedException {
         RunnableThreadInterruptDemo runnableThreadInterruptDemo = new RunnableThreadInterruptDemo();
         runnableThreadInterruptDemo.start();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         System.out.println(runnableThreadInterruptDemo.getState());
         runnableThreadInterruptDemo.interrupt();
     }

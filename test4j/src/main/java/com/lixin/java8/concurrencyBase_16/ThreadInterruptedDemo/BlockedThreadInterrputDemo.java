@@ -1,6 +1,5 @@
 package com.lixin.java8.concurrencyBase_16.ThreadInterruptedDemo;
 
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * RUNNABLE 线程在运行或具备运行的条件 等待被调度

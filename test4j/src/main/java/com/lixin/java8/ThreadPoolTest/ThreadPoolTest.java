@@ -15,6 +15,7 @@ public class ThreadPoolTest  extends TestCase {
         // keepAliveTime 空闲线程存活时间
 
         ExecutorService executor = Executors.newFixedThreadPool(5);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     }
 

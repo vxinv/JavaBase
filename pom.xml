@@ -8,11 +8,12 @@
         <module>proxy</module>
         <module>client</module>
         <module>stock</module>
-        <module>selinum</module>
+        <module>selenium</module>
         <module>test4j</module>
         <module>top7</module>
         <module>dubbo</module>
-        <module>mybootstart</module>
+        <module>mystart</module>
+        <module>zookeeper</module>
     </modules>
 
     <parent>
@@ -40,6 +41,8 @@
     </properties>
 
 
+    <dependencyManagement>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
         <dependency>
@@ -65,7 +68,7 @@
             <optional>true</optional>
         </dependency>
         <!--netty jar包导入-->
-        <dependency>
+        <dependency>cd /
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
             <version>${netty-all.version}</version>
@@ -230,6 +233,7 @@
         </dependency>
 
     </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

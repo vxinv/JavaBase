@@ -1,11 +1,12 @@
-package com.lixin.java8.concurrencyBase_16;
-import lombok.SneakyThrows;
+package com.lixin.java8.concurrencyBase_16.WaitThread_sync_wait_1532;
+
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 使用显示条件进行协作的示例
+ * 调用await 之前需要先获取锁 释放cpu
  *
  */
 public class demoCondition  extends Thread{
@@ -50,13 +51,12 @@ public class demoCondition  extends Thread{
         }
     }
 
-    @SneakyThrows
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws InterruptedException {
         demoCondition demoCondition = new demoCondition();
         demoCondition.start();
         System.out.println("start demo");
         Thread.sleep(2000);
         demoCondition.fired();
-
     }
 }
