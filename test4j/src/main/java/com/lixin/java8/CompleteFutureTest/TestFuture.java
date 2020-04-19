@@ -11,7 +11,6 @@ import java.util.function.Supplier;
 public class TestFuture extends TestCase {
 
     public static ExecutorService executor = Executors.newFixedThreadPool(3,new NamedThreadFactory());
-
     static Supplier<Integer> externalTask = () -> delayRandom(20, 2000);
 
     static Supplier<Integer> externalTask2Time = () ->{
@@ -133,6 +132,11 @@ public class TestFuture extends TestCase {
             e.printStackTrace();
         }
     }
+    /**
+     * 回调的线程是不是同一个 如果一直出现
+     */
+    public void test_futuretask(){
 
+    }
 
 }

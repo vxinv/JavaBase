@@ -6,7 +6,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>proxy</module>
-        <module>client</module>
         <module>stock</module>
         <module>selenium</module>
         <module>test4j</module>
@@ -41,7 +40,7 @@
     </properties>
 
 
-    <dependencyManagement>
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
@@ -233,7 +232,7 @@
         </dependency>
 
     </dependencies>
-    </dependencyManagement>
+
 
     <build>
         <plugins>
