@@ -96,6 +96,7 @@ public class PacketCodec {
         byte command = byteBuf.readByte();
 
         // 数据包长度
+        // 添加标记 查看当数据不够时 netty怎么处理
         int length = byteBuf.readInt();
 
         byte[] bytes = new byte[length];

@@ -7,7 +7,7 @@ import io.netty.handler.codec.MessageToMessageDecoder;
 
 
 import java.util.List;
-
+@SuppressWarnings("unchecked")
 public class PacketDecoder extends MessageToMessageDecoder<ByteBuf> {
 
     @Override
