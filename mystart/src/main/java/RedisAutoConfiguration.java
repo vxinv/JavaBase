@@ -36,7 +36,6 @@ RedisAutoConfiguration {
     @Bean
     public String testBootAutoConfigure(MyRedisProperties properties){
         System.out.println("==========================>Hello Boot<==========================");
-        System.out.println(properties.getHost());
         return "hello";
     }
 

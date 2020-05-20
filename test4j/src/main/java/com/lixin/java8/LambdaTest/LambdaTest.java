@@ -3,9 +3,12 @@ package com.lixin.java8.LambdaTest;
 import junit.framework.TestCase;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -47,5 +50,46 @@ public class LambdaTest extends TestCase {
                 .collect(Collectors.toList());
         System.out.println(collect);
 
+    }
+
+    String msg = "hello world";
+    int count = 1;
+    public void test_3() throws InterruptedException {
+        Runnable runnable = ()->{
+            change(msg);
+            incr(count);
+        };
+        new Thread(runnable).start();
+        Thread.sleep(1000);
+        System.out.println(msg);
+        System.out.println(count);
+    }
+
+    void incr(Integer integer){
+        count = integer +1;
+    }
+
+    void change(String str){
+        System.out.println(str == msg);
+        msg = "hello msg";
+        str = "hello lixin";
+        System.out.println(str == msg);
+    }
+
+
+    public void test_4() throws InterruptedException {
+        Map<String,String> map = new HashMap<String,String>(2);
+        map.put("hello","world");
+
+        Runnable runnable = ()->{
+            putTest(map);
+        };
+        new Thread(runnable).start();
+        Thread.sleep(1000);
+        System.out.println(map.get("hello"));
+    }
+
+    public void putTest(Map<String,String> tm){
+        tm.put("hello","lixin");
     }
 }

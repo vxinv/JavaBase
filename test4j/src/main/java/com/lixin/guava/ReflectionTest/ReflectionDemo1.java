@@ -57,7 +57,8 @@ public class ReflectionDemo1  extends TestCase {
         System.out.println(typeToken.getType().getTypeName());
         // get most-known runtime class
         System.out.println(typeToken.getRawType().getSimpleName());
-        // Returns some subtype of this that has the specified raw class. For example, if this is Iterable<String> and the argument is List.class, the result will be List<String>.
+        // Returns some subtype of this that has the specified raw class. For example,
+        // if this is Iterable<String> and the argument is List.class, the result will be List<String>.
         System.out.println(typeToken.getTypes());
     }
 

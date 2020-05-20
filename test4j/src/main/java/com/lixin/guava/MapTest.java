@@ -37,10 +37,8 @@ public class MapTest {
         multimap.put("a", 1);
         multimap.put("a", 2);
         multimap.put("a",3);
-
         multimap.put("b",4);
         multimap.put("b",5);
-
         System.out.println("multimap get: " + multimap.get("a"));
         Set<Integer> aset = multimap.get("a");
         aset.add(7);

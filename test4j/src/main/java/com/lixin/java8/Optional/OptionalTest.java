@@ -1,12 +1,8 @@
 package com.lixin.java8.Optional;
 
 import org.junit.Test;
-
 import java.util.Optional;
-
 public class OptionalTest {
-
-
 
     /**
      * orElse 如果创建的Optional中有值存在，则返回此值，否则返回一个默认值

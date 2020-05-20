@@ -8,6 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * 获取不到的时候 可以释放已经获得的锁
  */
 public class Account {
+
     private Lock lock = new ReentrantLock();
     private volatile double money;
 

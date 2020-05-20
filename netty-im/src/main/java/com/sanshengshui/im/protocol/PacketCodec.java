@@ -85,16 +85,12 @@ public class PacketCodec {
     public Packet decode(ByteBuf byteBuf) {
         // 跳过 magic number
         byteBuf.skipBytes(4);
-
         // 跳过版本号
         byteBuf.skipBytes(1);
-
         // 序列化算法
         byte serializeAlgorithm = byteBuf.readByte();
-
         // 指令
         byte command = byteBuf.readByte();
-
         // 数据包长度
         // 添加标记 查看当数据不够时 netty怎么处理
         int length = byteBuf.readInt();

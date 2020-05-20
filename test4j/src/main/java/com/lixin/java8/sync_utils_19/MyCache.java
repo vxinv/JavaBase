@@ -9,6 +9,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * 读写锁 读可以并行 写不可以
  */
 public class MyCache {
+
     private Map<String,Object> map = new HashMap<>();
     private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     private Lock readLock = readWriteLock.readLock();

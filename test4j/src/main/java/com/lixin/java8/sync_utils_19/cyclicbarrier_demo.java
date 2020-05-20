@@ -20,6 +20,7 @@ import java.util.concurrent.CyclicBarrier;
 
 public class cyclicbarrier_demo {
     static class Tourist extends Thread{
+        // 循环屏障
         CyclicBarrier barrier;
         public Tourist(CyclicBarrier barrier){
             this.barrier = barrier;

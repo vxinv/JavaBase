@@ -6,6 +6,7 @@ package com.lixin.java8.concurrencyBase_16.WaitThread_sync_wait_1532;
  * 等待时间到 或被其他线程调用notify/notifyAll 从条件队列中移除 重新获得竞争锁
  */
 public class WaitThread extends Thread {
+
     private volatile boolean fire = false;
 
     @Override

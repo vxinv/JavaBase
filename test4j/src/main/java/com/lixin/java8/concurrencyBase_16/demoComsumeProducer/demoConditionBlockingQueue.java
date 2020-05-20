@@ -12,6 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * take时 如果队列空 在notEmpty 等待 take操作后 通知notFull
  * 这样 代码清晰易读 避免不必要的唤醒和检查 提高效率
  */
+
 public class demoConditionBlockingQueue<E> {
 
     private Queue<E> queue = null;

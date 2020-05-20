@@ -1,9 +1,8 @@
 package com.lixin.java8.CompleteFutureTest;
 
-import io.netty.util.concurrent.CompleteFuture;
+
 import junit.framework.TestCase;
 
-import javax.sound.midi.SoundbankResource;
 import java.util.Random;
 import java.util.concurrent.*;
 import java.util.function.Supplier;
@@ -11,6 +10,7 @@ import java.util.function.Supplier;
 public class TestFuture extends TestCase {
 
     public static ExecutorService executor = Executors.newFixedThreadPool(3,new NamedThreadFactory());
+
     static Supplier<Integer> externalTask = () -> delayRandom(20, 2000);
 
     static Supplier<Integer> externalTask2Time = () ->{

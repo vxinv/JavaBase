@@ -7,6 +7,7 @@ package com.lixin.java8.concurrencyBase_16.demoAccount;
  * 会发生死锁
  */
 public class AccountMgr {
+
     public static class NoEnoughMoneyException extends Exception{};
     private static volatile  int  i = 1;
 

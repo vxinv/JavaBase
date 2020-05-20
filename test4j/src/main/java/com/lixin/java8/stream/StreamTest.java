@@ -1,15 +1,10 @@
 package com.lixin.java8.stream;
 
 import com.google.common.collect.Lists;
-import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 import org.junit.Test;
-
-import javax.sound.midi.SoundbankResource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.ThreadFactory;
 import java.util.stream.Collectors;
 
 /**
@@ -38,8 +33,6 @@ public class StreamTest {
         long l = System.currentTimeMillis();
         System.out.println(l);
         System.out.println(UUID.randomUUID().toString());
-        long objectSize = ObjectSizeCalculator.getObjectSize(UUID.randomUUID().toString());
-        System.out.println(objectSize);
         ArrayList<String> list = new ArrayList<>(1000);
         for (int i = 0; i < 100000000; i++) {
             if (i==21897889){

@@ -1,6 +1,7 @@
 package com.lixin.java8.concurrencyBase_16.demoComsumeProducer;
 
 public class Consumer extends Thread {
+
     MyBlockingQueue<String> queue;
 
     public Consumer(MyBlockingQueue<String> queue) {

@@ -8,11 +8,12 @@ public class NamedThreadFactory implements ThreadFactory {
     private final AtomicInteger threadNumber = new AtomicInteger(1);
     private final ThreadGroup group;
     private final String namePrefix;
+
     public NamedThreadFactory() {
         SecurityManager s = System.getSecurityManager();
         group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
         namePrefix = "pool-" + "LIXIN" + "-thread-";
-    }
+    }   
 
     @Override
     public Thread newThread(Runnable r) {

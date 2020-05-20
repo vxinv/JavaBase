@@ -14,7 +14,7 @@ public class BlockedThreadInterrputDemo {
         public void run() {
             synchronized (lock){
                 while (!Thread.currentThread().isInterrupted()){
-
+                    System.out.println("not Interrupted");
                 }
             }
             System.out.println("exit");
@@ -33,6 +33,7 @@ public class BlockedThreadInterrputDemo {
             a.start();
             Thread.sleep(1000);
             a.interrupt();
+
             a.join();
         }
     }
