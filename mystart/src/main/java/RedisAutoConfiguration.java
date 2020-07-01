@@ -1,12 +1,6 @@
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import redis.clients.jedis.Jedis;
-
-import javax.sound.midi.SoundbankResource;
 
 /**
  * FileName: RedisAutoConfiguration
@@ -20,8 +14,7 @@ import javax.sound.midi.SoundbankResource;
 //@ConditionalOnClass(Jedis.class)
 // 引入属性类
 @EnableConfigurationProperties(MyRedisProperties.class)
-public class
-RedisAutoConfiguration {
+public class RedisAutoConfiguration {
 
    /* @Bean
     // 当这个bean不存在的时候才执行

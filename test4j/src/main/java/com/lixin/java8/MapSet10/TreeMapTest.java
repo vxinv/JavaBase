@@ -29,6 +29,7 @@ public class TreeMapTest extends TestCase {
         treeMap.put(1,"lixin");
         treeMap.put(2,"hello");
         treeMap.put(5,"java");
+
         // 遍历 都是从左往右
         for (Map.Entry<Integer, String> integerStringEntry : treeMap.entrySet()) {
             System.out.println(integerStringEntry.getKey());

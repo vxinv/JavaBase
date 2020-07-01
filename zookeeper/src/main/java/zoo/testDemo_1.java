@@ -10,12 +10,24 @@ import java.util.List;
 
 public class testDemo_1  {
 
-    String connectString = "112.126.100.73:2181";
+    String connectString = "192.168.0.212:2181";
     int timeOut = 2000;
     ZooKeeper zooKeeper;
     //连接
 
+
     @Before
+    public void  createZookeeper() throws IOException {
+         zooKeeper = new ZooKeeper(connectString, timeOut, new Watcher() {
+            @Override
+            public void process(WatchedEvent event) {
+
+            }
+        });
+
+    }
+
+    @Test
     public  void testZook() throws IOException {
          zooKeeper = new ZooKeeper(connectString, timeOut, (watchedEvent)-> {
              try {
@@ -35,7 +47,7 @@ public class testDemo_1  {
     // 创建节点
     @Test
     public void testCreateNode() throws KeeperException, InterruptedException {
-        String s = zooKeeper.create("/lixin/name", "age".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL);
+        String s = zooKeeper.create("/name", "age".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL);
         System.out.println(s);
     }
 

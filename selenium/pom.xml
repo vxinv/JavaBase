@@ -20,12 +20,11 @@
         </dependency>
 
 
-    <!-- Other dependencies -->
 
      <dependency>
-         <groupId>com.github.mmarquee</groupId>
-         <artifactId>ui-automation</artifactId>
-         <version>0.5.1-SNAPSHOT</version>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.12</version>
      </dependency>
 
 

@@ -77,19 +77,22 @@ public class LambdaTest extends TestCase {
     }
 
 
+
     public void test_4() throws InterruptedException {
         Map<String,String> map = new HashMap<String,String>(2);
-        map.put("hello","world");
 
+        map.put("hello","world");
         Runnable runnable = ()->{
             putTest(map);
         };
         new Thread(runnable).start();
         Thread.sleep(1000);
-        System.out.println(map.get("hello"));
+        for (String s : map.keySet()) {
+            System.out.println(map.get(s));
+        }
     }
 
     public void putTest(Map<String,String> tm){
-        tm.put("hello","lixin");
+        tm.put("hello1","lixin");
     }
 }

@@ -24,7 +24,6 @@ public class StreamTest {
         List<Integer> a = array.stream().map(s -> Integer.parseInt(s))
                 .filter(integer -> integer >= 4)
                 .collect(Collectors.toList());
-
         System.out.println(a);
     }
 

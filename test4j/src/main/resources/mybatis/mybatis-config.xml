@@ -13,7 +13,7 @@
     </settings>
 
     <typeHandlers>
-        <typeHandler handler="com.wqsci.com.top7.typeHandler.FormatTimeTypeHandler"/>
+        <typeHandler handler="com.wqsci.com.goodluck.typeHandler.FormatTimeTypeHandler"/>
     </typeHandlers>
 
 </configuration>
