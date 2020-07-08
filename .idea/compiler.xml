@@ -8,12 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="client" />
+        <module name="commom" />
+        <module name="es" />
         <module name="mbp" />
         <module name="mysql" />
         <module name="mystart" />
         <module name="rocketmq" />
         <module name="selenium" />
-        <module name="SPITest" />
         <module name="stock" />
         <module name="test4j" />
       </profile>
@@ -22,6 +23,7 @@
       <module name="dubbo" target="1.8" />
       <module name="proxy" target="1.8" />
       <module name="selinum" target="1.8" />
+      <module name="SPITest" target="1.8" />
       <module name="top7" target="1.8" />
       <module name="zookeeper" target="1.8" />
     </bytecodeTargetLevel>
@@ -30,7 +32,9 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="SPITest" options="-parameters" />
       <module name="client" options="-parameters" />
+      <module name="commom" options="-parameters" />
       <module name="dubbo" options="-parameters" />
+      <module name="es" options="-parameters" />
       <module name="mbp" options="-parameters" />
       <module name="mysql" options="-parameters" />
       <module name="mystart" options="-parameters" />

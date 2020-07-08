@@ -1,5 +1,6 @@
 package com.goodluck.services.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.goodluck.dto.goodsService.SearchGoodsQueryParam;
 import com.goodluck.mapper.GoodsMapper;
 import com.goodluck.model.Goods;
@@ -23,10 +24,14 @@ public class GoodsServiceImpl implements GoodsServices {
 
     @Override
     public List<Goods> searchGoods(SearchGoodsQueryParam searchGoodsQueryParam) {
+
+        PageHelper.startPage(searchGoodsQueryParam.getPageNo(),searchGoodsQueryParam.getPageSize());
+
         GoodsExample goodsExample = new GoodsExample();
         GoodsExample.Criteria criteria = goodsExample.createCriteria();
         criteria.andClassify1EqualTo(searchGoodsQueryParam.getClassify1());
         criteria.andClassify2EqualTo(searchGoodsQueryParam.getClassify2());
+
         if (searchGoodsQueryParam.getClassify3()!=null){
             criteria.andClassify3EqualTo(searchGoodsQueryParam.getClassify3());
         }
