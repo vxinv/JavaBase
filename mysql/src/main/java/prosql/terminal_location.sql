@@ -1,0 +1,20 @@
+CREATE TABLE `terminal_location` (
+  `notify_type` varchar(255) DEFAULT NULL,
+  `device_id` varchar(255) DEFAULT NULL,
+  `gateway_id` varchar(255) DEFAULT NULL,
+  `service_id` varchar(255) DEFAULT NULL,
+  `service_type` varchar(255) DEFAULT NULL,
+  `event_time` varchar(255) DEFAULT NULL,
+  `msg_id` varchar(255) DEFAULT NULL,
+  `msg_serial_num` varchar(255) DEFAULT NULL,
+  `property` varchar(255) DEFAULT NULL,
+  `reply_serial_num` varchar(255) DEFAULT NULL,
+  `reply_id` varchar(255) DEFAULT NULL,
+  `location_result` varchar(255) DEFAULT NULL,
+  `direction` varchar(255) DEFAULT NULL,
+  `latitude` varchar(255) DEFAULT NULL,
+  `longitude` varchar(255) DEFAULT NULL,
+  `msg_check_sum` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7917 DEFAULT CHARSET=utf8

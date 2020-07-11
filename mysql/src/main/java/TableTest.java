@@ -1,6 +1,10 @@
+import cn.hutool.core.io.FileUtil;
 import com.mysql.jdbc.Driver;
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.nio.charset.Charset;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,22 +15,24 @@ import java.util.Map;
 public class TableTest {
 
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+   /* public static void main(String[] args) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
 
         List<TableData> old = process("wqkj_test");
+
         List<TableData> pro = process("wqkj");
 
         check(old,pro);
 
-    }
+    }*/
 
-    static void check(List<TableData> oldDataList,List<TableData> newList){
+    void check(List<TableData> oldDataList,List<TableData> newList){
 
         for (int i = 0; i < oldDataList.size(); i++) {
             TableData old = oldDataList.get(i);
             // 寻找对应的表
             // 遍历一遍 如果没有
             boolean hasTable = false;
+
             System.out.println("对比"+old.tableName+"=============>");
 
             for (int i1 = 0; i1 < newList.size(); i1++) {
@@ -62,19 +68,14 @@ public class TableTest {
 
     }
 
+    List<TableData> process(String dbName) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
 
-    static List<TableData> process(String dbName) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver").newInstance();
-        String url = "jdbc:mysql://rm-2ze3kt2861n4gf13mpo.mysql.rds.aliyuncs.com:3306/"+dbName;
-        String name = "root";
-        String password = "Wqkj2019";
-        Connection connection = DriverManager.getConnection(url,name,password);
-        DatabaseMetaData metaData = connection.getMetaData();
-        ArrayList<TableData> tableDatas = new ArrayList<>();
+         Connection connection = connectDB(dbName);
+         DatabaseMetaData metaData = connection.getMetaData();
+         ArrayList<TableData> tableDatas = new ArrayList<>();
         // 获取数据库下所有的表
         ResultSet tables = metaData.getTables(null, null, "%", new String[]{"TABLE"});
         while (tables.next()) {
-
             TableData tableData = new TableData();
             // 列的个数
             /*int columnCount = tables.getMetaData().getColumnCount();
@@ -142,4 +143,90 @@ public class TableTest {
 
         return tableDatas;
     }
-}
+
+
+    public Connection connectDB(String dbName) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            String url = "jdbc:mysql://rm-2ze3kt2861n4gf13mpo.mysql.rds.aliyuncs.com:3306/"+dbName;
+            String name = "root";
+            String password = "Wqkj2019";
+            Connection connection = null;
+            connection = DriverManager.getConnection(url,name,password);
+            return connection;
+        } catch (Exception e) {
+            System.out.println("connect error");
+            new RuntimeException();
+        }
+        return null;
+    }
+
+
+    @Test
+    public void testDB() {
+
+        Connection conn = connectDB("wqkj_test");
+        ddlSQL(conn,"terminal_infomation_test");
+    }
+    /**
+     * 获取所有的建表语句 存入文件
+     */
+    @SneakyThrows
+    @Test
+    public void test4() {
+        Connection connection = connectDB("wqkj");
+        DatabaseMetaData metaData = connection.getMetaData();
+        ResultSet tables = metaData.getTables(null, null, "%", new String[]{"TABLE"});
+        while (tables.next()) {
+            TableData tableData = new TableData();
+            // 列的个数
+            /*int columnCount = tables.getMetaData().getColumnCount();
+            List<String> colNamesList = new ArrayList<String>();
+            for (int i = 1; i <= columnCount; i++) { // 获取列名称
+                String columnName = tables.getMetaData().getColumnName(i);
+                colNamesList.add(columnName) ;
+            }
+            System.out.println(colNamesList);*/
+            // 根据指定列名称获取数据
+            String TABLE_NAME = tables.getString("TABLE_NAME");
+            String ddl = ddlSQL(connection, TABLE_NAME);
+            writeFile(TABLE_NAME,ddl);
+        }
+    }
+
+    /**
+     * 写入文件
+     */
+    public boolean writeFile(String tableName,String ddlSQL){
+        String property = System.getProperty("user.dir") + "/src/main/java/prosql/";
+        File file = FileUtil.touch(property + tableName + ".sql");
+        FileUtil.writeUtf8String(ddlSQL,file);
+        return true;
+    }
+
+
+    /**
+         * 获取语句 写入文件
+         */
+        public String ddlSQL(Connection conn,String tableName){
+            String sql = String.format("SHOW CREATE TABLE %s", tableName);//查询sql
+            String sqlResult = "";
+            PreparedStatement ps = null;
+            try {
+                ps = conn.prepareStatement(sql);
+                //ps.setString(1, tableName);
+                ResultSet resultSet = ps.executeQuery();
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString(1));//第一个参数获取的是tableName
+                    System.out.println(resultSet.getString(2));//第二个参数获取的是表的ddl语句
+                    sqlResult = resultSet.getString(2);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return sqlResult;
+        }
+
+    }
+
+
