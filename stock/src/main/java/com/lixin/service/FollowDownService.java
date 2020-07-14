@@ -22,7 +22,7 @@ public class FollowDownService {
     @Autowired
     SimStockInfoDao simStockInfoDao;
 
-    @Autowired
+    //@Autowired
     StockInfoDao stockInfoDao;
 
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

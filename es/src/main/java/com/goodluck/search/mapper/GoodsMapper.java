@@ -1,12 +1,11 @@
-package com.goodluck.mapper;
+package com.goodluck.search.mapper;
 
-import com.goodluck.model.Goods;
-import com.goodluck.model.GoodsExample;
-import java.util.List;
-
+import com.goodluck.search.model.Goods;
+import com.goodluck.search.model.GoodsExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.Mapping;
+
+import java.util.List;
 
 @Mapper
 public interface GoodsMapper {

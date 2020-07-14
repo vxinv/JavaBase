@@ -14,7 +14,13 @@ import java.util.regex.Pattern;
 public class GetStockCode {
 
 
-    /*获取股票的简略信息*/
+
+
+    /**
+     * 获取股票的简略信息
+     * @param fileName 文件的路径
+     * @return
+     */
     public ArrayList<SimStockInfo> getSimStockInfo(String fileName){
 
         ArrayList<SimStockInfo> simStockInfos = new ArrayList<>();

@@ -20,8 +20,13 @@ public class XQStockGetClient {
 
     boolean hasLogin = false;
 
-    /*获取最近三年的股票前复权数据*/
+    /**
+     * 获取最近三年的股票前复权数据
+     * @param code 股票代码
+     * @return 三年的数据
+     */
     public  List<StockInfo> getHistoryList(String code){
+
         if (!hasLogin){
             HttpUtil.get("https://xueqiu.com/");
             hasLogin = true;
@@ -77,6 +82,7 @@ public class XQStockGetClient {
         }
         return stockInfos;
     }
+
 
     private float  valueF(Object o){
        return Float.parseFloat(String.valueOf(o));
