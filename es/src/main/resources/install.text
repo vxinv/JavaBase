@@ -2,16 +2,10 @@
 $ docker run --name elasticsearch -d -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -p 9200:9200 -p 9300:9300 elasticsearch:6.6.2
 
 安装分词器
-#elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.5.0/elasticsearch-analysis-ik-6.5.0.zip
-
+elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.5.0/elasticsearch-analysis-ik-6.5.0.zip
 docker cp /Users/yons/Downloads/elasticsearch-analysis-ik-6.6.2.zip  4db7de850f14:/usr/share/elasticsearch/plugins/ik
 
-network.publish_host: 127.0.0.1
-http.port: 9200
-transport.tcp.port: 9300
-
-#cluster.name: "docker-cluster"
-#network.host: 0.0.0.0
+配置文件
 network.bind_host: 0.0.0.0
 network.publish_host: 192.168.1.110
 http.port: 9200
@@ -20,12 +14,11 @@ http.cors.enabled: true
 http.cors.allow-origin: "*"
 node.master: true
 
-# minimum_master_nodes need to be explicitly set when bound on a public IP
-# set to 1 to allow single node clusters
-# Details: https://github.com/elastic/elasticsearch/pull/17288
-discovery.zen.minimum_master_nodes: 1
+安装kinaba
+docker pull kibana:6.6.2
+docker run --name kibana -p 5601:5601 --link elasticsearch:6.6.2 -e "elasticsearch.hosts=http://192.168.1.110:9200"  -d kibana:6.6.2
 
-
+github加速 host
 140.82.114.4 github.com
 140.82.114.10 codeload.github.com
 199.232.69.194 github.global.ssl.fastly.net

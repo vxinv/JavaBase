@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="106.13.60.60" id="12694d69-0a49-4416-9b51-ce228a303e7e" port="22" customName="我的百度云" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="106.13.60.60" id="fecb8171-f736-4219-804b-bde5eb73454a" port="22" customName="我的百度云" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="106.13.60.60" id="ca652b0a-3782-4f4e-8593-22c765e31738" port="22" customName="我的百度云" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="106.13.60.60" id="17f16f25-a1e8-42d0-8e62-118a2957c204" port="22" customName="我的百度云" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="106.13.60.60" id="492a47e2-aec3-44d6-a939-a0fb52beb5c0" port="22" customName="我的百度云" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="106.13.60.60" id="c258056c-6ffd-449d-81fe-80fb9a023ad0" port="22" customName="我的百度云" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="106.13.60.60" id="3e8ecabe-a377-4451-9052-f9462ff20b5a" port="22" customName="我的百度云" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="106.13.60.60" id="2217abb0-aed4-4957-9d49-63b51ecb097b" port="22" customName="我的百度云" nameFormat="CUSTOM" />
+    </configs>
+  </component>
+</project>

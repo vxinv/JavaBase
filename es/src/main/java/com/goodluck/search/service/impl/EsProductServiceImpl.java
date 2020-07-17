@@ -21,7 +21,8 @@ public class EsProductServiceImpl implements EsProductService {
     EsProductRepository  esProductRepository;
 
     @Override
-    public int importAll() {
+    public int importAll()
+    {
         List<Goods> goods = goodsMapper.selectByExample(null);
 
         Iterable<Goods> iterable = esProductRepository.saveAll(goods);
@@ -33,9 +34,7 @@ public class EsProductServiceImpl implements EsProductService {
     }
 
     @Override
-    public void delete(Long id) {
-
-    }
+    public void delete(Long id) {}
 
     @Override
     public EsGoods create(Long id) {
@@ -43,9 +42,7 @@ public class EsProductServiceImpl implements EsProductService {
     }
 
     @Override
-    public void delete(List<Long> ids) {
-
-    }
+    public void delete(List<Long> ids) {}
 
     @Override
     public Page<Goods> search(String keyword, Integer pageNum, Integer pageSize) {
