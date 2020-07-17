@@ -1,15 +1,10 @@
 import cn.hutool.core.io.FileUtil;
-import com.mysql.jdbc.Driver;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
-import java.nio.charset.Charset;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 
 public class TableTest {

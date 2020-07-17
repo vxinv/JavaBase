@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Goods implements Serializable {
+
     private Integer id;
 
     @ApiModelProperty(value = "商品id")

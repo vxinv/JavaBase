@@ -28,6 +28,7 @@ public class CommentGenerator extends DefaultCommentGenerator {
     /**
      * 给字段添加注释
      */
+
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable,
                                 IntrospectedColumn introspectedColumn) {
