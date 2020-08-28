@@ -14,7 +14,6 @@ public class TestStock {
 //            Thread.sleep(3000);
             Thread.sleep(4000);
             Trader.buy("000078", "1.11", "1000");
-
         } catch ( Exception e) {
             e.printStackTrace();
         }

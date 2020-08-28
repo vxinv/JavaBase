@@ -9,8 +9,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+
 
 public class ReflectionDemo1  extends TestCase {
 
@@ -38,7 +37,7 @@ public class ReflectionDemo1  extends TestCase {
     }
 
     public void testClass(){
-        List list = new ArrayList<String>(){};
+        List<String> list = new ArrayList<String>(){};
         Type superclass = list.getClass().getGenericSuperclass();
         ParameterizedType parameterized = (ParameterizedType) superclass;
         Type raw = parameterized.getRawType();  // ArrayList类

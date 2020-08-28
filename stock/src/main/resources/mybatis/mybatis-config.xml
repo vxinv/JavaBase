@@ -13,7 +13,7 @@
     </settings>
 
     <typeHandlers>
-        <typeHandler handler="com.wqsci.com.lixin.typehandler.FormatTimeTypeHandler"/>
+        <typeHandler handler="com.wqsci.com.lixin.stock.typehandler.FormatTimeTypeHandler"/>
     </typeHandlers>
 
 </configuration>

@@ -23,8 +23,6 @@ public class OpenStock {
         driver.get(url); // 打开指定的网站
 
 
-
-
         /*for (int i = 0; i < 10000; i++) {
             WebElement element = driver.findElement(By.xpath("/html/body/div[13]/div[2]/div[2]/div[1]/div[2]/div[2]/table/tbody"));
             System.out.println(element.getText());

@@ -54,8 +54,13 @@
       "sourceType": "org.mybatis.spring.SqlSessionFactoryBean"
     },
     {
-      "name": "mybatis.database-id-provider",
-      "type": "org.apache.ibatis.mapping.DatabaseIdProvider",
+      "name": "mybatis.cache",
+      "type": "org.apache.ibatis.cache.Cache",
+      "sourceType": "org.mybatis.spring.SqlSessionFactoryBean"
+    },
+    {
+      "name": "mybatis.cache",
+      "type": "org.apache.ibatis.cache.Cache",
       "sourceType": "org.mybatis.spring.SqlSessionFactoryBean"
     },
     {
@@ -96,6 +101,31 @@
     {
       "name": "mybatis.database-id-provider",
       "type": "org.apache.ibatis.mapping.DatabaseIdProvider",
+      "sourceType": "org.mybatis.spring.SqlSessionFactoryBean"
+    },
+    {
+      "name": "mybatis.database-id-provider",
+      "type": "org.apache.ibatis.mapping.DatabaseIdProvider",
+      "sourceType": "org.mybatis.spring.SqlSessionFactoryBean"
+    },
+    {
+      "name": "mybatis.database-id-provider",
+      "type": "org.apache.ibatis.mapping.DatabaseIdProvider",
+      "sourceType": "org.mybatis.spring.SqlSessionFactoryBean"
+    },
+    {
+      "name": "mybatis.database-id-provider",
+      "type": "org.apache.ibatis.mapping.DatabaseIdProvider",
+      "sourceType": "org.mybatis.spring.SqlSessionFactoryBean"
+    },
+    {
+      "name": "mybatis.vfs",
+      "type": "java.lang.Class<? extends org.apache.ibatis.io.VFS>",
+      "sourceType": "org.mybatis.spring.SqlSessionFactoryBean"
+    },
+    {
+      "name": "mybatis.vfs",
+      "type": "java.lang.Class<? extends org.apache.ibatis.io.VFS>",
       "sourceType": "org.mybatis.spring.SqlSessionFactoryBean"
     },
     {

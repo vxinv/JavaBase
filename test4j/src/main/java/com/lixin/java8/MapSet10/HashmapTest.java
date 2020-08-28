@@ -1,12 +1,14 @@
 package com.lixin.java8.MapSet10;
 
 import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class HashmapTest extends TestCase {
 
+    @Test
     public void  testIterRm(){
         HashMap<String, String> stringStringHashMap = new HashMap<>(10);
         // init
@@ -20,6 +22,13 @@ public class HashmapTest extends TestCase {
         for (Map.Entry<String, String> stringStringEntry : stringStringHashMap.entrySet()) {
             System.out.println(stringStringEntry.getKey());
         }
+    }
 
+    @Test
+    public void testNull(){
+        HashMap<String, Boolean>  ssm = new HashMap<>();
+         if (ssm.get("null")){
+             System.out.println("");
+         }
     }
 }

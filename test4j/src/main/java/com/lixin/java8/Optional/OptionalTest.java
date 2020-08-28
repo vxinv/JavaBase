@@ -1,25 +1,27 @@
 package com.lixin.java8.Optional;
 
 import org.junit.Test;
+
 import java.util.Optional;
+
 public class OptionalTest {
 
     /**
      * orElse 如果创建的Optional中有值存在，则返回此值，否则返回一个默认值
      */
     @Test
-    public void testOfNullable(){
-        Optional<String> string = Optional.ofNullable(null);
-        String s = string.orElseGet(() -> "test");
-        String s1 = string.orElse("test2");
-        System.out.println(s1);
+    public void testOfNullable() {
+        String s = Optional.<String>ofNullable(null).orElseGet(() -> {
+            return  "hello";
+        });
+        System.out.println(s);
     }
 
     /**
      * map 如果创建的Optional中的值存在，对该值执行提供的Function函数调用
      */
     @Test
-    public void testMapOptional(){
+    public void testMapOptional() {
         Optional<String> string = Optional.ofNullable("1");
         String s1 = string.map((s) -> {
             return "test_map";
@@ -33,10 +35,10 @@ public class OptionalTest {
      */
 
     @Test
-    public void testFilterOptional(){
+    public void testFilterOptional() {
         Optional<String> string = Optional.ofNullable(null);
         String s1 = string.filter((s) -> s.equals(null)).orElse("");
-        string.filter((s)-> s.equals("") ).orElse("");
+        string.filter((s) -> s.equals("")).orElse("");
         System.out.println(s1);
     }
 

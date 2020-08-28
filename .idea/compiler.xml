@@ -8,10 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="es" />
+        <module name="netty-im" />
         <module name="mystart" />
         <module name="commom" />
         <module name="mysql" />
         <module name="test4j" />
+        <module name="testweb" />
         <module name="stock" />
         <module name="selenium" />
         <module name="rocketmq" />
@@ -44,6 +46,7 @@
       <module name="selinum" options="-parameters" />
       <module name="stock" options="-parameters" />
       <module name="test4j" options="-parameters" />
+      <module name="testweb" options="-parameters" />
       <module name="top7" options="-parameters" />
       <module name="xinu" options="-parameters" />
       <module name="zookeeper" options="-parameters" />

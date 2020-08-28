@@ -1,13 +1,15 @@
 package com.lixin.java8.LambdaTest;
 
+import com.sun.corba.se.spi.orbutil.threadpool.ThreadPool;
+import io.netty.util.concurrent.DefaultThreadFactory;
 import junit.framework.TestCase;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,7 +19,9 @@ import java.util.stream.Stream;
  */
 public class LambdaTest extends TestCase {
 
-    public void testDemo1(){
+
+
+    public void testDemo1() throws InterruptedException {
         File f = new File("./../");
         File[] files = f.listFiles(new FilenameFilter() {
             @Override
@@ -31,14 +35,30 @@ public class LambdaTest extends TestCase {
 
         File[] files1 = f.listFiles((dir, name) -> name.endsWith(".txt"));
         ExecutorService executorService = Executors.newFixedThreadPool(10);
-        executorService.submit(()-> System.out.println("hello"));
+
+        ThreadPoolExecutor testThreadPoolExecutor = new ThreadPoolExecutor(4, 10, 1000,
+                TimeUnit.MINUTES, new LinkedBlockingDeque<>(100),
+                new DefaultThreadFactory("TEST"),
+                new ThreadPoolExecutor.CallerRunsPolicy());
+
+        testThreadPoolExecutor.submit(()-> System.out.println("hello"));
         // 表达式可以访问定义在主体代码之外的变量 但对于局部变量 只能访问final 类型
         String msg = "hello world";
-        //msg = "nihao";
         /**
          * java 会将msg的值建立副本 表达式访问的是这个副本 
          */
-        executorService.submit(()-> System.out.println(msg));
+        for (int i = 0; i < 10000; i++) {
+            testThreadPoolExecutor.submit(()-> {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName()+msg);
+
+            });
+        }
+        Thread.sleep(Long.MAX_VALUE);
 
     }
     public void test_demo_2(){
