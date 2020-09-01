@@ -1,9 +1,10 @@
 package com.lixin.stock.model;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class StockData implements Serializable {
     private Integer id;
@@ -12,7 +13,7 @@ public class StockData implements Serializable {
     private String code;
 
     @ApiModelProperty(value = "日期")
-    private Date time;
+    private LocalDate time;
 
     @ApiModelProperty(value = "开盘价")
     private BigDecimal openPrice;
@@ -59,11 +60,11 @@ public class StockData implements Serializable {
         this.code = code;
     }
 
-    public Date getTime() {
+    public LocalDate getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(LocalDate time) {
         this.time = time;
     }
 

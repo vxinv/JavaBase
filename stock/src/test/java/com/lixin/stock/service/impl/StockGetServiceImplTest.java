@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = StockApplication.class)
@@ -37,12 +37,15 @@ public class StockGetServiceImplTest {
 
     @Test
     public void getHistoryList() {
+        LocalDate date = LocalDate.of(2010, 8, 20);
+        LocalDate now = LocalDate.now();
+
         ThreadPoolExecutor executor = new ThreadPoolExecutor(12, 18, 1000, TimeUnit.MINUTES, new LinkedBlockingQueue<>(100000));
         List<StockCode> stockCodes = codeMapper.selectByExample(null);
         LinkedBlockingQueue<StockCode> queue = new LinkedBlockingQueue<>(10000);
         stockCodes.forEach(queue::offer);
         System.out.println(queue.size());
-        while (! isEmpty ) {
+        while (!isEmpty) {
             StockCode poll = queue.poll();
             if (poll == null) {
                 isEmpty = true;
@@ -50,10 +53,14 @@ public class StockGetServiceImplTest {
             }
             executor.submit(() -> {
                 List<StockData> historyList = stockGetService.getHistoryList(poll.getStockCode());
+                int size = 0;
                 for (StockData stockData : historyList) {
-                    stockDataMapper.insert(stockData);
+                    if (stockData.getTime().equals(now)) {
+                        stockDataMapper.insert(stockData);
+                        size++;
+                    }
                 }
-                System.out.println(poll.getCompanyName() + "录入完毕  共录入" + historyList.size() + "条");
+                System.out.println(poll.getCompanyName() + "录入完毕  共录入" + size + "条");
             });
         }
         try {
@@ -71,4 +78,5 @@ public class StockGetServiceImplTest {
             codeMapper.insertSelective(stockCode);
         }
     }
+
 }

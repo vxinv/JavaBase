@@ -3,9 +3,7 @@ package com.lixin.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.lixin.json.pojo.Cat;
 import com.lixin.json.pojo.Money;
@@ -15,6 +13,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Jackson {
 
@@ -77,12 +76,18 @@ public class Jackson {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
 
         ObjectNode on = objectMapper.readValue(json, ObjectNode.class);
-        on.put("jsonObject","test");
+        on.put("jsonObject", "test");
 
         String s = objectMapper.writeValueAsString(on);
         System.out.println(s);
 
 
+    }
+
+    @Test
+    public void testTime() {
+        Date date = new Date("2020-08-20");
+        System.out.println(date.toString());
     }
 
 }

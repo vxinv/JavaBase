@@ -10,8 +10,10 @@ import com.lixin.stock.utils.JsonUtil;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -45,14 +47,15 @@ public class XQStockHistoryDataGetServiceImpl implements StockHistoryDataGetServ
             pcode = "SH" + code;
         }
 
-        String url = StrFormatter.format(StockUrl.xq_day_K_scode_tcode, pcode, String.valueOf(System.currentTimeMillis()));
+        String url = StrFormatter.format(StockUrl.xq_day_K_scode_tcode, pcode, String.valueOf(System.currentTimeMillis()), 7);
         String body = HttpUtil.get(url);
 
         XQStockData xqStockData = JsonUtil.convertJsonStringToObject(body, XQStockData.class);
         List<StockData> stockData = new ArrayList<>();
         for (List<String> list : xqStockData.getData().getItem()) {
             StockData sd = new StockData();
-            sd.setTime(new Date(Long.parseLong(list.get(0))));
+            Instant instant = Instant.ofEpochMilli(Long.parseLong(list.get(0)));
+            sd.setTime(LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate());
             sd.setTradeVolume(Long.parseLong(list.get(1)));
             sd.setOpenPrice(BigDecimal.valueOf(Double.parseDouble(list.get(2))));
             sd.setHighestPrice(BigDecimal.valueOf(Double.parseDouble(list.get(3))));
