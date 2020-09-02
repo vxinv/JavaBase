@@ -9,17 +9,28 @@ create table stock_code (
 
 drop table if exists stock.stock_data;
 create table stock.stock_data (
-    id int primary key auto_increment,
-    code varchar(8)  comment '代码',
-    time datetime default now()   comment '日期',
-    open_price decimal(10,2) comment '开盘价',
-    close_price  decimal(10,2) comment '收盘价',
-    range_price decimal(10,2) comment '价格浮动',
-    range_rate float comment '价格浮动率',
-    lowest_price decimal(10,2) comment  '最低价格',
-    highest_price decimal(10,2) comment '最高价格',
-    trade_volume bigint comment '交易量(手)',
-    trade_money float comment '交易金额',
-    turnover_rate decimal(10,2) comment '周转率'
-)
+                                  id            int primary key auto_increment,
+                                  code          varchar(8)  comment '代码',
+                                  time          datetime default now() comment '日期',
+                                  open_price    decimal(10, 2) comment '开盘价',
+                                  close_price   decimal(10, 2) comment '收盘价',
+                                  range_price   decimal(10, 2) comment '价格浮动',
+                                  range_rate    float comment '价格浮动率',
+                                  lowest_price  decimal(10, 2) comment '最低价格',
+                                  highest_price decimal(10, 2) comment '最高价格',
+                                  trade_volume  bigint comment '交易量(手)',
+                                  trade_money   float comment '交易金额',
+                                  turnover_rate decimal(10, 2) comment '周转率'
+);
 
+drop table if exists stock.industry_simple;
+
+create table stock.industry_simple
+(
+    id          int primary key auto_increment,
+    plate       varchar(12),
+    first_name  varchar(5),
+    second_name varchar(5),
+    level2code  varchar(10),
+    titie       varchar(10)
+)

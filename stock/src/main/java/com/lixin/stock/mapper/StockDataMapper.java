@@ -2,9 +2,12 @@ package com.lixin.stock.mapper;
 
 import com.lixin.stock.model.StockData;
 import com.lixin.stock.model.StockDataExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+@Mapper
 public interface StockDataMapper {
     long countByExample(StockDataExample example);
 

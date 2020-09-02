@@ -52,6 +52,7 @@
       <sshConfig authType="PASSWORD" host="106.13.60.60" id="8e038099-835f-4bcd-8192-f5d2f08d1f51" port="22" customName="我的百度云" nameFormat="CUSTOM" />
       <sshConfig authType="PASSWORD" host="106.13.60.60" id="a3007c6b-8bfa-4468-b75e-d31db6a2fa94" port="22" customName="我的百度云" nameFormat="CUSTOM" />
       <sshConfig authType="PASSWORD" host="106.13.60.60" id="3036bfd0-260f-48fb-8e08-6acabcf05ede" port="22" customName="我的百度云" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="106.13.60.60" id="38143fcc-7a33-4400-b92e-47f3125501e0" port="22" customName="我的百度云" nameFormat="CUSTOM" />
     </configs>
   </component>
 </project>

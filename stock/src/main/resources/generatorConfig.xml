@@ -38,7 +38,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.lixin.stock.mapper"
                              targetProject="stock/src/main/java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="stock_data">
+        <table tableName="industry_simple">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
