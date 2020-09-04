@@ -111,24 +111,41 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into stock_data (code, time, open_price, 
-      close_price, range_price, range_rate, 
-      lowest_price, highest_price, trade_volume, 
+      insert into stock_data (code, time, open_price,
+      close_price, range_price, range_rate,
+      lowest_price, highest_price, trade_volume,
       trade_money, turnover_rate)
-    values (#{code,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{openPrice,jdbcType=DECIMAL}, 
-      #{closePrice,jdbcType=DECIMAL}, #{rangePrice,jdbcType=DECIMAL}, #{rangeRate,jdbcType=REAL}, 
-      #{lowestPrice,jdbcType=DECIMAL}, #{highestPrice,jdbcType=DECIMAL}, #{tradeVolume,jdbcType=BIGINT}, 
+      values (#{code,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{openPrice,jdbcType=DECIMAL},
+      #{closePrice,jdbcType=DECIMAL}, #{rangePrice,jdbcType=DECIMAL}, #{rangeRate,jdbcType=REAL},
+      #{lowestPrice,jdbcType=DECIMAL}, #{highestPrice,jdbcType=DECIMAL}, #{tradeVolume,jdbcType=BIGINT},
       #{tradeMoney,jdbcType=REAL}, #{turnoverRate,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.lixin.stock.model.StockData">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into stock_data
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="code != null">
-        code,
-      </if>
+
+    <insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into stock_data (code, time, open_price,
+        close_price, range_price, range_rate,
+        lowest_price, highest_price, trade_volume,
+        trade_money, turnover_rate)
+        values
+        <foreach collection="list" item="data" separator=",">
+            (#{data.code,jdbcType=VARCHAR}, #{data.time,jdbcType=TIMESTAMP}, #{data.openPrice,jdbcType=DECIMAL},
+            #{data.closePrice,jdbcType=DECIMAL}, #{data.rangePrice,jdbcType=DECIMAL}, #{data.rangeRate,jdbcType=REAL},
+            #{data.lowestPrice,jdbcType=DECIMAL}, #{data.highestPrice,jdbcType=DECIMAL},
+            #{data.tradeVolume,jdbcType=BIGINT},
+            #{data.tradeMoney,jdbcType=REAL}, #{data.turnoverRate,jdbcType=DECIMAL})
+        </foreach>
+
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.lixin.stock.model.StockData">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into stock_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
       <if test="time != null">
         time,
       </if>

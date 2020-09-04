@@ -20,25 +20,39 @@ public class WebClientService {
 
     public WebClientService() {
 
-        webClient = new WebClient(BrowserVersion.getDefault());
+        webClient = new WebClient(BrowserVersion.CHROME);
+
         webClient.getOptions().setThrowExceptionOnScriptError(false);
+
         webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
-        webClient.getOptions().setUseInsecureSSL(true);
-        webClient.getOptions().setWebSocketEnabled(true);
-        webClient.getOptions().setJavaScriptEnabled(true);
+
+        webClient.getOptions().setUseInsecureSSL(false);
+
+        webClient.getOptions().setWebSocketEnabled(false);
+
+        webClient.getOptions().setJavaScriptEnabled(false);
+
         webClient.getOptions().setActiveXNative(false);
-        webClient.getOptions().setCssEnabled(true);
+
+        webClient.getOptions().setCssEnabled(false);
+
         webClient.getOptions().setThrowExceptionOnScriptError(false);
+
         webClient.waitForBackgroundJavaScript(10 * 1000);
+
+        //禁止下载照片
+        webClient.getOptions().setDownloadImages(false);
+
         webClient.setAjaxController(new NicelyResynchronizingAjaxController());
 
     }
 
-    Optional<String> getPage(String url, long time) {
+    public Optional<String> getPage(String url, long time) {
         try {
             System.out.println(url);
             HtmlPage page = webClient.getPage(url);
             webClient.waitForBackgroundJavaScript(time);
+
             return Optional.of(page.asText());
         } catch (Exception e) {
             LOG.error(ExceptionUtils.getStackTrace(e));

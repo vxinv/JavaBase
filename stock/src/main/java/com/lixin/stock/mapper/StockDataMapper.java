@@ -17,6 +17,8 @@ public interface StockDataMapper {
 
     int insert(StockData record);
 
+    int batchInsert(List<StockData> datas);
+
     int insertSelective(StockData record);
 
     List<StockData> selectByExample(StockDataExample example);

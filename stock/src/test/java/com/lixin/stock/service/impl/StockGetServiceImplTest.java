@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -37,10 +38,10 @@ public class StockGetServiceImplTest {
 
     @Test
     public void getHistoryList() {
-        LocalDate date = LocalDate.of(2010, 8, 20);
+        LocalDate date = LocalDate.of(2020, 9, 2);
         LocalDate now = LocalDate.now();
 
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(12, 18, 1000, TimeUnit.MINUTES, new LinkedBlockingQueue<>(100000));
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(12, 18, 1000, TimeUnit.MINUTES, new LinkedBlockingDeque<>(10000));
         List<StockCode> stockCodes = codeMapper.selectByExample(null);
         LinkedBlockingQueue<StockCode> queue = new LinkedBlockingQueue<>(10000);
         stockCodes.forEach(queue::offer);
@@ -53,14 +54,17 @@ public class StockGetServiceImplTest {
             }
             executor.submit(() -> {
                 List<StockData> historyList = stockGetService.getHistoryList(poll.getStockCode());
-                int size = 0;
-                for (StockData stockData : historyList) {
+                /*ArrayList<StockData> stockDataArrayList = new ArrayList<>();
+                int size = 0;*/
+                /*for (StockData stockData : historyList) {
                     if (stockData.getTime().equals(now)) {
-                        stockDataMapper.insert(stockData);
-                        size++;
+                        continue;
                     }
-                }
-                System.out.println(poll.getCompanyName() + "录入完毕  共录入" + size + "条");
+                    stockDataArrayList.add(stockData);
+                    size++;
+                }*/
+                stockDataMapper.batchInsert(historyList);
+                System.out.println(poll.getCompanyName() + "录入完毕  共录入" + historyList.size() + "条");
             });
         }
         try {

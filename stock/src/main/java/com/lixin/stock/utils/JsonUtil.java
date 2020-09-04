@@ -1,27 +1,27 @@
 package com.lixin.stock.utils;
 
+import cn.hutool.core.exceptions.ExceptionUtil;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.commons.lang3.StringUtils;
 
-
 import java.io.IOException;
 
 /**
  * json的封装类
  */
-public class JsonUtil {
+public class JsonUtil extends AbstractUtil {
 
     public static ObjectMapper objectMapper;
 
     static {
         objectMapper = new ObjectMapper();
-     
+
         //Setting the FAIL_ON_EMPTY_BEANS attribute. Do not throw an exception when a serialized object is empty.
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        
+
         //Setting the FAIL_ON_UNKNOWN_PROPERTIES attribute.
         //When the string JSON character contains attributes that do not exist in the Java object, ignore them.
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -89,10 +89,9 @@ public class JsonUtil {
 
         return objectNode;
     }
-    
 
-    public static <T> T convertJsonStringToObject(String jsonString,
-            Class<T> cls)  {
+
+    public static <T> T convertJsonStringToObject(String jsonString, Class<T> cls) {
         if (StringUtils.isBlank(jsonString)) {
             return null;
         }
@@ -101,6 +100,7 @@ public class JsonUtil {
             T object = objectMapper.readValue(jsonString, cls);
             return object;
         } catch (Exception e) {
+            LOG.error(ExceptionUtil.stacktraceToString(e));
             return null;
         }
     }

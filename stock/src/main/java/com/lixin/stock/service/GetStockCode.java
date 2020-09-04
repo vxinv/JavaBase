@@ -45,7 +45,7 @@ public class GetStockCode {
                 StockCode simStockInfo = new StockCode();
                 simStockInfo.setCompanyName(matcher.group(2));
                 simStockInfo.setStockCode(matcher.group(1));
-                simStockInfo.setIndustry(matcher.group(3));
+
                 simStockInfos.add(simStockInfo);
                 System.out.println("公司名称: "+matcher.group(2) +" 股票代码: "+matcher.group(1) +" 所属行业: "+matcher.group(3));
             }
