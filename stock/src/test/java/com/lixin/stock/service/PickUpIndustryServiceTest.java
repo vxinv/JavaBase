@@ -1,6 +1,7 @@
 package com.lixin.stock.service;
 
 import com.lixin.stock.StockApplication;
+import com.lixin.stock.service.impl.InitDataServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class PickUpIndustryServiceTest {
     @Autowired
     PickUpIndustryService service;
 
+    @Autowired
+    InitDataServiceImpl initDataService;
+
     //获取所有的股票数据
     @Test
     public void pickUp() {
@@ -24,8 +28,14 @@ public class PickUpIndustryServiceTest {
     // 获取行业
 
     @Test
-    public void getCategory() {
-        service.getCategory();
+    public void testFilter() {
+        initDataService.filterCode2();
+    }
+
+
+    @Test
+    public void testRepeat() {
+        initDataService.filterDuplicateCode();
     }
 
 

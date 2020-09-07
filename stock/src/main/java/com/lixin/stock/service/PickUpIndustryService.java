@@ -72,6 +72,7 @@ public class PickUpIndustryService {
             stockCodes.addAll(getAllStock.getData().getList());
         }
         System.out.println(stockCodes.size());
+
         for (StockInfoList si : stockCodes) {
 
             if (si.getName().startsWith("N") || si.getName().startsWith("*") || si.getName().length() > 5) {
@@ -104,7 +105,7 @@ public class PickUpIndustryService {
                 }
             }
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

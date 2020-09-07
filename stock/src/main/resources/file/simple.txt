@@ -1,0 +1,24 @@
+1599148800000,                    "timestamp",
+30339745,                    "volume", 当天成交量
+39.5,                    "open",当天开盘价
+40.27,                    "high",最高价
+38.99,                    "low",最低价
+39.69,                    "close",收盘价
+-0.49,                    "chg",涨跌额
+-1.22,                    "percent",涨跌幅
+0.7,                    "turnoverrate",换手率
+1.199532732E9,                    "amount", 成交金额
+null,                    "volume_post",
+null,                    "amount_post",
+25.7113,                    "pe",
+5.8883,                    "pb",
+1.8679,                    "ps",
+37.5293,                    "pcf",
+1.7082601465104E11,                    "market_capital",市值
+null,                    "balance",
+116592308,                    "hold_volume_cn",北上资金持有量
+2.7,                    "hold_ratio_cn",北上资金持有比例
+-2498693,                    "net_volume_cn",北上资金净流入
+null,                    "hold_volume_hk",
+null,                    "hold_ratio_hk",
+null                    "net_volume_hk"

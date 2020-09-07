@@ -7,7 +7,7 @@ import cn.hutool.http.HttpUtil;
 import com.lixin.stock.constant.StockUrl;
 import com.lixin.stock.entity.StockInfoResDTO;
 import com.lixin.stock.entity.XQStockData;
-import com.lixin.stock.model.StockData;
+import com.lixin.stock.model.StockNdata;
 import com.lixin.stock.service.StockHistoryDataGetService;
 import com.lixin.stock.service.WebClientService;
 import com.lixin.stock.utils.JsonUtil;
@@ -18,7 +18,6 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -76,31 +75,41 @@ public class XQStockHistoryDataGetServiceImpl implements StockHistoryDataGetServ
      * @param code 股票代码
      * @return 三年的数据
      */
-    public List<StockData> getHistoryList(String code) {
+    public List<StockNdata> getHistoryList(String code) {
         if (!hasLogin) {
             HttpUtil.get("https://xueqiu.com/");
             hasLogin = true;
         }
-        String url = StrFormatter.format(StockUrl.xq_day_K_scode_tcode, code, String.valueOf(System.currentTimeMillis()), 1995);
+        String url = StrFormatter.format(StockUrl.xq_day_K_scode_tcode, code, String.valueOf(System.currentTimeMillis()), 2400);
         String body = HttpUtil.get(url);
 
         XQStockData xqStockData = JsonUtil.convertJsonStringToObject(body, XQStockData.class);
-        List<StockData> stockData = new ArrayList<>();
+        List<StockNdata> stockData = new ArrayList<>();
+
         for (List<String> list : xqStockData.getData().getItem()) {
-            StockData sd = new StockData();
+
+            StockNdata snd = new StockNdata();
             Instant instant = Instant.ofEpochMilli(Long.parseLong(list.get(0)));
-            sd.setTime(LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate());
-            sd.setTradeVolume(Long.parseLong(list.get(1)));
-            sd.setOpenPrice(BigDecimal.valueOf(Double.parseDouble(list.get(2))));
-            sd.setHighestPrice(BigDecimal.valueOf(Double.parseDouble(list.get(3))));
-            sd.setLowestPrice(BigDecimal.valueOf(Double.parseDouble(list.get(4))));
-            sd.setClosePrice(BigDecimal.valueOf(Double.parseDouble(list.get(5))));
-            sd.setRangePrice(BigDecimal.valueOf(Double.parseDouble(list.get(6))));
-            sd.setRangeRate(valueF(list.get(7)));
-            sd.setTurnoverRate(BigDecimal.valueOf(Double.parseDouble(list.get(8))));
-            sd.setTradeMoney(Float.parseFloat(list.get(9)));
-            sd.setCode(code);
-            stockData.add(sd);
+            snd.setTimestamp(LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate());
+            snd.setVolume(Long.parseLong(list.get(1)));
+            snd.setOpen(BigDecimal.valueOf(Double.parseDouble(list.get(2))));
+            snd.setHigh(BigDecimal.valueOf(Double.parseDouble(list.get(3))));
+            snd.setLow(BigDecimal.valueOf(Double.parseDouble(list.get(4))));
+            snd.setClose(BigDecimal.valueOf(Double.parseDouble(list.get(5))));
+            snd.setChg(Float.parseFloat(list.get(6)));
+            snd.setPercent(Float.parseFloat(list.get(7)));
+            snd.setTurnoverrate(Float.parseFloat(list.get(8)));
+            snd.setAmount(Double.parseDouble(list.get(9)));
+            snd.setPe(Float.parseFloat(list.get(12)));
+            snd.setPb(Float.parseFloat(list.get(13)));
+            snd.setPs(Float.parseFloat(list.get(14)));
+            snd.setPcf(Float.parseFloat(list.get(15)));
+            snd.setMarketCapital(Float.parseFloat(list.get(16)));
+            snd.setHoldVolumeCn(Double.parseDouble(list.get(18)));
+            snd.setHoldRatioCn(Float.parseFloat(list.get(20)));
+            snd.setNetVolumeCn(Long.parseLong(list.get(21)));
+
+            stockData.add(snd);
         }
         return stockData;
     }
@@ -156,7 +165,7 @@ public class XQStockHistoryDataGetServiceImpl implements StockHistoryDataGetServ
             String[] two = fenlei.split(" （");
             return two[0].split(" -- ");
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             ExceptionUtil.getSimpleMessage(e);
             return new String[]{"", "", ""};
         }

@@ -1,10 +1,10 @@
 package com.lixin.stock.service.impl;
 
 import com.lixin.stock.StockApplication;
-import com.lixin.stock.mapper.StockCodeMapper;
-import com.lixin.stock.mapper.StockDataMapper;
+import com.lixin.stock.mapper.StockNcodeMapper;
+import com.lixin.stock.mapper.StockNdataMapper;
 import com.lixin.stock.model.StockCode;
-import com.lixin.stock.model.StockData;
+import com.lixin.stock.model.StockNdata;
 import com.lixin.stock.service.GetStockCode;
 import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.junit.Test;
@@ -27,18 +27,18 @@ public class StockGetServiceImplTest {
     @Autowired
     GetStockCode getStockCode;
     @Autowired
-    StockCodeMapper codeMapper;
+    StockNcodeMapper codeMapper;
     @Autowired
     XQStockHistoryDataGetServiceImpl stockGetService;
     @Autowired
-    StockDataMapper stockDataMapper;
+    StockNdataMapper stockNdataMapper;
 
 
     volatile Boolean isEmpty =  false;
 
     @Test
     public void getHistoryList() {
-        LocalDate date = LocalDate.of(2020, 9, 2);
+
         LocalDate now = LocalDate.now();
 
         ThreadPoolExecutor executor = new ThreadPoolExecutor(12, 18, 1000, TimeUnit.MINUTES, new LinkedBlockingDeque<>(10000));
@@ -53,7 +53,7 @@ public class StockGetServiceImplTest {
                 break;
             }
             executor.submit(() -> {
-                List<StockData> historyList = stockGetService.getHistoryList(poll.getStockCode());
+                List<StockNdata> historyList = stockGetService.getHistoryList(poll.getStockCode());
                 /*ArrayList<StockData> stockDataArrayList = new ArrayList<>();
                 int size = 0;*/
                 /*for (StockData stockData : historyList) {
@@ -63,7 +63,7 @@ public class StockGetServiceImplTest {
                     stockDataArrayList.add(stockData);
                     size++;
                 }*/
-                stockDataMapper.batchInsert(historyList);
+                stockNdataMapper.batchInsert(historyList);
                 System.out.println(poll.getCompanyName() + "录入完毕  共录入" + historyList.size() + "条");
             });
         }
