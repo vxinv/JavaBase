@@ -24,6 +24,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 
@@ -89,25 +90,26 @@ public class XQStockHistoryDataGetServiceImpl implements StockHistoryDataGetServ
         for (List<String> list : xqStockData.getData().getItem()) {
 
             StockNdata snd = new StockNdata();
-            Instant instant = Instant.ofEpochMilli(Long.parseLong(list.get(0)));
+            snd.setCode(code);
+            Instant instant = Instant.ofEpochMilli(Long.parseLong(Optional.ofNullable(list.get(0)).orElse("0")));
             snd.setTimestamp(LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate());
-            snd.setVolume(Long.parseLong(list.get(1)));
-            snd.setOpen(BigDecimal.valueOf(Double.parseDouble(list.get(2))));
-            snd.setHigh(BigDecimal.valueOf(Double.parseDouble(list.get(3))));
-            snd.setLow(BigDecimal.valueOf(Double.parseDouble(list.get(4))));
-            snd.setClose(BigDecimal.valueOf(Double.parseDouble(list.get(5))));
-            snd.setChg(Float.parseFloat(list.get(6)));
-            snd.setPercent(Float.parseFloat(list.get(7)));
-            snd.setTurnoverrate(Float.parseFloat(list.get(8)));
-            snd.setAmount(Double.parseDouble(list.get(9)));
-            snd.setPe(Float.parseFloat(list.get(12)));
-            snd.setPb(Float.parseFloat(list.get(13)));
-            snd.setPs(Float.parseFloat(list.get(14)));
-            snd.setPcf(Float.parseFloat(list.get(15)));
-            snd.setMarketCapital(Float.parseFloat(list.get(16)));
-            snd.setHoldVolumeCn(Double.parseDouble(list.get(18)));
-            snd.setHoldRatioCn(Float.parseFloat(list.get(20)));
-            snd.setNetVolumeCn(Long.parseLong(list.get(21)));
+            snd.setVolume(Long.parseLong(Optional.ofNullable(list.get(1)).orElse("0")));
+            snd.setOpen(BigDecimal.valueOf(Double.parseDouble(Optional.ofNullable(list.get(2)).orElse("0"))));
+            snd.setHigh(BigDecimal.valueOf(Double.parseDouble(Optional.ofNullable(list.get(3)).orElse("0"))));
+            snd.setLow(BigDecimal.valueOf(Double.parseDouble(Optional.ofNullable(list.get(4)).orElse("0"))));
+            snd.setClose(BigDecimal.valueOf(Double.parseDouble(Optional.ofNullable(list.get(5)).orElse("0"))));
+            snd.setChg(Float.parseFloat(Optional.ofNullable(list.get(6)).orElse("0")));
+            snd.setPercent(Float.parseFloat(Optional.ofNullable(list.get(7)).orElse("0")));
+            snd.setTurnoverrate(Float.parseFloat(Optional.ofNullable(list.get(8)).orElse("0")));
+            snd.setAmount(Double.parseDouble(Optional.ofNullable(list.get(9)).orElse("0")));
+            snd.setPe(Float.parseFloat(Optional.ofNullable(list.get(12)).orElse("0")));
+            snd.setPb(Float.parseFloat(Optional.ofNullable(list.get(13)).orElse("0")));
+            snd.setPs(Float.parseFloat(Optional.ofNullable(list.get(14)).orElse("0")));
+            snd.setPcf(Float.parseFloat(Optional.ofNullable(list.get(15)).orElse("0")));
+            snd.setMarketCapital(Float.parseFloat(Optional.ofNullable(list.get(16)).orElse("0")));
+            snd.setHoldVolumeCn(Double.parseDouble(Optional.ofNullable(list.get(18)).orElse("0")));
+            snd.setHoldRatioCn(Float.parseFloat(Optional.ofNullable(list.get(20)).orElse("0")));
+            snd.setNetVolumeCn(Long.parseLong(Optional.ofNullable(list.get(21)).orElse("0")));
 
             stockData.add(snd);
         }

@@ -75,6 +75,7 @@ drop table if exists stock.stock_ndata;
 create table stock.stock_ndata
 (
     id             bigint primary key auto_increment,
+    code           varchar(10) comment '代码',
     timestamp      datetime comment '日期',
     volume         bigint comment '当天成交量',
     open           decimal(10, 2) comment '当天开盘价',
@@ -89,7 +90,7 @@ create table stock.stock_ndata
      amount_post*/
     pe             float comment 'pe',
     pb             float comment 'pb',
-    ps             float comment 'ps',
+    ps             float comment 'ps P是股价，S是每股的销售收入',
     pcf            float comment 'pcf',
     market_capital float comment '市值',
     /*  balance*/
@@ -102,6 +103,8 @@ create table stock.stock_ndata
  */
 );
 
+create index timestamp_i on stock.stock_ndata (timestamp);
+create index code_i on stock.stock_ndata (code);
 
 drop table if exists stock.industry_simple;
 

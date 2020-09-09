@@ -7,44 +7,65 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class StockNdata implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Long id;
+
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty(value = "日期")
     private LocalDate timestamp;
+
     @ApiModelProperty(value = "当天成交量")
     private Long volume;
+
     @ApiModelProperty(value = "当天开盘价")
     private BigDecimal open;
+
     @ApiModelProperty(value = "当天最高价")
     private BigDecimal high;
+
     @ApiModelProperty(value = "当天最低价")
     private BigDecimal low;
+
     @ApiModelProperty(value = "当天收盘价")
     private BigDecimal close;
+
     @ApiModelProperty(value = "涨跌额")
     private Float chg;
+
     @ApiModelProperty(value = "涨跌幅")
     private Float percent;
+
     @ApiModelProperty(value = "换手率(%)")
     private Float turnoverrate;
+
     @ApiModelProperty(value = "成交金额")
     private Double amount;
+
     @ApiModelProperty(value = "pe")
     private Float pe;
+
     @ApiModelProperty(value = "pb")
     private Float pb;
+
     @ApiModelProperty(value = "ps")
     private Float ps;
+
     @ApiModelProperty(value = "pcf")
     private Float pcf;
+
     @ApiModelProperty(value = "市值")
     private Float marketCapital;
+
     @ApiModelProperty(value = "陆通股持有量")
     private Double holdVolumeCn;
+
     @ApiModelProperty(value = "陆通股持股比例")
     private Float holdRatioCn;
+
     @ApiModelProperty(value = "陆通股净成交量")
     private Long netVolumeCn;
+    @ApiModelProperty(value = "代码")
+    private String code;
 
     public Long getId() {
         return id;
@@ -52,6 +73,14 @@ public class StockNdata implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public LocalDate getTimestamp() {
@@ -205,6 +234,7 @@ public class StockNdata implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", code=").append(code);
         sb.append(", timestamp=").append(timestamp);
         sb.append(", volume=").append(volume);
         sb.append(", open=").append(open);

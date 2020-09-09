@@ -41,10 +41,8 @@ public class Trader implements Trade {
 
     @Override
     public void find() {
-        //  获取随机选定的区间
-        int stockInDataMaxId = getStockInDataMaxId() + 1;
-        int i = random.nextInt(stockInDataMaxId);
-        // 另一种遍历全部stock
+        // 选取2014 3月  计算每支s的M30  M60  M120
+        LocalDate currDay = LocalDate.of(2014, random.nextInt(12) + 1, random.nextInt(28));
 
 
     }

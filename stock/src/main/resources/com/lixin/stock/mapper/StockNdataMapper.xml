@@ -3,6 +3,7 @@
 <mapper namespace="com.lixin.stock.mapper.StockNdataMapper">
     <resultMap id="BaseResultMap" type="com.lixin.stock.model.StockNdata">
         <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="timestamp" jdbcType="TIMESTAMP" property="timestamp"/>
         <result column="volume" jdbcType="BIGINT" property="volume"/>
         <result column="open" jdbcType="DECIMAL" property="open"/>
@@ -83,11 +84,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        id, timestamp, volume, open, high, low, close, chg, percent, turnoverrate, amount,
-    pe, pb, ps, pcf, market_capital, hold_volume_cn, hold_ratio_cn, net_volume_cn
+        id, code, timestamp, volume, open, high, low, close, chg, percent, turnoverrate,
+    amount, pe, pb, ps, pcf, market_capital, hold_volume_cn, hold_ratio_cn, net_volume_cn
     </sql>
-
-
     <select id="selectByExample" parameterType="com.lixin.stock.model.StockNdataExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -123,22 +122,23 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into stock_ndata (timestamp, volume, open,
-        high, low, close, chg,
-        percent, turnoverrate, amount,
-        pe, pb, ps, pcf,
-        market_capital, hold_volume_cn, hold_ratio_cn,
-        net_volume_cn)
-        values (#{timestamp,jdbcType=TIMESTAMP}, #{volume,jdbcType=BIGINT}, #{open,jdbcType=DECIMAL},
-        #{high,jdbcType=DECIMAL}, #{low,jdbcType=DECIMAL}, #{close,jdbcType=DECIMAL}, #{chg,jdbcType=REAL},
-        #{percent,jdbcType=REAL}, #{turnoverrate,jdbcType=REAL}, #{amount,jdbcType=DOUBLE},
-        #{pe,jdbcType=REAL}, #{pb,jdbcType=REAL}, #{ps,jdbcType=REAL}, #{pcf,jdbcType=REAL},
-        #{marketCapital,jdbcType=REAL}, #{holdVolumeCn,jdbcType=DOUBLE}, #{holdRatioCn,jdbcType=REAL},
-        #{netVolumeCn,jdbcType=BIGINT})
+        insert into stock_ndata (code, timestamp, volume,
+        open, high, low, close,
+        chg, percent, turnoverrate,
+        amount, pe, pb, ps,
+        pcf, market_capital, hold_volume_cn,
+        hold_ratio_cn, net_volume_cn)
+        values (#{code,jdbcType=VARCHAR}, #{timestamp,jdbcType=TIMESTAMP}, #{volume,jdbcType=BIGINT},
+        #{open,jdbcType=DECIMAL}, #{high,jdbcType=DECIMAL}, #{low,jdbcType=DECIMAL}, #{close,jdbcType=DECIMAL},
+        #{chg,jdbcType=REAL}, #{percent,jdbcType=REAL}, #{turnoverrate,jdbcType=REAL},
+        #{amount,jdbcType=DOUBLE}, #{pe,jdbcType=REAL}, #{pb,jdbcType=REAL}, #{ps,jdbcType=REAL},
+        #{pcf,jdbcType=REAL}, #{marketCapital,jdbcType=REAL}, #{holdVolumeCn,jdbcType=DOUBLE},
+        #{holdRatioCn,jdbcType=REAL}, #{netVolumeCn,jdbcType=BIGINT})
     </insert>
 
+
     <insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="false">
-        insert into stock_ndata (timestamp, volume, open,
+        insert into stock_ndata (code, timestamp, volume, open,
         high, low, close, chg,
         percent, turnoverrate, amount,
         pe, pb, ps, pcf,
@@ -146,7 +146,8 @@
         net_volume_cn)
         values
         <foreach collection="list" item="data" separator=",">
-            ( #{data.timestamp,jdbcType=TIMESTAMP}, #{data.volume,jdbcType=BIGINT}, #{data.open,jdbcType=DECIMAL},
+            (#{data.code,jdbcType=VARCHAR}, #{data.timestamp,jdbcType=TIMESTAMP}, #{data.volume,jdbcType=BIGINT},
+            #{data.open,jdbcType=DECIMAL},
             #{data.high,jdbcType=DECIMAL}, #{data.low,jdbcType=DECIMAL}, #{data.close,jdbcType=DECIMAL},
             #{data.chg,jdbcType=REAL},
             #{data.percent,jdbcType=REAL}, #{data.turnoverrate,jdbcType=REAL}, #{data.amount,jdbcType=DOUBLE},
@@ -158,12 +159,16 @@
 
     </insert>
 
+
     <insert id="insertSelective" parameterType="com.lixin.stock.model.StockNdata">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into stock_ndata
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
             <if test="timestamp != null">
                 timestamp,
             </if>
@@ -220,6 +225,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
             <if test="timestamp != null">
                 #{timestamp,jdbcType=TIMESTAMP},
             </if>
@@ -288,6 +296,9 @@
             <if test="record.id != null">
                 id = #{record.id,jdbcType=BIGINT},
             </if>
+            <if test="record.code != null">
+                code = #{record.code,jdbcType=VARCHAR},
+            </if>
             <if test="record.timestamp != null">
                 timestamp = #{record.timestamp,jdbcType=TIMESTAMP},
             </if>
@@ -350,6 +361,7 @@
     <update id="updateByExample" parameterType="map">
         update stock_ndata
         set id = #{record.id,jdbcType=BIGINT},
+        code = #{record.code,jdbcType=VARCHAR},
         timestamp = #{record.timestamp,jdbcType=TIMESTAMP},
         volume = #{record.volume,jdbcType=BIGINT},
         open = #{record.open,jdbcType=DECIMAL},
@@ -375,6 +387,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.lixin.stock.model.StockNdata">
         update stock_ndata
         <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
             <if test="timestamp != null">
                 timestamp = #{timestamp,jdbcType=TIMESTAMP},
             </if>
@@ -434,7 +449,8 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="com.lixin.stock.model.StockNdata">
         update stock_ndata
-        set timestamp      = #{timestamp,jdbcType=TIMESTAMP},
+        set code           = #{code,jdbcType=VARCHAR},
+            timestamp      = #{timestamp,jdbcType=TIMESTAMP},
             volume         = #{volume,jdbcType=BIGINT},
             open           = #{open,jdbcType=DECIMAL},
             high           = #{high,jdbcType=DECIMAL},
