@@ -14,7 +14,7 @@ public class StockUtil {
     }
 
     /**
-     * 代码华威数字
+     * 代码化为数字
      */
 
     public static Integer code2int(String code) {
@@ -44,12 +44,12 @@ public class StockUtil {
         return sb.toString();
     }
 
-
+/*
     public static void main(String[] args) {
         Integer sh600214 = code2int("SH600214");
         System.out.println(sh600214);
         String s = int2code(sh600214);
         System.out.println(s);
-    }
+    }*/
 }
 

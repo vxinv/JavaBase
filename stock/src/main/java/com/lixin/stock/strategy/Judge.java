@@ -1,5 +1,6 @@
 package com.lixin.stock.strategy;
 
+
 import com.lixin.stock.mapper.StockNcodeMapper;
 import com.lixin.stock.mapper.StockNdataMapper;
 import com.lixin.stock.model.StockNdata;
@@ -26,15 +27,9 @@ public class Judge {
         StockNdataExample.Criteria criteria = sde.createCriteria();
         criteria.andTimestampEqualTo(currDay);
         List<StockNdata> stockNdata = sd.selectByExample(sde);
-
-
     }
 
-   /* public void initData(){
-        LocalDate
-        TreeBasedTable<Integer, Integer, Integer> integerIntegerIntegerTreeBasedTable = TreeBasedTable.<Integer, Integer, Integer>create();
-        RowSortedTable<Integer, Integer, Integer> integerIntegerIntegerRowSortedTable = Tables.unmodifiableRowSortedTable(integerIntegerIntegerTreeBasedTable);
-        integerIntegerIntegerRowSortedTable.put()
-    }*/
+
+
 
 }
