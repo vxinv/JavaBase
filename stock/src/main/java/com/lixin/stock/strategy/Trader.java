@@ -1,7 +1,10 @@
 package com.lixin.stock.strategy;
 
+import com.lixin.stock.entity.Stock;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -42,8 +45,24 @@ public class Trader implements Trade {
     @Override
     public void find() {
         // 选取2014 3月  计算每支s的M30  M60  M120
-        LocalDate currDay = LocalDate.of(2014, random.nextInt(12) + 1, random.nextInt(28));
+        LocalDate currDay = LocalDate.of(2014, random.nextInt(6), random.nextInt(28));
+        // 获取所有当天的股票涨跌数据
+        List<Stock> stocks = getAllStock();
+        // 根据自己的交易规则进行删选
+        for (Stock stock : stocks) {
+            // 使用自己的策略
+            useMyStrategy(stock);
+        }
 
+    }
+
+    private void useMyStrategy(Stock stock) {
+
+    }
+
+
+    private List<Stock> getAllStock() {
+        return null;
     }
 
     private int getStockInDataMaxId() {
