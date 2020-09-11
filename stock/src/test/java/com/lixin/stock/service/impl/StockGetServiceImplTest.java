@@ -41,7 +41,7 @@ public class StockGetServiceImplTest {
     @Test
     public void getHistoryList() {
 
-        LocalDate now = LocalDate.now();
+        LocalDate now = LocalDate.now().plusDays(-1);
 
         ThreadPoolExecutor executor = new ThreadPoolExecutor(6, 12, 1000, TimeUnit.MINUTES, new LinkedBlockingDeque<>(10000));
         List<StockCode> stockCodes = codeMapper.selectByExample(null);
@@ -59,16 +59,17 @@ public class StockGetServiceImplTest {
             executor.execute(() -> {
                 List<StockNdata> historyList = stockGetService.getHistoryList(poll.getStockCode());
 //                ArrayList<StockNdata> stockDataArrayList = new ArrayList<>();
-//                int size = 0;
-//                for (StockNdata stockNdata : historyList) {
-//                    if (stockNdata.getTimestamp().equals(now)) {
-//                        continue;
-//                    }
+                int size = 0;
+                for (StockNdata stockNdata : historyList) {
+                    if (stockNdata.getTimestamp().equals(now)) {
+                        stockNdataMapper.insert(stockNdata);
+                        size++;
+                    }
 //                    stockDataArrayList.add(stockNdata);
 //                    size++;
-//                }
-                stockNdataMapper.batchInsert(historyList);
-                System.out.println(poll.getCompanyName() + "录入完毕  共录入" + historyList.size() + "条");
+                }
+//                stockNdataMapper.batchInsert(historyList);
+                System.out.println(poll.getCompanyName() + "录入完毕  共录入" + size + "条");
                 lock.lock();
                 item.getAndIncrement();
                 System.out.println("已录入" + item.get() + "条数据");
