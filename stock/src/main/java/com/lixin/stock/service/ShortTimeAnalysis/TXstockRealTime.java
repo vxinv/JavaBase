@@ -19,9 +19,9 @@
 //    Logger log = LoggerFactory.getLogger(this.getClass());
 //
 //    /*从腾讯获取实时的交易数据*/
-//    public static RealTimeInfo getStockShortTimeInfo(String stockCode) {
+//    public static RealTimeInfo getStockShortTimeInfo(String StockNcode) {
 //
-//        String sinfo = HttpUtil.get(StockUrl.tx_hour_info_plus + StockUtils.getSH(stockCode) + stockCode);
+//        String sinfo = HttpUtil.get(StockUrl.tx_hour_info_plus + StockUtils.getSH(StockNcode) + StockNcode);
 //        String[] split = sinfo.split("~");
 //        RealTimeInfo info = RealTimeInfo.build(split);
 //        return info;
@@ -30,17 +30,17 @@
 //    /*监控指定的股票 当出现涨幅不大于9.8F 通知*/
 //    public void MoniterStock() throws InterruptedException {
 //        Poster.send("股票提醒", "开始提醒");
-//        List<String> stockCodes = (List<String>) YmlUtil.get("stock.mlist", "stock");
+//        List<String> StockNcodes = (List<String>) YmlUtil.get("stock.mlist", "stock");
 //
-//        while (stockCodes.size()>0){
+//        while (StockNcodes.size()>0){
 //            Thread.sleep(3*1000);
-//            log.info("监控中[{}]",stockCodes);
-//            for (int i = stockCodes.size() - 1; i >= 0; i--) {
-//                String code = stockCodes.get(i);
+//            log.info("监控中[{}]",StockNcodes);
+//            for (int i = StockNcodes.size() - 1; i >= 0; i--) {
+//                String code = StockNcodes.get(i);
 //                RealTimeInfo info = getStockShortTimeInfo(code);
 //                if (info.getSellOne()!= 0 && info.getIncreaseRatio() < 3F){
 //                    Poster.send("股票提醒", info.getStockName()+"当前涨幅"+info.getIncreaseRatio());
-//                    stockCodes.remove(code);
+//                    StockNcodes.remove(code);
 //                }
 //            }
 //

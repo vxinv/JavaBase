@@ -23,15 +23,15 @@ public class Trader {
 
     /**
      * 卖出
-     * @param stockCode 代码
+     * @param StockNcode 代码
      * @param price     价格
      * @param stockNumber 数量
      */
-    public static  void buy(String stockCode,String  price, String stockNumber){
+    public static  void buy(String StockNcode,String  price, String stockNumber){
             // 按下F2  买入
             click(KeyEvent.VK_F1);
             // 输入证券代码
-            input(stockCode);
+            input(StockNcode);
             // 输入价格
             input(price);
             // 按下向下键
@@ -45,11 +45,11 @@ public class Trader {
             click(KeyEvent.VK_Y);
         }
 
-    public static void sell(String stockCode,String  price, String stockNumber){
+    public static void sell(String StockNcode,String  price, String stockNumber){
         // 按下F2  买入
         click(KeyEvent.VK_F2);
         // 输入证券代码
-        input(stockCode);
+        input(StockNcode);
         // 输入价格
         input(price);
         // 按下向下键
@@ -63,11 +63,11 @@ public class Trader {
         click(KeyEvent.VK_Y);
     }
 
-    public static void  cancel (String stockCode,String  price, String stockNumber){
+    public static void  cancel (String StockNcode,String  price, String stockNumber){
         // 按下F2  买入
         click(KeyEvent.VK_F3);
         // 输入证券代码
-        input(stockCode);
+        input(StockNcode);
         // 输入价格
         input(price);
         // 按下向下键

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lixin.stock.mapper.StockNcodeMapper">
-    <resultMap id="BaseResultMap" type="com.lixin.stock.model.StockCode">
+    <resultMap id="BaseResultMap" type="com.lixin.stock.model.StockNcode">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
         <result column="stock_code" jdbcType="VARCHAR" property="stockCode"/>
@@ -89,7 +89,7 @@
     float_shares, total_operating_income, net_profit_cagr, one_category_id, one_category, 
     two_category_id, two_category, three_category_id, three_category
     </sql>
-    <select id="selectByExample" parameterType="com.lixin.stock.model.StockCodeExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.lixin.stock.model.StockNcodeExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -114,13 +114,13 @@
         from stock_ncode
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <delete id="deleteByExample" parameterType="com.lixin.stock.model.StockCodeExample">
+    <delete id="deleteByExample" parameterType="com.lixin.stock.model.StockNcodeExample">
         delete from stock_ncode
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.lixin.stock.model.StockCode">
+    <insert id="insert" parameterType="com.lixin.stock.model.StockNcode">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -131,7 +131,7 @@
         net_profit_cagr, one_category_id, one_category,
         two_category_id, two_category, three_category_id,
         three_category)
-        values (#{companyName,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, #{totalShares,jdbcType=BIGINT},
+        values (#{companyName,jdbcType=VARCHAR}, #{StockNcode,jdbcType=VARCHAR}, #{totalShares,jdbcType=BIGINT},
         #{totalAssets,jdbcType=BIGINT}, #{grossProfitMargin,jdbcType=REAL}, #{roe,jdbcType=REAL},
         #{earningsPerShare,jdbcType=REAL}, #{netAssetPerShare,jdbcType=REAL}, #{cashFlowPerShare,jdbcType=REAL},
         #{floatMarketCapital,jdbcType=BIGINT}, #{floatShares,jdbcType=BIGINT}, #{totalOperatingIncome,jdbcType=BIGINT},
@@ -139,7 +139,7 @@
         #{twoCategoryId,jdbcType=INTEGER}, #{twoCategory,jdbcType=VARCHAR}, #{threeCategoryId,jdbcType=INTEGER},
         #{threeCategory,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.lixin.stock.model.StockCode">
+    <insert id="insertSelective" parameterType="com.lixin.stock.model.StockNcode">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -148,7 +148,7 @@
             <if test="companyName != null">
                 company_name,
             </if>
-            <if test="stockCode != null">
+            <if test="StockNcode != null">
                 stock_code,
             </if>
             <if test="totalShares != null">
@@ -207,8 +207,8 @@
             <if test="companyName != null">
                 #{companyName,jdbcType=VARCHAR},
             </if>
-            <if test="stockCode != null">
-                #{stockCode,jdbcType=VARCHAR},
+            <if test="StockNcode != null">
+                #{StockNcode,jdbcType=VARCHAR},
             </if>
             <if test="totalShares != null">
                 #{totalShares,jdbcType=BIGINT},
@@ -263,7 +263,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.lixin.stock.model.StockCodeExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.lixin.stock.model.StockNcodeExample" resultType="java.lang.Long">
         select count(*) from stock_ncode
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -278,8 +278,8 @@
             <if test="record.companyName != null">
                 company_name = #{record.companyName,jdbcType=VARCHAR},
             </if>
-            <if test="record.stockCode != null">
-                stock_code = #{record.stockCode,jdbcType=VARCHAR},
+            <if test="record.StockNcode != null">
+                stock_code = #{record.StockNcode,jdbcType=VARCHAR},
             </if>
             <if test="record.totalShares != null">
                 total_shares = #{record.totalShares,jdbcType=BIGINT},
@@ -341,7 +341,7 @@
         update stock_ncode
         set id = #{record.id,jdbcType=INTEGER},
         company_name = #{record.companyName,jdbcType=VARCHAR},
-        stock_code = #{record.stockCode,jdbcType=VARCHAR},
+        stock_code = #{record.StockNcode,jdbcType=VARCHAR},
         total_shares = #{record.totalShares,jdbcType=BIGINT},
         total_assets = #{record.totalAssets,jdbcType=BIGINT},
         gross_profit_margin = #{record.grossProfitMargin,jdbcType=REAL},
@@ -363,14 +363,14 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.lixin.stock.model.StockCode">
+    <update id="updateByPrimaryKeySelective" parameterType="com.lixin.stock.model.StockNcode">
         update stock_ncode
         <set>
             <if test="companyName != null">
                 company_name = #{companyName,jdbcType=VARCHAR},
             </if>
-            <if test="stockCode != null">
-                stock_code = #{stockCode,jdbcType=VARCHAR},
+            <if test="StockNcode != null">
+                stock_code = #{StockNcode,jdbcType=VARCHAR},
             </if>
             <if test="totalShares != null">
                 total_shares = #{totalShares,jdbcType=BIGINT},
@@ -426,10 +426,10 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.lixin.stock.model.StockCode">
+    <update id="updateByPrimaryKey" parameterType="com.lixin.stock.model.StockNcode">
         update stock_ncode
         set company_name           = #{companyName,jdbcType=VARCHAR},
-            stock_code             = #{stockCode,jdbcType=VARCHAR},
+            stock_code             = #{StockNcode,jdbcType=VARCHAR},
             total_shares           = #{totalShares,jdbcType=BIGINT},
             total_assets           = #{totalAssets,jdbcType=BIGINT},
             gross_profit_margin    = #{grossProfitMargin,jdbcType=REAL},

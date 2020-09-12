@@ -27,8 +27,6 @@ public class Trader implements Trade {
     Random random = new Random();
     // 余额
     float balance = 1000000;
-
-
     @Override
     public void sell(String code, LocalDate time, int number, BigDecimal price) {
 
@@ -44,11 +42,9 @@ public class Trader implements Trade {
         // 选取2014 3月  计算每支s的M30  M60  M120
         LocalDate currDay = LocalDate.of(2014, random.nextInt(12) + 1, random.nextInt(28));
     }
-
     private int getStockInDataMaxId() {
         return 0;
     }
-
 
     /**
      * 计算交易佣金

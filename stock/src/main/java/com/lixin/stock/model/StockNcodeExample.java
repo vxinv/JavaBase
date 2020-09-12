@@ -234,73 +234,73 @@ public class StockNcodeExample {
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeIsNull() {
+        public Criteria andStockNcodeIsNull() {
             addCriterion("stock_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeIsNotNull() {
+        public Criteria andStockNcodeIsNotNull() {
             addCriterion("stock_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeEqualTo(String value) {
-            addCriterion("stock_code =", value, "stockCode");
+        public Criteria andStockNcodeEqualTo(String value) {
+            addCriterion("stock_code =", value, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeNotEqualTo(String value) {
-            addCriterion("stock_code <>", value, "stockCode");
+        public Criteria andStockNcodeNotEqualTo(String value) {
+            addCriterion("stock_code <>", value, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeGreaterThan(String value) {
-            addCriterion("stock_code >", value, "stockCode");
+        public Criteria andStockNcodeGreaterThan(String value) {
+            addCriterion("stock_code >", value, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("stock_code >=", value, "stockCode");
+        public Criteria andStockNcodeGreaterThanOrEqualTo(String value) {
+            addCriterion("stock_code >=", value, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeLessThan(String value) {
-            addCriterion("stock_code <", value, "stockCode");
+        public Criteria andStockNcodeLessThan(String value) {
+            addCriterion("stock_code <", value, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeLessThanOrEqualTo(String value) {
-            addCriterion("stock_code <=", value, "stockCode");
+        public Criteria andStockNcodeLessThanOrEqualTo(String value) {
+            addCriterion("stock_code <=", value, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeLike(String value) {
-            addCriterion("stock_code like", value, "stockCode");
+        public Criteria andStockNcodeLike(String value) {
+            addCriterion("stock_code like", value, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeNotLike(String value) {
-            addCriterion("stock_code not like", value, "stockCode");
+        public Criteria andStockNcodeNotLike(String value) {
+            addCriterion("stock_code not like", value, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeIn(List<String> values) {
-            addCriterion("stock_code in", values, "stockCode");
+        public Criteria andStockNcodeIn(List<String> values) {
+            addCriterion("stock_code in", values, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeNotIn(List<String> values) {
-            addCriterion("stock_code not in", values, "stockCode");
+        public Criteria andStockNcodeNotIn(List<String> values) {
+            addCriterion("stock_code not in", values, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeBetween(String value1, String value2) {
-            addCriterion("stock_code between", value1, value2, "stockCode");
+        public Criteria andStockNcodeBetween(String value1, String value2) {
+            addCriterion("stock_code between", value1, value2, "StockNcode");
             return (Criteria) this;
         }
 
-        public Criteria andStockCodeNotBetween(String value1, String value2) {
-            addCriterion("stock_code not between", value1, value2, "stockCode");
+        public Criteria andStockNcodeNotBetween(String value1, String value2) {
+            addCriterion("stock_code not between", value1, value2, "StockNcode");
             return (Criteria) this;
         }
 

@@ -3,9 +3,8 @@ package com.lixin.stock.service.impl;
 import com.lixin.stock.StockApplication;
 import com.lixin.stock.mapper.StockNcodeMapper;
 import com.lixin.stock.mapper.StockNdataMapper;
-import com.lixin.stock.model.StockCode;
+import com.lixin.stock.model.StockNcode;
 import com.lixin.stock.model.StockNdata;
-import com.lixin.stock.service.GetStockCode;
 import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,8 +27,6 @@ import java.util.concurrent.locks.ReentrantLock;
 public class StockGetServiceImplTest {
 
     @Autowired
-    GetStockCode getStockCode;
-    @Autowired
     StockNcodeMapper codeMapper;
     @Autowired
     XQStockHistoryDataGetServiceImpl stockGetService;
@@ -44,14 +41,14 @@ public class StockGetServiceImplTest {
         LocalDate now = LocalDate.now().plusDays(-1);
 
         ThreadPoolExecutor executor = new ThreadPoolExecutor(6, 12, 1000, TimeUnit.MINUTES, new LinkedBlockingDeque<>(10000));
-        List<StockCode> stockCodes = codeMapper.selectByExample(null);
-        LinkedBlockingQueue<StockCode> queue = new LinkedBlockingQueue<>(10000);
-        stockCodes.forEach(queue::offer);
+        List<StockNcode> StockNcodes = codeMapper.selectByExample(null);
+        LinkedBlockingQueue<StockNcode> queue = new LinkedBlockingQueue<>(10000);
+        StockNcodes.forEach(queue::offer);
         System.out.println(queue.size());
 
         AtomicInteger item = new AtomicInteger();
         while (!isEmpty) {
-            StockCode poll = queue.poll();
+            StockNcode poll = queue.poll();
             if (poll == null) {
                 isEmpty = true;
                 break;
@@ -84,12 +81,5 @@ public class StockGetServiceImplTest {
         System.out.println("exit");
     }
 
-    @Test
-    public void initData() {
-        ArrayList<StockCode> sh = getStockCode.getSimStockInfo("深圳");
-        for (StockCode stockCode : sh) {
-            codeMapper.insertSelective(stockCode);
-        }
-    }
 
 }

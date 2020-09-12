@@ -13,7 +13,7 @@ public class StockInfoList {
 
     private double ps; //P是股价，S是每股的销售收入
 
-    private long type;
+    private long type;//
 
     private double percent;
 

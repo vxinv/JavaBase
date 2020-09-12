@@ -1,9 +1,8 @@
 package com.lixin.stock.service.impl;
 
 
-import com.lixin.stock.mapper.StockCodeMapper;
 import com.lixin.stock.mapper.StockNcodeMapper;
-import com.lixin.stock.model.StockCode;
+import com.lixin.stock.model.StockNcode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,7 @@ import java.util.List;
 public class InitDataServiceImpl {
 
     @Autowired
-    StockCodeMapper stockCodeMapper;
+    StockNcodeMapper StockNcodeMapper;
 
     @Autowired
     StockNcodeMapper stockNcodeMapper;
@@ -25,16 +24,16 @@ public class InitDataServiceImpl {
      * 过滤不合格的代码
      */
     public void filterCode() {
-        List<StockCode> stockCodes = stockCodeMapper.selectByExample(null);
-        for (StockCode stockCode : stockCodes) {
-            String substring = stockCode.getStockCode().substring(2, 5);
+        List<StockNcode> StockNcodes = StockNcodeMapper.selectByExample(null);
+        for (StockNcode StockNcode : StockNcodes) {
+            String substring = StockNcode.getStockCode().substring(2, 5);
             /*for (String qualifiedCode : qualifiedCodes) {
                 if (substring.equals(qualifiedCode)){
-                    stockNcodeMapper.insert(stockCode);
+                    stockNcodeMapper.insert(StockNcode);
                 }
             }*/
             if (substring.equals("002")) {
-                stockNcodeMapper.insert(stockCode);
+                stockNcodeMapper.insert(StockNcode);
             }
         }
     }
@@ -43,11 +42,11 @@ public class InitDataServiceImpl {
      * 过滤不合格的代码
      */
     public void filterCode2() {
-        List<StockCode> stockCodes = stockNcodeMapper.selectByExample(null);
-        for (StockCode stockCode : stockCodes) {
-            String substring = stockCode.getCompanyName();
+        List<StockNcode> StockNcodes = stockNcodeMapper.selectByExample(null);
+        for (StockNcode StockNcode : StockNcodes) {
+            String substring = StockNcode.getCompanyName();
             if (substring.startsWith("S")) {
-                stockNcodeMapper.deleteByPrimaryKey(stockCode.getId());
+                stockNcodeMapper.deleteByPrimaryKey(StockNcode.getId());
             }
         }
     }
@@ -56,14 +55,14 @@ public class InitDataServiceImpl {
      * 过滤重复的
      */
     public void filterDuplicateCode() {
-        List<StockCode> stockCodes = stockCodeMapper.selectByExample(null);
+        List<StockNcode> StockNcodes = StockNcodeMapper.selectByExample(null);
         LinkedHashSet<String> codeSets = new LinkedHashSet<>();
-        stockCodes.forEach(stockCode -> {
-            if (!codeSets.contains(stockCode.getStockCode())) {
-                codeSets.add(stockCode.getStockCode());
+        StockNcodes.forEach(StockNcode -> {
+            if (!codeSets.contains(StockNcode.getStockCode())) {
+                codeSets.add(StockNcode.getStockCode());
             } else {
-                stockCodeMapper.deleteByPrimaryKey(stockCode.getId());
-                System.out.println("删除重复" + stockCode.getCompanyName());
+                StockNcodeMapper.deleteByPrimaryKey(StockNcode.getId());
+                System.out.println("删除重复" + StockNcode.getCompanyName());
             }
         });
     }

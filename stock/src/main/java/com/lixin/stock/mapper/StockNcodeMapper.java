@@ -1,31 +1,31 @@
 package com.lixin.stock.mapper;
 
-import com.lixin.stock.model.StockCode;
-import com.lixin.stock.model.StockCodeExample;
+import com.lixin.stock.model.StockNcode;
+import com.lixin.stock.model.StockNcodeExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface StockNcodeMapper {
-    long countByExample(StockCodeExample example);
+    long countByExample(StockNcodeExample example);
 
-    int deleteByExample(StockCodeExample example);
+    int deleteByExample(StockNcodeExample example);
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(StockCode record);
+    int insert(StockNcode record);
 
-    int insertSelective(StockCode record);
+    int insertSelective(StockNcode record);
 
-    List<StockCode> selectByExample(StockCodeExample example);
+    List<StockNcode> selectByExample(StockNcodeExample example);
 
-    StockCode selectByPrimaryKey(Integer id);
+    StockNcode selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") StockCode record, @Param("example") StockCodeExample example);
+    int updateByExampleSelective(@Param("record") StockNcode record, @Param("example") StockNcodeExample example);
 
-    int updateByExample(@Param("record") StockCode record, @Param("example") StockCodeExample example);
+    int updateByExample(@Param("record") StockNcode record, @Param("example") StockNcodeExample example);
 
-    int updateByPrimaryKeySelective(StockCode record);
+    int updateByPrimaryKeySelective(StockNcode record);
 
-    int updateByPrimaryKey(StockCode record);
+    int updateByPrimaryKey(StockNcode record);
 }

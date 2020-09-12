@@ -9,10 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class XQStockData {
-
     public XqData data;
-
-
 }
 
 

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class TradeLog {
     LocalDate buyTime;
     LocalDate sellTime;
-    String stockCode;
+    String StockNcode;
     float gain;
     float balance;
     BigDecimal buyPrice;

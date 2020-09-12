@@ -14,17 +14,17 @@ import java.util.ArrayList;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = StockApplication.class)
-class GetStockCodeTest {
+class GetStockNcodeTest {
 
     @Autowired
-    GetStockCode getStockCode;
+    GetStockNcode getStockNcode;
 
     @Autowired
     SimStockInfoDao simStockInfoDao;
 
     @Test
     void getSimStockInfo() {
-        ArrayList<SimStockInfo> sh = getStockCode.getSimStockInfo("深圳");
+        ArrayList<SimStockInfo> sh = getStockNcode.getSimStockInfo("深圳");
         for (SimStockInfo simStockInfo : sh) {
             simStockInfoDao.insert(simStockInfo);
         }

@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 public class TradeDataGain {
 
 
-    /*public List<HistoryStockInfo> getHistoryPrice(String stockCode ,String startTime ,String endTime){
+    /*public List<HistoryStockInfo> getHistoryPrice(String StockNcode ,String startTime ,String endTime){
         HashMap<String, Object> maps = new HashMap<>();
-        maps.put("code","cn_"+ stockCode);
+        maps.put("code","cn_"+ StockNcode);
         maps.put("start",startTime);
         maps.put("end",endTime);
         maps.put("stat","1");
