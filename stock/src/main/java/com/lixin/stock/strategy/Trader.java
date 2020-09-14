@@ -1,8 +1,11 @@
 package com.lixin.stock.strategy;
 
+import com.lixin.stock.entity.PositionStock;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * 交易
@@ -35,6 +38,10 @@ public class Trader implements Trade {
 
     // Balance
     public float balance = 1000000;
+
+    // 记录改交易者的持仓
+    Set<PositionStock> positionStocks;
+
 
     @Override
     public void sell(String code, LocalDate time, int number, BigDecimal price) {

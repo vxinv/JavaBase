@@ -8,17 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="es" />
-        <module name="netty-im" />
-        <module name="mystart" />
+        <module name="mbp" />
         <module name="commom" />
+        <module name="testweb" />
         <module name="mysql" />
         <module name="test4j" />
-        <module name="testweb" />
+        <module name="netty-im" />
         <module name="stock" />
         <module name="selenium" />
         <module name="rocketmq" />
         <module name="client" />
-        <module name="mbp" />
+        <module name="mystart" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

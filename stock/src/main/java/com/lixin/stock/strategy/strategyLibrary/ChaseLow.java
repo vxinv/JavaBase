@@ -32,13 +32,15 @@ public class ChaseLow implements chooseStock {
     // Total inspection days Z
     public int tidZ;
 
-    // 每次的建仓比例
+    // Percentage of open positions each time
     public float percentageOfOpenPositionsEachTime;
+
+    // Closing ratio
+    public float percentOfThrowOut;
 
     @Override
     public ChooseResult choose(Stock stock, Trader trader) {
         ChooseResult chooseResult = new ChooseResult();
-        // notIncludingToday
         List<StockNdata> stockNdatas = stock.historyData.subList(stock.currTimeIndex - tidZ - 1, stock.currTimeIndex);
         float lastDayPrice = 0F;
         long lastVolumn = 0;
@@ -59,12 +61,28 @@ public class ChaseLow implements chooseStock {
         if (C < nivC || N < declineDaysN) {
             chooseResult.choose = false;
         }
-        // It has fallen to E% of W days
         if (stock.MA30 - stock.MA5 / stock.MA30 < declineRatioE) {
             chooseResult.choose = false;
         }
         chooseResult.stock = stock;
         chooseResult.percentageBuy = percentageOfOpenPositionsEachTime;
         return chooseResult;
+    }
+
+
+    public ChooseResult throwOut(Stock stock, Trader trader) {
+
+
+        return null;
+    }
+
+
+    /**
+     * There are B times in the A test that meet the conditions
+     *
+     * @return
+     */
+    public boolean ABTest() {
+        return false;
     }
 }
