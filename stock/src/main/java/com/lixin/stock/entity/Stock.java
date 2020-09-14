@@ -1,24 +1,20 @@
 package com.lixin.stock.entity;
 
-import cn.hutool.core.lang.Holder;
 import com.lixin.stock.mapper.StockNdataMapper;
 import com.lixin.stock.model.StockNcode;
 import com.lixin.stock.model.StockNdata;
 import com.lixin.stock.model.StockNdataExample;
-import com.lixin.stock.utils.DataStatisticsUtils;
 
-import java.math.BigDecimal;
-import java.security.PublicKey;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
 /**
- * stockAbstract
+ * 股票抽象类
  */
-public class Stock extends StockNcode {
+public class Stock {
 
-    // movingAverage
+    // moving_average
     public float MA5;
     public float MA10;
     public float MA20;
@@ -26,114 +22,88 @@ public class Stock extends StockNcode {
     public float MA60;
     public float MA120;
 
+    public StockNcode snc;
+    public StockNdata temSnd;
+    public StockNdataMapper mapper;
 
-    public StockNcode original ;
-
-    // historicalData
+    // historical_data
     public List<StockNdata> historyData;
 
-    // currentRunningDateAndHistoricalDataIndex
+    // current_running_date_and_historical_data_index
     public int currTimeIndex;
 
-    // sameIndustryStockCollection
+    // same_industry_stock_collection
     public Set<Stock> sameIndustryStocks;
 
-    // circulationMarketValue
-    public double currFlowMarket;
+    // circulation_market_value
+    public float currFlowMarket;
 
-    // historyOfMeanVariance
-    public List<Double> variances;
+    // history_of_mean_variance
+    public List<Float> variances;
 
-    public Stock(StockNcode stockNcode) {
-        this.original = stockNcode;
+    public LocalDate startTime;
 
-    }
-
-
-    /**
-     * initializationOfStockData
-     * currentStartTime
-     * mapper_to_get_data
-     */
-    public void init(LocalDate localDate, StockNdataMapper snm){
+    public Stock(StockNcode snc, LocalDate localDate, StockNdataMapper snm) {
+        this.snc = snc;
+        this.mapper = snm;
+        this.startTime = localDate;
 
         StockNdataExample stockNdataExample = new StockNdataExample();
         StockNdataExample.Criteria criteria = stockNdataExample.createCriteria();
-        criteria.andCodeEqualTo(this.original.getStockCode());
-        this.stockCode = original.stockCode;
-
+        stockNdataExample.setOrderByClause("timestamp asc");
         historyData = snm.selectByExample(stockNdataExample);
-        findCurrentTimeIndex(localDate);
-
-        initinalizeMovingAverage();
-        StockNdata snd = historyData.get(currTimeIndex);
-        currFlowMarket = snd.getVolume()/snd.getTurnoverrate()*snd.getClose().doubleValue();
-        initialzationVariance();
+        findCurrentTimeIndex();
+        pastMovingAverageLine(currTimeIndex);
+        computerFlowMarket();
     }
 
-    public  void findCurrentTimeIndex(LocalDate localDate){
+    /**
+     * find_the_current_time_index
+     */
+    public int findCurrentTimeIndex() {
         for (int i = 0; i < historyData.size(); i++) {
-            StockNdata sn = historyData.get(i);
-            if (sn.getTimestamp().equals(localDate)) {
+            StockNdata stockNdata = historyData.get(i);
+            if (stockNdata.getTimestamp().equals(startTime)) {
                 this.currTimeIndex = i;
-                break;
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * find_the_past_moving_average_based_on_the_index
+     */
+    public void pastMovingAverageLine(int currTimeIndex) {
+        int cs = 0;
+        float sum = 0;
+        List<StockNdata> stockNdata = historyData.subList(currTimeIndex + 1 - 120, currTimeIndex + 1);
+        for (int i = stockNdata.size() - 1; i >= 0; i--) {
+            cs++;
+            sum += stockNdata.get(i).getClose().floatValue();
+            if (cs == 5) {
+                MA5 = sum / 5;
+            }
+            if (cs == 10) {
+                MA10 = sum / 10;
+            }
+            if (cs == 20) {
+                MA20 = sum / 20;
+            }
+            if (cs == 30) {
+                MA30 = sum / 30;
+            }
+            if (cs == 60) {
+                MA60 = sum / 60;
+            }
+            if (cs == 120) {
+                MA120 = sum / 120;
             }
         }
     }
 
-    /**
-     * initialize_moving_average
-     */
-    public void  initinalizeMovingAverage() {
-
-        List<StockNdata> stockNdatas = historyData.subList(currTimeIndex + 1 - 120, currTimeIndex + 1);
-        int rsize = 0;
-        float sumClosePrice = 0;
-        for (int i = stockNdatas.size() - 1; i >= 0; i--) {
-            StockNdata sn = stockNdatas.get(i);
-            rsize++;
-            sumClosePrice += sn.getClose().floatValue();
-            if (rsize == 5) {
-                MA5 = sumClosePrice / 5;
-            }
-            if (rsize == 10) {
-                MA10 = sumClosePrice / 10;
-            }
-            if (rsize == 20) {
-                MA20 = sumClosePrice / 20;
-            }
-            if (rsize == 30) {
-                MA30 = sumClosePrice / 30;
-            }
-            if (rsize == 60) {
-                MA60 = sumClosePrice / 60;
-            }
-            if (rsize == 120) {
-                MA120 = sumClosePrice / 120;
-            }
-
-            if (rsize > 120) {
-                break;
-            }
-        }
-    }
-    /**
-     * initialization_variance
-     */
-    public void initialzationVariance(){
-        double[] doubles = new double[4];
-        doubles[0] = MA5;
-        doubles[1] = MA10;
-        doubles[2] = MA30;
-        doubles[3] = MA60;
-        double mean = DataStatisticsUtils.getMean(doubles);
-        variances.add(mean);
-    }
-
-    public void newDay(){
-        currTimeIndex++;
-        initinalizeMovingAverage();
-        initialzationVariance();
+    public void computerFlowMarket() {
+        currFlowMarket = temSnd.getVolume() / temSnd.getTurnoverrate() * temSnd.getClose().floatValue();
     }
 
 

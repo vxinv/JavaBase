@@ -9,24 +9,33 @@ import java.util.Random;
  */
 public class Trader implements Trade {
 
-    // 交易时间长短
-    int time;
-    // 追高还是追低
-    int followHigh;
-    int followLow;
-    //  大盘小盘
-    int marketSize;
-    // 行业排名
-    int rank;
-    // 周期最低 单位(周)
-    int lowWeek;
-    // 周期最高
-    int highWeek;
-    // 到达指定亏损 等待天数
-    int stopLoss;
+    // length_of_transaction
+    public int time;
+    // chase_high_or_chase_low
+    public int followHigh;
+
+    public int followLow;
+
+    //  Large cap small cap
+    public int marketSize;
+
+    // Industry Ranking
+    public int rank;
+
+    // Minimum period unit (week)
+    public int lowWeek;
+
+    // Highest cycle
+    public int highWeek;
+
+    // Waiting days for the specified loss
+    public int stopLoss;
+
     Random random = new Random();
-    // 余额
-    float balance = 1000000;
+
+    // Balance
+    public float balance = 1000000;
+
     @Override
     public void sell(String code, LocalDate time, int number, BigDecimal price) {
 
