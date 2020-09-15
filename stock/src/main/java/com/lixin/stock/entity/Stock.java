@@ -4,6 +4,8 @@ import com.lixin.stock.mapper.StockNdataMapper;
 import com.lixin.stock.model.StockNcode;
 import com.lixin.stock.model.StockNdata;
 import com.lixin.stock.model.StockNdataExample;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.Set;
 /**
  * 股票抽象类
  */
+@Data
+@NoArgsConstructor
 public class Stock {
 
     // moving_average
@@ -23,7 +27,9 @@ public class Stock {
     public float MA120;
 
     public StockNcode snc;
-    public StockNdata temSnd;
+    // Quote of stock data of the day
+    public StockNdata temData;
+
     public StockNdataMapper mapper;
 
     // historical_data
@@ -52,6 +58,7 @@ public class Stock {
         StockNdataExample.Criteria criteria = stockNdataExample.createCriteria();
         stockNdataExample.setOrderByClause("timestamp asc");
         historyData = snm.selectByExample(stockNdataExample);
+
         findCurrentTimeIndex();
         pastMovingAverageLine(currTimeIndex);
         computerFlowMarket();
@@ -103,7 +110,7 @@ public class Stock {
     }
 
     public void computerFlowMarket() {
-        currFlowMarket = temSnd.getVolume() / temSnd.getTurnoverrate() * temSnd.getClose().floatValue();
+        currFlowMarket = temData.getVolume() / temData.getTurnoverrate() * temData.getClose().floatValue();
     }
 
 

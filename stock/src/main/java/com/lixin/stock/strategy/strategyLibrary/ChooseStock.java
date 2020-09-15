@@ -4,9 +4,10 @@ import com.lixin.stock.entity.Stock;
 import com.lixin.stock.strategy.ChooseResult;
 import com.lixin.stock.strategy.Trader;
 
-public interface chooseStock {
+public interface ChooseStock {
 
 
    ChooseResult choose(Stock stock, Trader trader);
 
+   ChooseResult throwOut(Stock stock, Trader trader);
 }

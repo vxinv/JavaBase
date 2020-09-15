@@ -12,5 +12,7 @@ import lombok.NoArgsConstructor;
 public class ChooseResult {
     public Stock stock;
     public float percentageBuy;
+    public float percentageSell;
     public boolean choose = true;
+    public BOS BOS;
 }

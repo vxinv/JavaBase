@@ -1,9 +1,12 @@
 package com.lixin.stock.strategy;
 
 import com.lixin.stock.entity.PositionStock;
+import com.lixin.stock.entity.Stock;
+import com.lixin.stock.strategy.strategyLibrary.ChooseStock;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -40,8 +43,16 @@ public class Trader implements Trade {
     public float balance = 1000000;
 
     // 记录改交易者的持仓
-    Set<PositionStock> positionStocks;
+    public Set<PositionStock> positionStocks = new HashSet<>();
 
+    public ChooseStock strategy;
+
+    // 交易者的初始化 需要对策略参数进行填充
+    public Trader(ChooseStock stra) {
+        this.strategy = stra;
+        strategy.
+
+    }
 
     @Override
     public void sell(String code, LocalDate time, int number, BigDecimal price) {
@@ -53,21 +64,12 @@ public class Trader implements Trade {
 
     }
 
-    @Override
-    public void find() {
-        // 选取2014 3月  计算每支s的M30  M60  M120
-        LocalDate currDay = LocalDate.of(2014, random.nextInt(12) + 1, random.nextInt(28));
-    }
-    private int getStockInDataMaxId() {
-        return 0;
-    }
-
     /**
      * 计算交易佣金
      *
      * @return
      */
-    public static float computerTradingCommissions(String code, BigDecimal price, int num, BSenum bSenum) {
+    public static float computerTradingCommissions(String code, BigDecimal price, int num, BOS BOS) {
         //  佣金
         float commission = 0.00025F;
         // 印花税 Stamp duty
@@ -87,7 +89,7 @@ public class Trader implements Trade {
             }
         }
 
-        if (bSenum == BSenum.BUY) {
+        if (BOS == com.lixin.stock.strategy.BOS.BUY) {
             // 佣金
             float pc = price.floatValue() * num * 100 * commission;
             return pc > 5 ? pc + tf : 5 + tf;
@@ -101,6 +103,13 @@ public class Trader implements Trade {
         }
 
 
+    }
+
+    @Override
+    public void find(Stock stock) {
+        ChooseResult choose = strategy.choose(stock, this);
+
+        ChooseResult chooseResult = strategy.throwOut(stock, this);
     }
 
 

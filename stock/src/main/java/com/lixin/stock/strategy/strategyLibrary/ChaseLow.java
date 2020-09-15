@@ -1,13 +1,16 @@
 package com.lixin.stock.strategy.strategyLibrary;
 
+import com.lixin.stock.entity.PositionStock;
 import com.lixin.stock.entity.Stock;
 import com.lixin.stock.model.StockNdata;
+import com.lixin.stock.strategy.BOS;
 import com.lixin.stock.strategy.ChooseResult;
 import com.lixin.stock.strategy.Trader;
 
 import java.util.List;
+import java.util.Set;
 
-public class ChaseLow implements chooseStock {
+public class ChaseLow implements ChooseStock {
 
     /**
      * desc:
@@ -21,22 +24,32 @@ public class ChaseLow implements chooseStock {
      * @return
      */
     // Number of drops N
+    // 当前股价连续下降多少天开始建仓
     public int declineDaysN;
 
     // Decrease percentage E
+    // 当股价下降达到多少比例开始建仓
     public int declineRatioE;
 
     // Number of Increase in Volume C
+    // Z天中C天 交易量的上涨
     public int nivC;
 
     // Total inspection days Z
+    // 本次共检测多少天
     public int tidZ;
 
     // Percentage of open positions each time
-    public float percentageOfOpenPositionsEachTime;
+    // 每次买入占总金额的比例
+    public float percentageBuy;
 
     // Closing ratio
-    public float percentOfThrowOut;
+    // 每次卖出 占总持仓的比例
+    public float percentageSell;
+
+    // How much profit starts to close the position
+    // 当盈利多少开始平仓
+    public float percentProfitClose;
 
     @Override
     public ChooseResult choose(Stock stock, Trader trader) {
@@ -65,15 +78,29 @@ public class ChaseLow implements chooseStock {
             chooseResult.choose = false;
         }
         chooseResult.stock = stock;
-        chooseResult.percentageBuy = percentageOfOpenPositionsEachTime;
+        chooseResult.BOS = BOS.BUY;
+        chooseResult.percentageBuy = percentageBuy;
         return chooseResult;
     }
 
 
+    @Override
     public ChooseResult throwOut(Stock stock, Trader trader) {
-
-
-        return null;
+        ChooseResult chooseResult = new ChooseResult();
+        chooseResult.choose = false;
+        PositionStock positionStock = getPositionStock(trader.positionStocks, stock);
+        if (positionStock == null) {
+            chooseResult.choose = false;
+            return chooseResult;
+        }
+        // 当天的平均价格 偏重于 收盘价 has profit
+        if ((stock.temData.getOpen().floatValue() + stock.temData.getClose().floatValue() * 3) / 4 > positionStock.averageCost * (1 + percentProfitClose)) {
+            chooseResult.BOS = BOS.SELL;
+            chooseResult.percentageSell = percentageSell;
+            chooseResult.choose = true;
+            return chooseResult;
+        }
+        return chooseResult;
     }
 
 
@@ -85,4 +112,19 @@ public class ChaseLow implements chooseStock {
     public boolean ABTest() {
         return false;
     }
+
+
+    /**
+     * Get the position of the stock
+     */
+    public PositionStock getPositionStock(Set<PositionStock> stocks, Stock stock) {
+        for (PositionStock positionStock : stocks) {
+            if (positionStock.code.equals(stock.getSnc().stockCode)) {
+                return positionStock;
+            }
+        }
+        return null;
+    }
+
 }
+

@@ -1,11 +1,11 @@
 package com.lixin.stock.strategy;
 
-public enum BSenum {
+public enum BOS {
     SELL("sell"), BUY("buy");
 
     String action;
 
-    BSenum(String action) {
+    BOS(String action) {
         this.action = action;
     }
 
