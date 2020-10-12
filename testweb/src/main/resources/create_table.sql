@@ -1,5 +1,5 @@
 #  笔记
-create table if not exists stock.lx_article
+create table if not exists lx.article
 (
     id           bigint auto_increment primary key,
     author       varchar(20) not null comment 'author',
