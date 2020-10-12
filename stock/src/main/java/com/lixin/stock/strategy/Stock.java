@@ -1,4 +1,4 @@
-package com.lixin.stock.entity;
+package com.lixin.stock.strategy;
 
 import com.lixin.stock.mapper.StockNdataMapper;
 import com.lixin.stock.model.StockNcode;
@@ -7,7 +7,9 @@ import com.lixin.stock.model.StockNdataExample;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -16,7 +18,9 @@ import java.util.Set;
  */
 @Data
 @NoArgsConstructor
-public class Stock {
+public class Stock implements Serializable {
+
+    private static final long serialVersionUID = -5809782578272943999L;
 
     // moving_average
     public float MA5;
@@ -27,13 +31,14 @@ public class Stock {
     public float MA120;
 
     public StockNcode snc;
+
     // Quote of stock data of the day
     public StockNdata temData;
 
-    public StockNdataMapper mapper;
+    public transient StockNdataMapper mapper;
 
     // historical_data
-    public List<StockNdata> historyData;
+    public LinkedList<StockNdata> historyData = new LinkedList<>();
 
     // current_running_date_and_historical_data_index
     public int currTimeIndex;
@@ -45,9 +50,11 @@ public class Stock {
     public float currFlowMarket;
 
     // history_of_mean_variance
-    public List<Float> variances;
+    public LinkedList<Float> variances;
 
     public LocalDate startTime;
+
+    public boolean init = false;
 
     public Stock(StockNcode snc, LocalDate localDate, StockNdataMapper snm) {
         this.snc = snc;
@@ -56,10 +63,18 @@ public class Stock {
 
         StockNdataExample stockNdataExample = new StockNdataExample();
         StockNdataExample.Criteria criteria = stockNdataExample.createCriteria();
+        criteria.andCodeEqualTo(snc.stockCode);
         stockNdataExample.setOrderByClause("timestamp asc");
-        historyData = snm.selectByExample(stockNdataExample);
-
-        findCurrentTimeIndex();
+        List<StockNdata> ls = snm.selectByExample(stockNdataExample);
+        historyData.addAll(ls);
+        //System.out.println("获取"+snc.getCompanyName()+historyData.size()+"条数据");
+        int currentTimeIndex = findCurrentTimeIndex();
+        //System.out.println("currentTimeIndex :"+currentTimeIndex);
+        if (currTimeIndex < 120) {
+            return;
+        }
+        temData = historyData.get(currentTimeIndex);
+        init = true;
         pastMovingAverageLine(currTimeIndex);
         computerFlowMarket();
     }
@@ -113,5 +128,10 @@ public class Stock {
         currFlowMarket = temData.getVolume() / temData.getTurnoverrate() * temData.getClose().floatValue();
     }
 
+    public void newDayInfo() {
+        currTimeIndex += 1;
+        temData = historyData.get(currTimeIndex);
+        pastMovingAverageLine(currTimeIndex);
+    }
 
 }

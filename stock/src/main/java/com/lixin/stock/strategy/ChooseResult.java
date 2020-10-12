@@ -1,6 +1,6 @@
 package com.lixin.stock.strategy;
 
-import com.lixin.stock.entity.Stock;
+import com.lixin.stock.entity.PositionStock;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,4 +15,5 @@ public class ChooseResult {
     public float percentageSell;
     public boolean choose = true;
     public BOS BOS;
+    public PositionStock positionStock;
 }

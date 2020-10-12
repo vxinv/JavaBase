@@ -10,12 +10,12 @@ public class YmlUtil {
 
     //private final static String filename = "config.yml";
 
-    private static Map ymls = new LinkedHashMap();
+    private static final Map ymls = new LinkedHashMap();
 
     /**
      * string:当前线程需要查询的文件名
      */
-    private static ThreadLocal<String> nowFileName = new ThreadLocal<>();
+    private static final ThreadLocal<String> nowFileName = new ThreadLocal<>();
 
     /**
      * 加载配置文件

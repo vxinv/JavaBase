@@ -12,6 +12,7 @@ import java.io.IOException;
 /**
  * json的封装类
  */
+@SuppressWarnings("JavadocReference")
 public class JsonUtil extends AbstractUtil {
 
     public static ObjectMapper objectMapper;
@@ -67,8 +68,6 @@ public class JsonUtil extends AbstractUtil {
     /**
      * Method that will convert object to the ObjectNode.
      *
-     * @param value
-     *            the source data; if null, will return null.
      * @return the ObjectNode data after converted.
      * @throws JsonException
      */

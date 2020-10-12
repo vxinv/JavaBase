@@ -1,8 +1,8 @@
 package com.lixin.stock.strategy;
 
 import com.lixin.stock.entity.PositionStock;
-import com.lixin.stock.entity.Stock;
 import com.lixin.stock.strategy.strategyLibrary.ChooseStock;
+import com.lixin.stock.utils.TimeUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -50,18 +50,28 @@ public class Trader implements Trade {
     // 交易者的初始化 需要对策略参数进行填充
     public Trader(ChooseStock stra) {
         this.strategy = stra;
-        strategy.
-
     }
 
     @Override
     public void sell(String code, LocalDate time, int number, BigDecimal price) {
-
+        float sxfee = computerTradingCommissions(code, price, number, BOS.SELL);
+        float profit = price.floatValue() * number * 100;
+        this.balance += profit - sxfee;
+        System.out.println(time.format(TimeUtils.dateTimeFormatter) + "卖出" + number + "手" + "共获取" + (profit - sxfee) + "元");
+        PositionStock positionStock = getPositionStock(code);
+        // Change the status of a position
+        positionStock.sellStock(number, price, time);
     }
 
     @Override
     public void buy(String code, LocalDate time, int number, BigDecimal price) {
-
+        float sxfee = computerTradingCommissions(code, price, number, BOS.BUY);
+        float cost = price.floatValue() * number * 100;
+        this.balance -= sxfee + cost;
+        System.out.println(time.format(TimeUtils.dateTimeFormatter) + "买入" + number + "手" + "共花费" + (sxfee + cost) + "元");
+        PositionStock positionStock = getPositionStock(code);
+        // Change the status of a position
+        positionStock.buyStock(number, price, time);
     }
 
     /**
@@ -106,10 +116,47 @@ public class Trader implements Trade {
     }
 
     @Override
-    public void find(Stock stock) {
-        ChooseResult choose = strategy.choose(stock, this);
+    public void find(Stock stock, LocalDate current) {
+        ChooseResult result = strategy.choose(stock, this);
+        if (result.choose) {
+            float currPrice = priceOfTheDay(stock);
+            int num = (int) Math.floor(result.percentageBuy * balance / priceOfTheDay(stock) * 100);
+            if (num >= 1) {
+                buy(stock.snc.stockCode, current, num, BigDecimal.valueOf(currPrice));
+            } else {
+                System.out.println(current.toString() + "买入" + stock.snc.companyName + "余额不足");
+            }
+        }
+        ChooseResult throwOut = strategy.throwOut(stock, this);
+        if (throwOut.choose) {
+            float currPrice = priceOfTheDay(stock);
+            PositionStock positionStock = throwOut.positionStock;
+            int num = (int) Math.floor(positionStock.numberOfHoldings * throwOut.percentageSell);
+            if (num > 1) {
+                sell(stock.snc.stockCode, current, num, BigDecimal.valueOf(currPrice));
+            }
 
-        ChooseResult chooseResult = strategy.throwOut(stock, this);
+        }
+    }
+
+    /**
+     * 获取当天的价格 偏重于收盘价
+     */
+    public float priceOfTheDay(Stock stock) {
+        return (stock.temData.getOpen().floatValue() * 1 + stock.temData.getClose().floatValue() * 2) / 3;
+    }
+
+
+    /**
+     * Get the position of the stock
+     */
+    public PositionStock getPositionStock(String stock) {
+        for (PositionStock positionStock : positionStocks) {
+            if (positionStock.code.equals(stock)) {
+                return positionStock;
+            }
+        }
+        return null;
     }
 
 

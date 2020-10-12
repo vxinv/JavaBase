@@ -1,11 +1,8 @@
 package com.lixin.stock.strategy.strategyLibrary;
 
 import com.lixin.stock.entity.PositionStock;
-import com.lixin.stock.entity.Stock;
 import com.lixin.stock.model.StockNdata;
-import com.lixin.stock.strategy.BOS;
-import com.lixin.stock.strategy.ChooseResult;
-import com.lixin.stock.strategy.Trader;
+import com.lixin.stock.strategy.*;
 
 import java.util.List;
 import java.util.Set;
@@ -52,7 +49,7 @@ public class ChaseLow implements ChooseStock {
     public float percentProfitClose;
 
     @Override
-    public ChooseResult choose(Stock stock, Trader trader) {
+    public ChooseResult choose(Stock stock, Trade trade) {
         ChooseResult chooseResult = new ChooseResult();
         List<StockNdata> stockNdatas = stock.historyData.subList(stock.currTimeIndex - tidZ - 1, stock.currTimeIndex);
         float lastDayPrice = 0F;
@@ -98,6 +95,7 @@ public class ChaseLow implements ChooseStock {
             chooseResult.BOS = BOS.SELL;
             chooseResult.percentageSell = percentageSell;
             chooseResult.choose = true;
+            chooseResult.positionStock = positionStock;
             return chooseResult;
         }
         return chooseResult;

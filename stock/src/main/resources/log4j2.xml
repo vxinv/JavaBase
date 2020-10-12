@@ -62,7 +62,7 @@
     <loggers>
 
         <logger name="org.springframework" level="INFO" />
-        <logger name="org.mybatis" level="INFO" />
+        <logger name="org.mybatis" level="DEBUG"/>
         <logger name="com.zaxxer.hikari" level="off"/>
 
         <root level="DEBUG">

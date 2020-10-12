@@ -15,5 +15,6 @@ public class TestMvc {
         person.getOther().cost(3);
         return null;
     }
+
 }
 

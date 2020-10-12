@@ -1,8 +1,6 @@
 package com.lixin.stock.strategy;
 
 
-import com.lixin.stock.entity.Stock;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -12,7 +10,6 @@ public interface Trade {
 
     void buy(String code, LocalDate time, int number, BigDecimal price);
 
-
-    void find(Stock stock);
+    void find(Stock stock, LocalDate localDate);
 
 }

@@ -1,8 +1,6 @@
 package com.lixin.guava;
 
 import cn.hutool.core.io.FileUtil;
-import junit.framework.TestCase;
-import org.checkerframework.common.value.qual.StaticallyExecutable;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.core.io.ClassPathResource;
@@ -10,15 +8,11 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * 文件操作
  */
-public class FilesTest  {
+public class FilesTest {
 
     String absolutePath = "/Users/yons/Documents/App/JavaBase/test4j/src/main/java/com/lixin/guava/testFile";
     String relativePath = "../testRelativeFile";
@@ -36,7 +30,7 @@ public class FilesTest  {
     }
 
     @Test
-    public void  deleteFile(){
+    public void deleteFile() {
         boolean del = FileUtil.del(absolutePath);
         System.out.println("del = " + del);
     }
@@ -51,7 +45,7 @@ public class FilesTest  {
         System.out.println(classPathResource.getPath());
         System.out.println(classPathResource.getURL());
         InputStream inputStream = classPathResource.getInputStream();
-        FileUtil.writeFromStream(inputStream,file.getCanonicalPath()+File.separator+"testFile.txt");
+        FileUtil.writeFromStream(inputStream, file.getCanonicalPath() + File.separator + "testFile.txt");
     }
 
 

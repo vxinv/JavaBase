@@ -58,6 +58,7 @@ public class MapTest {
     @Test
     public void testTable(){
         //记录学生在某门课上的成绩
+
         Table<String, String, Integer> table = HashBasedTable.create();
         table.put("jack", "java", 100);
         table.put("jack", "c", 90);
