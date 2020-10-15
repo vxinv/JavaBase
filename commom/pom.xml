@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>commom</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
 
 </project>

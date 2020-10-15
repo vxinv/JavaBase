@@ -1,6 +1,5 @@
 package com.lixin.testweb.controller;
 
-import com.lixin.testweb.commom.CommomResult;
 import com.lixin.testweb.dto.Money;
 import com.lixin.testweb.dto.Person;
 import org.springframework.web.bind.annotation.PostMapping;
