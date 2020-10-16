@@ -25,6 +25,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+
     public Article getArtical(Article article) {
         return null;
     }
