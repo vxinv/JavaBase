@@ -27,13 +27,13 @@ public class Person extends Animal {
         lixin.say();
         lixin.hi();
 
-        Field[] declaredFields = lixin.getClass().getDeclaredFields();
+       /* Field[] declaredFields = lixin.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
             if (declaredField.getType() == int.class){
                 System.out.println("hello");
             }else {
                 System.out.println(declaredField.getType());
             }
-        }
+        }*/
     }
 }

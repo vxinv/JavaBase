@@ -1,18 +1,25 @@
 package com.lixin.testweb.model;
 
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Article implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Long id;
+
     @ApiModelProperty(value = "author")
-    private String author;
+    private String userName;
+
     private LocalDateTime publishTime;
+
+    @ApiModelProperty(value = "提醒方式")
+    private Byte notify;
+
     @ApiModelProperty(value = "文本")
     private String content;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -22,12 +29,12 @@ public class Article implements Serializable {
         this.id = id;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public LocalDateTime getPublishTime() {
@@ -36,6 +43,14 @@ public class Article implements Serializable {
 
     public void setPublishTime(LocalDateTime publishTime) {
         this.publishTime = publishTime;
+    }
+
+    public Byte getNotify() {
+        return notify;
+    }
+
+    public void setNotify(Byte notify) {
+        this.notify = notify;
     }
 
     public String getContent() {
@@ -53,8 +68,9 @@ public class Article implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", author=").append(author);
+        sb.append(", userName=").append(userName);
         sb.append(", publishTime=").append(publishTime);
+        sb.append(", notify=").append(notify);
         sb.append(", content=").append(content);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

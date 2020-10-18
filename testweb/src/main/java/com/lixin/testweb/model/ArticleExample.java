@@ -15,20 +15,20 @@ public class ArticleExample {
         oredCriteria = new ArrayList<Criteria>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -165,73 +165,73 @@ public class ArticleExample {
             return (Criteria) this;
         }
 
-        public Criteria andAuthorIsNull() {
-            addCriterion("author is null");
+        public Criteria andUserNameIsNull() {
+            addCriterion("user_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorIsNotNull() {
-            addCriterion("author is not null");
+        public Criteria andUserNameIsNotNull() {
+            addCriterion("user_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorEqualTo(String value) {
-            addCriterion("author =", value, "author");
+        public Criteria andUserNameEqualTo(String value) {
+            addCriterion("user_name =", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorNotEqualTo(String value) {
-            addCriterion("author <>", value, "author");
+        public Criteria andUserNameNotEqualTo(String value) {
+            addCriterion("user_name <>", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorGreaterThan(String value) {
-            addCriterion("author >", value, "author");
+        public Criteria andUserNameGreaterThan(String value) {
+            addCriterion("user_name >", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorGreaterThanOrEqualTo(String value) {
-            addCriterion("author >=", value, "author");
+        public Criteria andUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("user_name >=", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorLessThan(String value) {
-            addCriterion("author <", value, "author");
+        public Criteria andUserNameLessThan(String value) {
+            addCriterion("user_name <", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorLessThanOrEqualTo(String value) {
-            addCriterion("author <=", value, "author");
+        public Criteria andUserNameLessThanOrEqualTo(String value) {
+            addCriterion("user_name <=", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorLike(String value) {
-            addCriterion("author like", value, "author");
+        public Criteria andUserNameLike(String value) {
+            addCriterion("user_name like", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorNotLike(String value) {
-            addCriterion("author not like", value, "author");
+        public Criteria andUserNameNotLike(String value) {
+            addCriterion("user_name not like", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorIn(List<String> values) {
-            addCriterion("author in", values, "author");
+        public Criteria andUserNameIn(List<String> values) {
+            addCriterion("user_name in", values, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorNotIn(List<String> values) {
-            addCriterion("author not in", values, "author");
+        public Criteria andUserNameNotIn(List<String> values) {
+            addCriterion("user_name not in", values, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorBetween(String value1, String value2) {
-            addCriterion("author between", value1, value2, "author");
+        public Criteria andUserNameBetween(String value1, String value2) {
+            addCriterion("user_name between", value1, value2, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorNotBetween(String value1, String value2) {
-            addCriterion("author not between", value1, value2, "author");
+        public Criteria andUserNameNotBetween(String value1, String value2) {
+            addCriterion("user_name not between", value1, value2, "userName");
             return (Criteria) this;
         }
 
@@ -294,6 +294,66 @@ public class ArticleExample {
             addCriterion("publish_time not between", value1, value2, "publishTime");
             return (Criteria) this;
         }
+
+        public Criteria andNotifyIsNull() {
+            addCriterion("notify is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyIsNotNull() {
+            addCriterion("notify is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyEqualTo(Byte value) {
+            addCriterion("notify =", value, "notify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyNotEqualTo(Byte value) {
+            addCriterion("notify <>", value, "notify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyGreaterThan(Byte value) {
+            addCriterion("notify >", value, "notify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyGreaterThanOrEqualTo(Byte value) {
+            addCriterion("notify >=", value, "notify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyLessThan(Byte value) {
+            addCriterion("notify <", value, "notify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyLessThanOrEqualTo(Byte value) {
+            addCriterion("notify <=", value, "notify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyIn(List<Byte> values) {
+            addCriterion("notify in", values, "notify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyNotIn(List<Byte> values) {
+            addCriterion("notify not in", values, "notify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyBetween(Byte value1, Byte value2) {
+            addCriterion("notify between", value1, value2, "notify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyNotBetween(Byte value1, Byte value2) {
+            addCriterion("notify not between", value1, value2, "notify");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -304,14 +364,53 @@ public class ArticleExample {
     }
 
     public static class Criterion {
-        private final String condition;
-        private final String typeHandler;
+        private String condition;
+
         private Object value;
+
         private Object secondValue;
+
         private boolean noValue;
+
         private boolean singleValue;
+
         private boolean betweenValue;
+
         private boolean listValue;
+
+        private String typeHandler;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
 
         protected Criterion(String condition) {
             super();
@@ -347,38 +446,6 @@ public class ArticleExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }

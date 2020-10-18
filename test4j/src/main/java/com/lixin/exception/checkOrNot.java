@@ -25,6 +25,6 @@ public class checkOrNot {
         throw new RuntimeException();
     }
     public static void test3(){
-        throw  new NullPointerException();
+        throw  new RuntimeException();
     }
 }
