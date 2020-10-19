@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.lixin.testweb.model.Article">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="notify" jdbcType="TINYINT" property="notify" />
   </resultMap>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_name, publish_time, notify
+    id, user_name, title, publish_time, notify
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -126,10 +127,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into article (user_name, publish_time, notify, 
-      content)
-    values (#{userName,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{notify,jdbcType=TINYINT}, 
-      #{content,jdbcType=LONGVARCHAR})
+    insert into article (user_name, title, publish_time, 
+      notify, content)
+    values (#{userName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{notify,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lixin.testweb.model.Article">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -139,6 +140,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userName != null">
         user_name,
+      </if>
+      <if test="title != null">
+        title,
       </if>
       <if test="publishTime != null">
         publish_time,
@@ -153,6 +157,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
       </if>
       <if test="publishTime != null">
         #{publishTime,jdbcType=TIMESTAMP},
@@ -180,6 +187,9 @@
       <if test="record.userName != null">
         user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
       <if test="record.publishTime != null">
         publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
       </if>
@@ -198,6 +208,7 @@
     update article
     set id = #{record.id,jdbcType=BIGINT},
       user_name = #{record.userName,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
       publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
       notify = #{record.notify,jdbcType=TINYINT},
       content = #{record.content,jdbcType=LONGVARCHAR}
@@ -209,6 +220,7 @@
     update article
     set id = #{record.id,jdbcType=BIGINT},
       user_name = #{record.userName,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
       publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
       notify = #{record.notify,jdbcType=TINYINT}
     <if test="_parameter != null">
@@ -220,6 +232,9 @@
     <set>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="publishTime != null">
         publish_time = #{publishTime,jdbcType=TIMESTAMP},
@@ -236,6 +251,7 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lixin.testweb.model.Article">
     update article
     set user_name = #{userName,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
       publish_time = #{publishTime,jdbcType=TIMESTAMP},
       notify = #{notify,jdbcType=TINYINT},
       content = #{content,jdbcType=LONGVARCHAR}
@@ -244,6 +260,7 @@
   <update id="updateByPrimaryKey" parameterType="com.lixin.testweb.model.Article">
     update article
     set user_name = #{userName,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
       publish_time = #{publishTime,jdbcType=TIMESTAMP},
       notify = #{notify,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
