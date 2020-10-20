@@ -11,6 +11,9 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "author")
     private String userName;
 
+    @ApiModelProperty(value = "笔记标题")
+    private String title;
+
     private LocalDateTime publishTime;
 
     @ApiModelProperty(value = "提醒方式")
@@ -35,6 +38,14 @@ public class Article implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public LocalDateTime getPublishTime() {
@@ -69,6 +80,7 @@ public class Article implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", userName=").append(userName);
+        sb.append(", title=").append(title);
         sb.append(", publishTime=").append(publishTime);
         sb.append(", notify=").append(notify);
         sb.append(", content=").append(content);

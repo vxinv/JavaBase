@@ -9,10 +9,10 @@ public interface SendService {
     /**
      * 发送邮箱验证码
      */
-    String sendEmailVerificationCode(String mailAddress);
+    String sendEmailVerificationCode(String mailAddress,String userName);
 
     /**
      * 推送笔记
      */
-    boolean DeliveryNote(String mailAddress,String noteContent);
+    boolean DeliveryNote(String mailAddress,String noteContent,String userName);
 }

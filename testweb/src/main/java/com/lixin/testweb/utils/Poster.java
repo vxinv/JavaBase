@@ -1,9 +1,13 @@
 package com.lixin.testweb.utils;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.mail.MailAccount;
 import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.druid.util.StringUtils;
+
+import javax.security.auth.Subject;
 
 /*根据Hutool 封装的邮件通知类*/
 public class Poster {
@@ -33,6 +37,14 @@ public class Poster {
         }
     }
 
+    public static boolean send(String mailAddress,String subject,String content,boolean isHtml ){
+        if (account == null){
+            initAccount();
+        }
+        String id = MailUtil.send(mailAddress, subject, content, isHtml);
+        return !StrUtil.isBlank(id);
+    }
+
 
     public static void sendTest() {
         Poster.send("邮件配置测试", "测试邮件是否能发送成功！收到邮件证明邮件信息配置正确！");
@@ -41,4 +53,6 @@ public class Poster {
     public static void main(String[] args) {
         sendTest();
     }
+
+
 }

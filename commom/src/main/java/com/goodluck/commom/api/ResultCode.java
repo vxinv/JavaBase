@@ -12,7 +12,7 @@ public enum ResultCode implements IErrorCode {
 
     DuplicateUserName(601,"用户名重复"),
     TheEmailVerificationCodeIsIncorrect(602,"邮箱验证码不正确"),
-
+    MailAddressIncorrect(603,"邮箱地址不对"),
 
     FORBIDDEN(403, "没有相关权限");
 
