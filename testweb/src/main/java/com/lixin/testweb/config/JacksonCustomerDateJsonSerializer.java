@@ -14,7 +14,6 @@ public class JacksonCustomerDateJsonSerializer  extends JsonSerializer<LocalDate
 
     @Override
     public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        System.out.println("-----------------------------------------------------------------------");
         jsonGenerator.writeString(dtf.format(localDateTime));
     }
 }
