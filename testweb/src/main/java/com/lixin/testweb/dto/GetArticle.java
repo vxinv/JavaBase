@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetArticle {
     String userName;
-    int pageNo;
-    int pageSize;
+    Integer pageNo;
+    Integer pageSize;
     // 1 -1
-    int timeOrder;
+    Integer timeOrder;
+    Integer articleId;
 }

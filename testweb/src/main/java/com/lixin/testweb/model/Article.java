@@ -14,7 +14,6 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "笔记标题")
     private String title;
 
-
     private LocalDateTime publishTime;
 
     @ApiModelProperty(value = "提醒方式")
@@ -55,6 +54,10 @@ public class Article implements Serializable {
 
     public void setPublishTime(LocalDateTime publishTime) {
         this.publishTime = publishTime;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Byte getNotify() {

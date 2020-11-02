@@ -28,7 +28,7 @@ public class JacksonConfiger {
         // Include.NON_NULL 属性为NULL 不序列化
 
         SimpleModule sm = new SimpleModule();
-        sm.addKeySerializer(LocalDateTime.class, new JacksonCustomerDateJsonSerializer());
+        sm.addSerializer(LocalDateTime.class, new JacksonCustomerDateJsonSerializer());
         objectMapper.registerModule(sm);
         return objectMapper;
     }
