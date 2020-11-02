@@ -1,5 +1,6 @@
 package com.lixin.testweb.service;
 
+import com.lixin.testweb.dto.RegisterDto;
 import com.lixin.testweb.model.User;
 
 import java.util.List;
@@ -21,6 +22,6 @@ public interface UserService {
     /**
      * 用户获取邮箱验证码
      */
-    boolean getMailCode(User user);
+    boolean registerAll(RegisterDto registerDto );
 
 }

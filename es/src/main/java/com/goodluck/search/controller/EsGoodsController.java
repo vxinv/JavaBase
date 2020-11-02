@@ -1,8 +1,7 @@
 package com.goodluck.search.controller;
 
-import com.goodluck.commom.api.CommonPage;
-import com.goodluck.commom.api.CommonResult;
-import com.goodluck.search.domain.EsGoods;
+import com.lixin.testweb.api.CommonPage;
+import com.lixin.testweb.api.CommonResult;
 import com.goodluck.search.model.Goods;
 import com.goodluck.search.service.EsProductService;
 import io.swagger.annotations.Api;

@@ -1,4 +1,4 @@
-package com.goodluck.commom.api;
+package com.lixin.testweb.api;
 
 /**
  * 封装API的错误码

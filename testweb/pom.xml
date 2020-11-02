@@ -95,6 +95,13 @@
             <version>${mysql-connector.version}</version>
         </dependency>
 
+        <!--MyBatis分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.10</version>
+        </dependency>
+
         <dependency>
             <groupId>com.goodluck</groupId>
             <artifactId>commom</artifactId>

@@ -14,6 +14,7 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "笔记标题")
     private String title;
 
+
     private LocalDateTime publishTime;
 
     @ApiModelProperty(value = "提醒方式")

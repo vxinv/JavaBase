@@ -1,7 +1,7 @@
-package com.goodluck.commom.exception;
+package com.lixin.testweb.exception;
 
 
-import com.goodluck.commom.api.CommonResult;
+import com.lixin.testweb.api.CommonResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

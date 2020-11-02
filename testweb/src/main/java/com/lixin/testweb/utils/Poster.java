@@ -41,7 +41,7 @@ public class Poster {
         if (account == null){
             initAccount();
         }
-        String id = MailUtil.send(mailAddress, subject, content, isHtml);
+        String id = MailUtil.send(account,mailAddress, subject, content, isHtml);
         return !StrUtil.isBlank(id);
     }
 

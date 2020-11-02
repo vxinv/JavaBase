@@ -1,4 +1,4 @@
-package com.goodluck.commom.api;
+package com.lixin.testweb.api;
 
 /**
  * 枚举了一些常用API操作码

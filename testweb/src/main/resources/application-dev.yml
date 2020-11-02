@@ -17,6 +17,8 @@ spring:
         login-username: root
         login-password: root
 
+
+
 #  data:
 #    mongodb:
 #      host: localhost

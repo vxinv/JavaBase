@@ -1,7 +1,9 @@
 package com.lixin.testweb.controller;
 
 
-import com.goodluck.commom.api.CommonResult;
+import com.github.pagehelper.PageInfo;
+import com.lixin.testweb.api.CommonResult;
+import com.lixin.testweb.dto.GetArticle;
 import com.lixin.testweb.model.Article;
 import com.lixin.testweb.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,9 @@ public class ArticleController {
     }
 
 
-    public Article getArtical(Article article) {
-        return null;
+    @PostMapping("/getArticle")
+    public CommonResult<PageInfo<Article>> getArtical(@RequestBody GetArticle article) {
+        return CommonResult.success(articleService.getArtical(article));
     }
 
 

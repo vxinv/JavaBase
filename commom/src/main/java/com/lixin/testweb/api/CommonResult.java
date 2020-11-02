@@ -1,4 +1,4 @@
-package com.goodluck.commom.api;
+package com.lixin.testweb.api;
 
 /**
  * 通用返回对象

@@ -1,7 +1,7 @@
-package com.goodluck.commom.exception;
+package com.lixin.testweb.exception;
 
 
-import com.goodluck.commom.api.IErrorCode;
+import com.lixin.testweb.api.IErrorCode;
 
 /**
  * 断言处理类，用于抛出各种API异常

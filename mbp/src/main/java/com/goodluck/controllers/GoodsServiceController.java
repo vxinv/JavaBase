@@ -1,7 +1,7 @@
 package com.goodluck.controllers;
 
-import com.goodluck.commom.api.CommonPage;
-import com.goodluck.commom.api.CommonResult;
+import com.lixin.testweb.api.CommonPage;
+import com.lixin.testweb.api.CommonResult;
 import com.goodluck.dto.goodsService.SearchGoodsQueryParam;
 import com.goodluck.model.Goods;
 import com.goodluck.services.GoodsServices;

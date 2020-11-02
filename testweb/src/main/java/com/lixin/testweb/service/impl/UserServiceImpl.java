@@ -1,8 +1,9 @@
 package com.lixin.testweb.service.impl;
 
-import com.goodluck.commom.api.ResultCode;
-import com.goodluck.commom.exception.ApiException;
+import com.lixin.testweb.api.ResultCode;
+import com.lixin.testweb.exception.ApiException;
 import com.lixin.testweb.dao.UserMapper;
+import com.lixin.testweb.dto.RegisterDto;
 import com.lixin.testweb.model.User;
 import com.lixin.testweb.model.UserExample;
 import com.lixin.testweb.service.UserService;
@@ -17,6 +18,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    SendServiceImpl sendService;
+
     /**
      *
      * @return 0 -1 1 未知错误 用户名占用 成功
@@ -28,7 +32,7 @@ public class UserServiceImpl implements UserService {
         criteria.andUserNameEqualTo(user.getUserName());
         List<User> users = userMapper.selectByExample(ue);
         if (users.size()!=0){
-            return -1;
+            throw  new ApiException(ResultCode.DuplicateUserName);
         }
         return userMapper.insertSelective(user);
     }
@@ -48,11 +52,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean getMailCode(User user) {
-        if (registerUser(user) != 1){
-            throw  new ApiException(ResultCode.DuplicateUserName);
+    public boolean registerAll(RegisterDto registerDto ) {
+        boolean b = checkCode(registerDto.getCode(), registerDto.getUsername());
+        if (!b){
+            throw  new ApiException(ResultCode.TheEmailVerificationCodeIsIncorrect);
         }
+        User user = new User();
+        user.setMail(registerDto.getEmail());
+        user.setCode(registerDto.getCode());
 
-        return false;
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andUserNameEqualTo(registerDto.getUsername());
+        int i = userMapper.updateByExampleSelective(user, userExample);
+        if (i!=1){
+            throw new ApiException(ResultCode.FAILED);
+        }
+        return true;
     }
 }
