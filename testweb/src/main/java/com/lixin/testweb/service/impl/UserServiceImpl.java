@@ -1,9 +1,9 @@
 package com.lixin.testweb.service.impl;
 
 import com.lixin.testweb.api.ResultCode;
-import com.lixin.testweb.exception.ApiException;
 import com.lixin.testweb.dao.UserMapper;
 import com.lixin.testweb.dto.RegisterDto;
+import com.lixin.testweb.exception.ApiException;
 import com.lixin.testweb.model.User;
 import com.lixin.testweb.model.UserExample;
 import com.lixin.testweb.service.UserService;
@@ -22,7 +22,6 @@ public class UserServiceImpl implements UserService {
     SendServiceImpl sendService;
 
     /**
-     *
      * @return 0 -1 1 未知错误 用户名占用 成功
      */
     @Override
@@ -31,8 +30,8 @@ public class UserServiceImpl implements UserService {
         UserExample.Criteria criteria = ue.createCriteria();
         criteria.andUserNameEqualTo(user.getUserName());
         List<User> users = userMapper.selectByExample(ue);
-        if (users.size()!=0){
-            throw  new ApiException(ResultCode.DuplicateUserName);
+        if (users.size() != 0) {
+            throw new ApiException(ResultCode.DuplicateUserName);
         }
         return userMapper.insertSelective(user);
     }
@@ -52,10 +51,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean registerAll(RegisterDto registerDto ) {
+    public boolean registerAll(RegisterDto registerDto) {
         boolean b = checkCode(registerDto.getCode(), registerDto.getUsername());
-        if (!b){
-            throw  new ApiException(ResultCode.TheEmailVerificationCodeIsIncorrect);
+        if (!b) {
+            throw new ApiException(ResultCode.TheEmailVerificationCodeIsIncorrect);
         }
         User user = new User();
         user.setMail(registerDto.getEmail());
@@ -65,9 +64,22 @@ public class UserServiceImpl implements UserService {
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andUserNameEqualTo(registerDto.getUsername());
         int i = userMapper.updateByExampleSelective(user, userExample);
-        if (i!=1){
+        if (i != 1) {
             throw new ApiException(ResultCode.FAILED);
         }
         return true;
+    }
+
+    @Override
+    public User login(User user) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria().andUserNameEqualTo(user.getUserName())
+                .andPassWordEqualTo(user.getPassWord());
+
+        List<User> users = userMapper.selectByExample(userExample);
+        if (users.size() != 1) {
+            throw new ApiException(ResultCode.usernameOrPasswordIsIncorrect);
+        }
+        return users.get(0);
     }
 }

@@ -64,9 +64,22 @@ public class UserController {
      * @return
      */
     @PostMapping("/allRegister")
-    public CommonResult<String> allRegister(@RequestBody RegisterDto registerDto){
+    public CommonResult<String> allRegister(@RequestBody RegisterDto registerDto) {
         userService.registerAll(registerDto);
         return CommonResult.success(null);
+    }
+
+
+    /**
+     * 用户登录 返回登录信息
+     *
+     * @return
+     */
+    @PostMapping("/users/login")
+    public CommonResult<User> login(@RequestBody User user) {
+
+        User login = userService.login(user);
+        return CommonResult.success(login);
     }
 
 }
