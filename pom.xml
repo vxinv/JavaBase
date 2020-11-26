@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>proxy</module>
         <module>stock</module>
         <module>test4j</module>
         <module>mystart</module>

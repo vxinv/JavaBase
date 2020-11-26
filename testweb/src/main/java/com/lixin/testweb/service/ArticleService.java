@@ -5,9 +5,11 @@ import com.lixin.testweb.dto.GetArticle;
 import com.lixin.testweb.model.Article;
 
 public interface ArticleService {
-     int saveArticle(Article article);
+    int saveArticle(Article article);
 
-     PageInfo<Article> getArtical(GetArticle article);
+    PageInfo<Article> getArtical(GetArticle article);
 
-     int deleteArticle(Article article);
+    int deleteArticle(int articleId);
+
+    int changeNotify(int id, int type);
 }

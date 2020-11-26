@@ -7,9 +7,7 @@ import com.lixin.testweb.dto.GetArticle;
 import com.lixin.testweb.model.Article;
 import com.lixin.testweb.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ArticleController {
@@ -17,6 +15,12 @@ public class ArticleController {
     @Autowired
     ArticleService articleService;
 
+    /**
+     * 保存笔记
+     *
+     * @param article
+     * @return
+     */
     @PostMapping("/saveArticle")
     public CommonResult<Article> saveArticle(@RequestBody Article article) {
         Integer id = articleService.saveArticle(article);
@@ -24,14 +28,26 @@ public class ArticleController {
     }
 
 
+    /**
+     * 获取笔记
+     *
+     * @param article
+     * @return
+     */
     @PostMapping("/getArticle")
     public CommonResult<PageInfo<Article>> getArtical(@RequestBody GetArticle article) {
         return CommonResult.success(articleService.getArtical(article));
     }
 
 
-    public int deleteArticle(Article article) {
-        return 0;
+    @GetMapping("/deleteArticle")
+    public CommonResult<Integer> deleteArticle(@RequestParam("id") int articleId) {
+        return CommonResult.success(articleService.deleteArticle(articleId));
+    }
+
+    @GetMapping("/changeNotify")
+    public CommonResult<Integer> changeNotify(@RequestParam("id") int articleId, @RequestParam("notifyType") int type) {
+        return CommonResult.success(articleService.changeNotify(articleId, type));
     }
 
 }

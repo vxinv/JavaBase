@@ -1,8 +1,6 @@
 package com.lixin.testweb.controller;
 
 import com.lixin.testweb.api.CommonResult;
-import com.lixin.testweb.dto.Money;
-import com.lixin.testweb.dto.Person;
 import com.lixin.testweb.dto.RegisterDto;
 import com.lixin.testweb.model.User;
 import com.lixin.testweb.service.SendService;
@@ -21,11 +19,6 @@ public class UserController {
     @Autowired
     SendService sendService;
 
-    @PostMapping("/TestGeneric")
-    public CommonResult<String> TestGeneric(@RequestBody Person<Money> person) {
-        person.getOther().cost(3);
-        return null;
-    }
 
     /**
      * 注册 用户名 密码 邮箱

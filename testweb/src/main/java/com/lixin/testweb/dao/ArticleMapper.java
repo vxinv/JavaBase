@@ -2,12 +2,14 @@ package com.lixin.testweb.dao;
 
 import com.lixin.testweb.model.Article;
 import com.lixin.testweb.model.ArticleExample;
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
+@Repository
 public interface ArticleMapper {
     long countByExample(ArticleExample example);
 
