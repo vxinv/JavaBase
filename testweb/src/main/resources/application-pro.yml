@@ -3,7 +3,8 @@ server:
   servlet:
     context-path: /mailnote
 
-
+# 127.0.0.1
+# 112.126.100.73
 spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/lx?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
@@ -11,8 +12,8 @@ spring:
     password: Wqsci2020@
     druid:
       initial-size: 5 #连接池初始化大小
-      min-idle: 10 #最小空闲连接数
-      max-active: 20 #最大连接数
+      min-idle: 5 #最小空闲连接数
+      max-active: 10 #最大连接数
       web-stat-filter:
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
       stat-view-servlet: #访问监控网页的登录用户名和密码

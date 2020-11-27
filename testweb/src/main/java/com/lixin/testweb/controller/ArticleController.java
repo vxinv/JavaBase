@@ -17,7 +17,6 @@ public class ArticleController {
 
     /**
      * 保存笔记
-     *
      * @param article
      * @return
      */
@@ -30,7 +29,6 @@ public class ArticleController {
 
     /**
      * 获取笔记
-     *
      * @param article
      * @return
      */

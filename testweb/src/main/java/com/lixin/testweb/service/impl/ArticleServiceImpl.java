@@ -25,7 +25,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public int saveArticle(Article article) {
-        if (article.getId() != 0 || article.getId() != null) {
+        if (article.getId() != null && article.getId() != 0) {
             return articleMapper.updateByPrimaryKeySelective(article);
         }
         article.setPublishTime(LocalDateTime.now());

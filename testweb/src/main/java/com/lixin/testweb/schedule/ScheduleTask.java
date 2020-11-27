@@ -27,13 +27,33 @@ public class ScheduleTask {
      * 早上发送邮件
      */
     @Scheduled(cron = "0 0 9 * * ?")
-    public void sendEmail(){
+    public void send9() {
+        sendEmail();
+    }
+
+    @Scheduled(cron = "0 0 12 * * ?")
+    public void send12() {
+        sendEmail();
+    }
+
+    @Scheduled(cron = "0 0 18 * * ?")
+    public void send18() {
+        sendEmail();
+    }
+
+    @Scheduled(cron = "0 0 21 * * ?")
+    public void send21() {
+        sendEmail();
+    }
+
+    public void sendEmail() {
         // 获取 所有的用户
         List<User> users = userMapper.selectByExample(null);
-
         for (User user : users) {
-            sendService.DeliveryNote(user.getMail(),"",user.getUserName());
+            sendService.DeliveryNote(user.getMail(), "", user.getUserName());
         }
 
     }
+
+
 }
