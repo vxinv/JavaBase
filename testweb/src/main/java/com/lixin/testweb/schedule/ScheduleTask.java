@@ -41,10 +41,6 @@ public class ScheduleTask {
         sendEmail();
     }
 
-    @Scheduled(cron = "0 0 21 * * ?")
-    public void send21() {
-        sendEmail();
-    }
 
     public void sendEmail() {
         // 获取 所有的用户

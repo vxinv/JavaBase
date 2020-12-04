@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
         UserExample ue = new UserExample();
         UserExample.Criteria criteria = ue.createCriteria();
         criteria.andUserNameEqualTo(user.getUserName());
+
         List<User> users = userMapper.selectByExample(ue);
         if (users.size() != 0) {
             throw new ApiException(ResultCode.DuplicateUserName);
@@ -52,17 +53,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean registerAll(RegisterDto registerDto) {
+
+
         boolean b = checkCode(registerDto.getCode(), registerDto.getUsername());
         if (!b) {
             throw new ApiException(ResultCode.TheEmailVerificationCodeIsIncorrect);
         }
+
         User user = new User();
         user.setMail(registerDto.getEmail());
         user.setCode(registerDto.getCode());
+        user.setPassWord(registerDto.getPassword());
 
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andUserNameEqualTo(registerDto.getUsername());
+
         int i = userMapper.updateByExampleSelective(user, userExample);
         if (i != 1) {
             throw new ApiException(ResultCode.FAILED);
@@ -73,7 +79,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(User user) {
         UserExample userExample = new UserExample();
-        UserExample.Criteria criteria = userExample.createCriteria().andUserNameEqualTo(user.getUserName())
+        userExample.createCriteria().andUserNameEqualTo(user.getUserName())
                 .andPassWordEqualTo(user.getPassWord());
 
         List<User> users = userMapper.selectByExample(userExample);

@@ -16,6 +16,7 @@ public class JacksonConfiger {
     @Bean
     @Primary
     @ConditionalOnMissingBean(ObjectMapper.class)
+
     public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
         // 通过该方法对mapper对象进行设置，所有序列化的对象都将按改规则进行系列化
@@ -27,6 +28,7 @@ public class JacksonConfiger {
         SimpleModule sm = new SimpleModule();
         sm.addSerializer(LocalDateTime.class, new JacksonCustomerDateJsonSerializer());
         objectMapper.registerModule(sm);
+        System.out.println("objectmapper的产生" + objectMapper.hashCode());
         return objectMapper;
     }
 
