@@ -6,7 +6,7 @@ LOGDIR=${APP_HOME}/logs
 # 应用名称
 APP_NAME=$2
 if [ -z ${APP_NAME} ];then
-    APP_NAME=`ls -t |grep .jar|head -n1`
+    APP_NAME=$(ls -t |grep .jar|head -n1)
 fi
 
 isExits(){

@@ -19,34 +19,23 @@ public class Trader implements Trade {
     public int time;
     // chase_high_or_chase_low
     public int followHigh;
-
     public int followLow;
-
     //  Large cap small cap
     public int marketSize;
-
     // Industry Ranking
     public int rank;
-
     // Minimum period unit (week)
     public int lowWeek;
-
     // Highest cycle
     public int highWeek;
-
     // Waiting days for the specified loss
     public int stopLoss;
-
     Random random = new Random();
-
     // Balance
     public float balance = 1000000;
-
     // 记录改交易者的持仓
     public Set<PositionStock> positionStocks = new HashSet<>();
-
     public ChooseStock strategy;
-
     // 交易者的初始化 需要对策略参数进行填充
     public Trader(ChooseStock stra) {
         this.strategy = stra;

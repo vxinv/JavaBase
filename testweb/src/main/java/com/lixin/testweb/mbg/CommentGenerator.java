@@ -2,9 +2,7 @@ package com.lixin.testweb.mbg;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.internal.DefaultCommentGenerator;
 import org.mybatis.generator.internal.util.StringUtility;
 
@@ -59,6 +57,21 @@ public class CommentGenerator extends DefaultCommentGenerator {
         addJavadocTag(field, false);
         field.addJavaDocLine(" */");
     }
+
+    /*@Override
+    public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        super.addModelClassComment(topLevelClass, introspectedTable);
+        //topLevelClass.addImportedType("");
+        *//*if (suppressAllComments) {
+            return;
+        }*//*
+        topLevelClass.addAnnotation("@Table(name = \"" + introspectedTable.getFullyQualifiedTable() + "\")");
+        topLevelClass.addAnnotation("@Mapper");
+        topLevelClass.addAnnotation("@Repository");
+
+    }*/
+
+
 
     @Override
     public void addJavaFileComment(CompilationUnit compilationUnit) {

@@ -1,5 +1,6 @@
 package com.lixin.stock.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ public class StockNdata implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "日期")
+
     private LocalDate timestamp;
 
     @ApiModelProperty(value = "当天成交量")
