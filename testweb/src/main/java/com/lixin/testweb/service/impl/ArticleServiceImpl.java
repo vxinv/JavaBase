@@ -71,7 +71,7 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = new Article();
         article.setNotify((byte) type);
         article.setId((long) id);
-        int i = articleMapper.updateByPrimaryKey(article);
+        int i = articleMapper.updateByPrimaryKeySelective(article);
         if (i != 1) {
             throw new ApiException(ResultCode.FAILED);
         }

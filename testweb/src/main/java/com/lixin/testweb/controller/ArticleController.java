@@ -22,7 +22,7 @@ public class ArticleController {
      */
     @PostMapping("/saveArticle")
     public CommonResult<Article> saveArticle(@RequestBody Article article) {
-        Integer id = articleService.saveArticle(article);
+        articleService.saveArticle(article);
         return CommonResult.success(article);
     }
 

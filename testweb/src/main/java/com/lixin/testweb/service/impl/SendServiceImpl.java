@@ -41,7 +41,7 @@ public class SendServiceImpl implements SendService {
         criteria.andUserNameEqualTo(userName);
         User user = new User();
         user.setCode(code);
-        int i = userMapper.updateByExampleSelective(user, userExample);
+        userMapper.updateByExampleSelective(user, userExample);
         return code;
     }
 
