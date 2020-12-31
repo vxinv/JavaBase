@@ -8,6 +8,8 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.util.Cookie;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -71,8 +73,12 @@ public class StockUrlTest {
         System.out.println(text.getWebResponse().getContentAsString());
 
 
-        Page fund = webClient.getPage("http://fund.eastmoney.com/008976.html");
-        System.out.println(fund.getWebResponse().getContentAsString());
+        Page fund = webClient.getPage("http://fundf10.eastmoney.com/ccmx_000001.html");
+        //System.out.println(fund.getWebResponse().getContentAsString());
+
+        Document doc = Jsoup.parse(fund.getWebResponse().getContentAsString());
+        Elements select = doc.select("#cctable > div:nth-child(1) > div > table");
+        System.out.println(select.html());
 
 
         Set<Cookie> cookies = webClient.getCookieManager().getCookies();
@@ -93,6 +99,13 @@ public class StockUrlTest {
         for (Map.Entry<String, String> stringStringEntry : cookies.entrySet()) {
             System.out.println(stringStringEntry.getKey() + stringStringEntry.getValue());
         }
+    }
+
+
+    @Test
+    public void getFundInfo() {
+
+
     }
 
 
