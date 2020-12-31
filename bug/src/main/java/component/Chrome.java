@@ -13,6 +13,17 @@ public class Chrome {
 
     WebDriver driver;
 
+    long timeOutInSeconds;
+
+
+    long sleepInMillis;
+
+
+    /**
+     * 显示的等待某个元素
+     */
+
+
     @PostConstruct
     public void init() {
         System.setProperty("webdriver.chrome.driver", "/Volumes/OD_MAC/App/JavaBase/bug/bin/chromedriver");

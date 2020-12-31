@@ -41,6 +41,7 @@ public class ChromeTest {
          * 第二个餐食  代表最大等待时间 秒为单位
          * 第三个代表 再次检测的间隔 毫秒为单位
          */
+
         WebDriverWait wait = new WebDriverWait(driver, 10, 500);
         WebElement element = wait.until(new ExpectedCondition<WebElement>() {
             @NullableDecl
@@ -50,7 +51,6 @@ public class ChromeTest {
             }
         });
         System.out.println(element.getText());
-
 
     }
 }
