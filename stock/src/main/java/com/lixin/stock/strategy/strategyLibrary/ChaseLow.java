@@ -7,46 +7,40 @@ import com.lixin.stock.strategy.*;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * desc:
+ * 01 When the stock price has fallen in the past N days
+ * 02 The variance of the current moving average is shrinking
+ * 03 The current transaction volume is increasing
+ * 04 Current stock price rise
+ * 05 The current stock price has fallen by E%
+ */
 public class ChaseLow implements ChooseStock {
-
-    /**
-     * desc:
-     * 01 When the stock price has fallen in the past N days
-     * 02 The variance of the current moving average is shrinking
-     * 03 The current transaction volume is increasing
-     * 04 Current stock price rise
-     * 05 The current stock price has fallen by E%
-     *
-     * @param stock
-     * @return
-     */
     // Number of drops N
-    // 当前股价连续下降多少天开始建仓
+    // 当前股价连续下降多少时间开始建仓
     public int declineDaysN;
-
     // Decrease percentage E
-    // 当股价下降达到多少比例开始建仓
+    // 当股价下降达到多少平均比例开始建仓
     public int declineRatioE;
-
     // Number of Increase in Volume C
-    // Z天中C天 交易量的上涨
+    // N天中C天 交易量的上涨
     public int nivC;
-
     // Total inspection days Z
     // 本次共检测多少天
     public int tidZ;
-
     // Percentage of open positions each time
     // 每次买入占总金额的比例
     public float percentageBuy;
-
     // Closing ratio
     // 每次卖出 占总持仓的比例
     public float percentageSell;
-
     // How much profit starts to close the position
     // 当盈利多少开始平仓
     public float percentProfitClose;
+    // 所属行业的排名前T%
+    public float theIndustrySTopT;
+    // 所属行业是否轮动
+    public boolean whetherTheIndustryRotation;
 
     @Override
     public ChooseResult choose(Stock stock, Trade trade) {

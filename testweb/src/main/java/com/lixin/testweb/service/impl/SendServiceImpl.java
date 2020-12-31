@@ -62,14 +62,18 @@ public class SendServiceImpl implements SendService {
         criteria.andUserNameEqualTo(userName);
         // 0 全部类型 1 不推送 2 每两天推送 3 每周三推送 4 每月15 推送 5 艾宾浩斯推送 6 当天推送
         criteria.andNotifyGreaterThan((byte) 1);
+
         List<Article> articles = articleMapper.selectByExampleWithBLOBs(articleExample);
 
         StringBuilder builder = new StringBuilder();
-        for (Article article : articles) {
 
+        for (Article article : articles) {
             if (checkShouldAppend(article)) {
                 builder.append("<h1 style= \"background-color: #ff0000 ; color:#ffffff\" ; align=\"center\" >").append(article.getTitle()).append("</h1>").append(article.getContent());
             }
+        }
+        if (builder.length() == 0){
+            return false;
         }
         return Poster.send(mailAddress, LocalDate.now().format(CommonUtils.df) + "日笔记复习提醒", builder.toString(), true);
 

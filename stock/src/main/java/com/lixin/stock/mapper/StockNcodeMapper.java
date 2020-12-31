@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface StockNcodeMapper {
+
     long countByExample(StockNcodeExample example);
 
     int deleteByExample(StockNcodeExample example);

@@ -26,6 +26,7 @@ public class JsonUtil extends AbstractUtil {
         //Setting the FAIL_ON_UNKNOWN_PROPERTIES attribute.
         //When the string JSON character contains attributes that do not exist in the Java object, ignore them.
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
     }
 
     /**

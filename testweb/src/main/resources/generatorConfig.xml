@@ -38,7 +38,7 @@
         <!--指定生成mapper接口的的路径-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.lixin.testweb.dao"
                              targetProject="testweb/src/main/java"/>
-        <table tableName="%">
+        <table tableName="file_manager">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
