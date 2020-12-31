@@ -1,4 +1,4 @@
-package service;
+package github.vxinv.service;
 
 public class FundInfoGetService {
 

@@ -1,4 +1,4 @@
-//package com.lixin.stock.service.ShortTimeAnalysis;
+//package com.lixin.stock.github.vxinv.service.ShortTimeAnalysis;
 //
 //import cn.hutool.http.HttpUtil;
 //import com.lixin.stock.constant.StockUrl;

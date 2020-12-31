@@ -1,7 +1,7 @@
-//package com.lixin.stock.service;
+//package com.lixin.stock.github.vxinv.service;
 //
 //import com.lixin.stock.StockApplication;
-//import com.lixin.stock.service.FollowDownService;
+//import com.lixin.stock.github.vxinv.service.FollowDownService;
 //import org.junit.jupiter.api.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;

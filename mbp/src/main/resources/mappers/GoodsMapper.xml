@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.goodluck.mapper.GoodsMapper">
-  <resultMap id="BaseResultMap" type="com.goodluck.model.Goods">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
-    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
-    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
-    <result column="classify1" jdbcType="SMALLINT" property="classify1" />
-    <result column="classify2" jdbcType="SMALLINT" property="classify2" />
-    <result column="classify3" jdbcType="SMALLINT" property="classify3" />
-    <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice" />
-    <result column="brand_id" jdbcType="BIGINT" property="brandId" />
-    <result column="product_category_id" jdbcType="BIGINT" property="productCategoryId" />
+  <resultMap id="BaseResultMap" type="com.goodluck.github.vxinv.model.Goods">
+      <id column="id" jdbcType="INTEGER" property="id"/>
+      <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+      <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+      <result column="shop_name" jdbcType="VARCHAR" property="shopName"/>
+      <result column="classify1" jdbcType="SMALLINT" property="classify1"/>
+      <result column="classify2" jdbcType="SMALLINT" property="classify2"/>
+      <result column="classify3" jdbcType="SMALLINT" property="classify3"/>
+      <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice"/>
+      <result column="brand_id" jdbcType="BIGINT" property="brandId"/>
+      <result column="product_category_id" jdbcType="BIGINT" property="productCategoryId"/>
     <result column="feight_template_id" jdbcType="BIGINT" property="feightTemplateId" />
     <result column="product_attribute_category_id" jdbcType="BIGINT" property="productAttributeCategoryId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -47,13 +47,13 @@
     <result column="product_category_name" jdbcType="VARCHAR" property="productCategoryName" />
     <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.goodluck.model.Goods">
-    <result column="description" jdbcType="LONGVARCHAR" property="description" />
-    <result column="album_pics" jdbcType="LONGVARCHAR" property="albumPics" />
-    <result column="detail_desc" jdbcType="LONGVARCHAR" property="detailDesc" />
-    <result column="detail_html" jdbcType="LONGVARCHAR" property="detailHtml" />
-    <result column="detail_mobile_html" jdbcType="LONGVARCHAR" property="detailMobileHtml" />
-  </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.goodluck.github.vxinv.model.Goods">
+        <result column="description" jdbcType="LONGVARCHAR" property="description"/>
+        <result column="album_pics" jdbcType="LONGVARCHAR" property="albumPics"/>
+        <result column="detail_desc" jdbcType="LONGVARCHAR" property="detailDesc"/>
+        <result column="detail_html" jdbcType="LONGVARCHAR" property="detailHtml"/>
+        <result column="detail_mobile_html" jdbcType="LONGVARCHAR" property="detailMobileHtml"/>
+    </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -113,49 +113,50 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, goods_id, shop_id, shop_name, classify1, classify2, classify3, purchase_price, 
-    brand_id, product_category_id, feight_template_id, product_attribute_category_id, 
-    name, pic, product_sn, delete_status, publish_status, new_status, recommand_status, 
-    verify_status, sort, sale, price, promotion_price, gift_growth, gift_point, use_point_limit, 
-    sub_title, original_price, stock, low_stock, unit, weight, preview_status, service_ids, 
-    keywords, note, detail_title, promotion_start_time, promotion_end_time, promotion_per_limit, 
+      id, goods_id, shop_id, shop_name, classify1, classify2, classify3, purchase_price,
+    brand_id, product_category_id, feight_template_id, product_attribute_category_id,
+    name, pic, product_sn, delete_status, publish_status, new_status, recommand_status,
+    verify_status, sort, sale, price, promotion_price, gift_growth, gift_point, use_point_limit,
+    sub_title, original_price, stock, low_stock, unit, weight, preview_status, service_ids,
+    keywords, note, detail_title, promotion_start_time, promotion_end_time, promotion_per_limit,
     promotion_type, product_category_name, brand_name
   </sql>
   <sql id="Blob_Column_List">
     description, album_pics, detail_desc, detail_html, detail_mobile_html
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.goodluck.model.GoodsExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from goods
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+    <select id="selectByExampleWithBLOBs" parameterType="com.goodluck.github.vxinv.model.GoodsExample"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from goods
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.goodluck.model.GoodsExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from goods
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
+    <select id="selectByExample" parameterType="com.goodluck.github.vxinv.model.GoodsExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from goods
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
+      select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -166,62 +167,62 @@
     delete from goods
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.goodluck.model.GoodsExample">
-    delete from goods
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.goodluck.model.Goods">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into goods (goods_id, shop_id, shop_name, 
-      classify1, classify2, classify3, 
-      purchase_price, brand_id, product_category_id, 
-      feight_template_id, product_attribute_category_id, 
-      name, pic, product_sn, 
-      delete_status, publish_status, new_status, 
-      recommand_status, verify_status, sort, 
-      sale, price, promotion_price, 
-      gift_growth, gift_point, use_point_limit, 
-      sub_title, original_price, stock, 
-      low_stock, unit, weight, 
-      preview_status, service_ids, keywords, 
-      note, detail_title, promotion_start_time, 
-      promotion_end_time, promotion_per_limit, 
-      promotion_type, product_category_name, brand_name, 
-      description, album_pics, detail_desc, 
-      detail_html, detail_mobile_html)
-    values (#{goodsId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, 
-      #{classify1,jdbcType=SMALLINT}, #{classify2,jdbcType=SMALLINT}, #{classify3,jdbcType=SMALLINT}, 
-      #{purchasePrice,jdbcType=DECIMAL}, #{brandId,jdbcType=BIGINT}, #{productCategoryId,jdbcType=BIGINT}, 
-      #{feightTemplateId,jdbcType=BIGINT}, #{productAttributeCategoryId,jdbcType=BIGINT}, 
-      #{name,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{productSn,jdbcType=VARCHAR}, 
-      #{deleteStatus,jdbcType=INTEGER}, #{publishStatus,jdbcType=INTEGER}, #{newStatus,jdbcType=INTEGER}, 
-      #{recommandStatus,jdbcType=INTEGER}, #{verifyStatus,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, 
-      #{sale,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{promotionPrice,jdbcType=DECIMAL}, 
-      #{giftGrowth,jdbcType=INTEGER}, #{giftPoint,jdbcType=INTEGER}, #{usePointLimit,jdbcType=INTEGER}, 
-      #{subTitle,jdbcType=VARCHAR}, #{originalPrice,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER}, 
-      #{lowStock,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL}, 
-      #{previewStatus,jdbcType=INTEGER}, #{serviceIds,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
-      #{note,jdbcType=VARCHAR}, #{detailTitle,jdbcType=VARCHAR}, #{promotionStartTime,jdbcType=TIMESTAMP}, 
-      #{promotionEndTime,jdbcType=TIMESTAMP}, #{promotionPerLimit,jdbcType=INTEGER}, 
-      #{promotionType,jdbcType=INTEGER}, #{productCategoryName,jdbcType=VARCHAR}, #{brandName,jdbcType=VARCHAR}, 
-      #{description,jdbcType=LONGVARCHAR}, #{albumPics,jdbcType=LONGVARCHAR}, #{detailDesc,jdbcType=LONGVARCHAR}, 
-      #{detailHtml,jdbcType=LONGVARCHAR}, #{detailMobileHtml,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.goodluck.model.Goods">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into goods
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="goodsId != null">
-        goods_id,
-      </if>
-      <if test="shopId != null">
-        shop_id,
+    <delete id="deleteByExample" parameterType="com.goodluck.github.vxinv.model.GoodsExample">
+        delete from goods
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.goodluck.github.vxinv.model.Goods">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into goods (goods_id, shop_id, shop_name,
+        classify1, classify2, classify3,
+        purchase_price, brand_id, product_category_id,
+        feight_template_id, product_attribute_category_id,
+        name, pic, product_sn,
+        delete_status, publish_status, new_status,
+        recommand_status, verify_status, sort,
+        sale, price, promotion_price,
+        gift_growth, gift_point, use_point_limit,
+        sub_title, original_price, stock,
+        low_stock, unit, weight,
+        preview_status, service_ids, keywords,
+        note, detail_title, promotion_start_time,
+        promotion_end_time, promotion_per_limit,
+        promotion_type, product_category_name, brand_name,
+        description, album_pics, detail_desc,
+        detail_html, detail_mobile_html)
+        values (#{goodsId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR},
+        #{classify1,jdbcType=SMALLINT}, #{classify2,jdbcType=SMALLINT}, #{classify3,jdbcType=SMALLINT},
+        #{purchasePrice,jdbcType=DECIMAL}, #{brandId,jdbcType=BIGINT}, #{productCategoryId,jdbcType=BIGINT},
+        #{feightTemplateId,jdbcType=BIGINT}, #{productAttributeCategoryId,jdbcType=BIGINT},
+        #{name,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{productSn,jdbcType=VARCHAR},
+        #{deleteStatus,jdbcType=INTEGER}, #{publishStatus,jdbcType=INTEGER}, #{newStatus,jdbcType=INTEGER},
+        #{recommandStatus,jdbcType=INTEGER}, #{verifyStatus,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER},
+        #{sale,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{promotionPrice,jdbcType=DECIMAL},
+        #{giftGrowth,jdbcType=INTEGER}, #{giftPoint,jdbcType=INTEGER}, #{usePointLimit,jdbcType=INTEGER},
+        #{subTitle,jdbcType=VARCHAR}, #{originalPrice,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER},
+        #{lowStock,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL},
+        #{previewStatus,jdbcType=INTEGER}, #{serviceIds,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR},
+        #{note,jdbcType=VARCHAR}, #{detailTitle,jdbcType=VARCHAR}, #{promotionStartTime,jdbcType=TIMESTAMP},
+        #{promotionEndTime,jdbcType=TIMESTAMP}, #{promotionPerLimit,jdbcType=INTEGER},
+        #{promotionType,jdbcType=INTEGER}, #{productCategoryName,jdbcType=VARCHAR}, #{brandName,jdbcType=VARCHAR},
+        #{description,jdbcType=LONGVARCHAR}, #{albumPics,jdbcType=LONGVARCHAR}, #{detailDesc,jdbcType=LONGVARCHAR},
+        #{detailHtml,jdbcType=LONGVARCHAR}, #{detailMobileHtml,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.goodluck.github.vxinv.model.Goods">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">
+                goods_id,
+            </if>
+            <if test="shopId != null">
+                shop_id,
       </if>
       <if test="shopName != null">
         shop_name,
@@ -509,12 +510,13 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.goodluck.model.GoodsExample" resultType="java.lang.Long">
-    select count(*) from goods
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
+    <select id="countByExample" parameterType="com.goodluck.github.vxinv.model.GoodsExample"
+            resultType="java.lang.Long">
+        select count(*) from goods
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
   <update id="updateByExampleSelective" parameterType="map">
     update goods
     <set>
@@ -775,17 +777,17 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.goodluck.model.Goods">
-    update goods
-    <set>
-      <if test="goodsId != null">
-        goods_id = #{goodsId,jdbcType=INTEGER},
-      </if>
-      <if test="shopId != null">
-        shop_id = #{shopId,jdbcType=INTEGER},
-      </if>
-      <if test="shopName != null">
-        shop_name = #{shopName,jdbcType=VARCHAR},
+    <update id="updateByPrimaryKeySelective" parameterType="com.goodluck.github.vxinv.model.Goods">
+        update goods
+        <set>
+            <if test="goodsId != null">
+                goods_id = #{goodsId,jdbcType=INTEGER},
+            </if>
+            <if test="shopId != null">
+                shop_id = #{shopId,jdbcType=INTEGER},
+            </if>
+            <if test="shopName != null">
+                shop_name = #{shopName,jdbcType=VARCHAR},
       </if>
       <if test="classify1 != null">
         classify1 = #{classify1,jdbcType=SMALLINT},
@@ -925,17 +927,17 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.goodluck.model.Goods">
-    update goods
-    set goods_id = #{goodsId,jdbcType=INTEGER},
-      shop_id = #{shopId,jdbcType=INTEGER},
-      shop_name = #{shopName,jdbcType=VARCHAR},
-      classify1 = #{classify1,jdbcType=SMALLINT},
-      classify2 = #{classify2,jdbcType=SMALLINT},
-      classify3 = #{classify3,jdbcType=SMALLINT},
-      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
-      brand_id = #{brandId,jdbcType=BIGINT},
-      product_category_id = #{productCategoryId,jdbcType=BIGINT},
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.goodluck.github.vxinv.model.Goods">
+        update goods
+        set goods_id                = #{goodsId,jdbcType=INTEGER},
+            shop_id                 = #{shopId,jdbcType=INTEGER},
+            shop_name               = #{shopName,jdbcType=VARCHAR},
+            classify1               = #{classify1,jdbcType=SMALLINT},
+            classify2               = #{classify2,jdbcType=SMALLINT},
+            classify3               = #{classify3,jdbcType=SMALLINT},
+            purchase_price          = #{purchasePrice,jdbcType=DECIMAL},
+            brand_id                = #{brandId,jdbcType=BIGINT},
+            product_category_id     = #{productCategoryId,jdbcType=BIGINT},
       feight_template_id = #{feightTemplateId,jdbcType=BIGINT},
       product_attribute_category_id = #{productAttributeCategoryId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
@@ -977,17 +979,17 @@
       detail_mobile_html = #{detailMobileHtml,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.goodluck.model.Goods">
-    update goods
-    set goods_id = #{goodsId,jdbcType=INTEGER},
-      shop_id = #{shopId,jdbcType=INTEGER},
-      shop_name = #{shopName,jdbcType=VARCHAR},
-      classify1 = #{classify1,jdbcType=SMALLINT},
-      classify2 = #{classify2,jdbcType=SMALLINT},
-      classify3 = #{classify3,jdbcType=SMALLINT},
-      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
-      brand_id = #{brandId,jdbcType=BIGINT},
-      product_category_id = #{productCategoryId,jdbcType=BIGINT},
+    <update id="updateByPrimaryKey" parameterType="com.goodluck.github.vxinv.model.Goods">
+        update goods
+        set goods_id                = #{goodsId,jdbcType=INTEGER},
+            shop_id                 = #{shopId,jdbcType=INTEGER},
+            shop_name               = #{shopName,jdbcType=VARCHAR},
+            classify1               = #{classify1,jdbcType=SMALLINT},
+            classify2               = #{classify2,jdbcType=SMALLINT},
+            classify3               = #{classify3,jdbcType=SMALLINT},
+            purchase_price          = #{purchasePrice,jdbcType=DECIMAL},
+            brand_id                = #{brandId,jdbcType=BIGINT},
+            product_category_id     = #{productCategoryId,jdbcType=BIGINT},
       feight_template_id = #{feightTemplateId,jdbcType=BIGINT},
       product_attribute_category_id = #{productAttributeCategoryId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},

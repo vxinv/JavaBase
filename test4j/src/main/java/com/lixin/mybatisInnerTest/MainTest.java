@@ -3,7 +3,7 @@ package com.lixin.mybatisInnerTest;
 
 
 import com.lixin.mapper.ProductDao;
-import com.lixin.model.Product;
+import com.lixin.github.vxinv.model.Product;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

@@ -1,4 +1,4 @@
-//package com.lixin.stock.service;
+//package com.lixin.stock.github.vxinv.service;
 //
 //import com.alibaba.fastjson.JSON;
 //import com.lixin.stock.StockApplication;

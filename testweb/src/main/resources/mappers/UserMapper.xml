@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lixin.testweb.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="com.lixin.testweb.model.User">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
-    <result column="mail" jdbcType="VARCHAR" property="mail" />
-    <result column="code" jdbcType="VARCHAR" property="code" />
+  <resultMap id="BaseResultMap" type="com.lixin.testweb.github.vxinv.model.User">
+      <id column="id" jdbcType="INTEGER" property="id"/>
+      <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+      <result column="pass_word" jdbcType="VARCHAR" property="passWord"/>
+      <result column="mail" jdbcType="VARCHAR" property="mail"/>
+      <result column="code" jdbcType="VARCHAR" property="code"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,22 +69,23 @@
   <sql id="Base_Column_List">
     id, user_name, pass_word, mail, code
   </sql>
-  <select id="selectByExample" parameterType="com.lixin.testweb.model.UserExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
+    <select id="selectByExample" parameterType="com.lixin.testweb.github.vxinv.model.UserExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+      select
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
@@ -93,32 +94,32 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.lixin.testweb.model.UserExample">
-    delete from user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.lixin.testweb.model.User">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into user (user_name, pass_word, mail, 
-      code)
-    values (#{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
-      #{code,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.lixin.testweb.model.User">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userName != null">
-        user_name,
-      </if>
-      <if test="passWord != null">
-        pass_word,
+    <delete id="deleteByExample" parameterType="com.lixin.testweb.github.vxinv.model.UserExample">
+        delete from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.lixin.testweb.github.vxinv.model.User">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user (user_name, pass_word, mail,
+        code)
+        values (#{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR},
+        #{code,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lixin.testweb.github.vxinv.model.User">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="passWord != null">
+                pass_word,
       </if>
       <if test="mail != null">
         mail,
@@ -142,12 +143,13 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.lixin.testweb.model.UserExample" resultType="java.lang.Long">
-    select count(*) from user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
+    <select id="countByExample" parameterType="com.lixin.testweb.github.vxinv.model.UserExample"
+            resultType="java.lang.Long">
+        select count(*) from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
   <update id="updateByExampleSelective" parameterType="map">
     update user
     <set>
@@ -182,17 +184,17 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lixin.testweb.model.User">
-    update user
-    <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="passWord != null">
-        pass_word = #{passWord,jdbcType=VARCHAR},
-      </if>
-      <if test="mail != null">
-        mail = #{mail,jdbcType=VARCHAR},
+    <update id="updateByPrimaryKeySelective" parameterType="com.lixin.testweb.github.vxinv.model.User">
+        update user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="passWord != null">
+                pass_word = #{passWord,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                mail = #{mail,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
@@ -200,12 +202,12 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lixin.testweb.model.User">
-    update user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      pass_word = #{passWord,jdbcType=VARCHAR},
-      mail = #{mail,jdbcType=VARCHAR},
-      code = #{code,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <update id="updateByPrimaryKey" parameterType="com.lixin.testweb.github.vxinv.model.User">
+        update user
+        set user_name = #{userName,jdbcType=VARCHAR},
+            pass_word = #{passWord,jdbcType=VARCHAR},
+            mail      = #{mail,jdbcType=VARCHAR},
+            code      = #{code,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

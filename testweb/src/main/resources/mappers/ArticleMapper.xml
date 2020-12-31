@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lixin.testweb.dao.ArticleMapper">
-  <resultMap id="BaseResultMap" type="com.lixin.testweb.model.Article">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
-    <result column="notify" jdbcType="TINYINT" property="notify" />
+  <resultMap id="BaseResultMap" type="com.lixin.testweb.github.vxinv.model.Article">
+      <id column="id" jdbcType="BIGINT" property="id"/>
+      <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+      <result column="title" jdbcType="VARCHAR" property="title"/>
+      <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime"/>
+      <result column="notify" jdbcType="TINYINT" property="notify"/>
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lixin.testweb.model.Article">
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
-  </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lixin.testweb.github.vxinv.model.Article">
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+    </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -75,38 +75,40 @@
   <sql id="Blob_Column_List">
     content
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.lixin.testweb.model.ArticleExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from article
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+    <select id="selectByExampleWithBLOBs" parameterType="com.lixin.testweb.github.vxinv.model.ArticleExample"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from article
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.lixin.testweb.model.ArticleExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from article
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
+    <select id="selectByExample" parameterType="com.lixin.testweb.github.vxinv.model.ArticleExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from article
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
-    select 
+      select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -117,32 +119,32 @@
     delete from article
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.lixin.testweb.model.ArticleExample">
-    delete from article
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.lixin.testweb.model.Article">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into article (user_name, title, publish_time, 
-      notify, content)
-    values (#{userName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, 
-      #{notify,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.lixin.testweb.model.Article">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into article
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userName != null">
-        user_name,
-      </if>
-      <if test="title != null">
-        title,
+    <delete id="deleteByExample" parameterType="com.lixin.testweb.github.vxinv.model.ArticleExample">
+        delete from article
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.lixin.testweb.github.vxinv.model.Article">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into article (user_name, title, publish_time,
+        notify, content)
+        values (#{userName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP},
+        #{notify,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lixin.testweb.github.vxinv.model.Article">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into article
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="title != null">
+                title,
       </if>
       <if test="publishTime != null">
         publish_time,
@@ -172,12 +174,13 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.lixin.testweb.model.ArticleExample" resultType="java.lang.Long">
-    select count(*) from article
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
+    <select id="countByExample" parameterType="com.lixin.testweb.github.vxinv.model.ArticleExample"
+            resultType="java.lang.Long">
+        select count(*) from article
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
   <update id="updateByExampleSelective" parameterType="map">
     update article
     <set>
@@ -227,17 +230,17 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lixin.testweb.model.Article">
-    update article
-    <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="publishTime != null">
-        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+    <update id="updateByPrimaryKeySelective" parameterType="com.lixin.testweb.github.vxinv.model.Article">
+        update article
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="publishTime != null">
+                publish_time = #{publishTime,jdbcType=TIMESTAMP},
       </if>
       <if test="notify != null">
         notify = #{notify,jdbcType=TINYINT},
@@ -248,21 +251,21 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lixin.testweb.model.Article">
-    update article
-    set user_name = #{userName,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
-      publish_time = #{publishTime,jdbcType=TIMESTAMP},
-      notify = #{notify,jdbcType=TINYINT},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lixin.testweb.model.Article">
-    update article
-    set user_name = #{userName,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
-      publish_time = #{publishTime,jdbcType=TIMESTAMP},
-      notify = #{notify,jdbcType=TINYINT}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lixin.testweb.github.vxinv.model.Article">
+        update article
+        set user_name    = #{userName,jdbcType=VARCHAR},
+            title        = #{title,jdbcType=VARCHAR},
+            publish_time = #{publishTime,jdbcType=TIMESTAMP},
+            notify       = #{notify,jdbcType=TINYINT},
+            content      = #{content,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lixin.testweb.github.vxinv.model.Article">
+        update article
+        set user_name    = #{userName,jdbcType=VARCHAR},
+            title        = #{title,jdbcType=VARCHAR},
+            publish_time = #{publishTime,jdbcType=TIMESTAMP},
+            notify       = #{notify,jdbcType=TINYINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

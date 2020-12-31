@@ -1,4 +1,4 @@
-package model;
+package github.vxinv.model;
 
 /**
  * 基金信息

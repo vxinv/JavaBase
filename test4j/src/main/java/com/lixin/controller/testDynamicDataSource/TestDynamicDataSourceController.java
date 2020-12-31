@@ -1,7 +1,7 @@
 /*
 package com.lixin.controller.testDynamicDataSource;
 
-import com.lixin.model.Product;
+import com.lixin.github.vxinv.model.Product;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

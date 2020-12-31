@@ -1,5 +1,5 @@
 /*
-package com.lixin.stock.service;
+package com.lixin.stock.github.vxinv.service;
 
 import com.lixin.stock.StockApplication;
 import com.lixin.stock.dao.SimStockInfoDao;

@@ -7,6 +7,10 @@ spring:
       max-file-size: 10MB #限制文件上传大小为10M
 
 
+chrome:
+  timeOutInSeconds: 10
+  sleepInMillis: 500
+
 
 mybatis:
   mapper-locations:

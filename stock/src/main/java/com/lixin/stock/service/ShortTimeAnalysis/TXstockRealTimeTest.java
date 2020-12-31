@@ -1,4 +1,4 @@
-//package com.lixin.stock.service.ShortTimeAnalysis;
+//package com.lixin.stock.github.vxinv.service.ShortTimeAnalysis;
 //
 //import com.lixin.stock.StockApplication;
 //import org.junit.jupiter.api.Test;

@@ -1,23 +1,23 @@
-package component;
+package github.vxinv.component;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
+@Service
 public class Chrome {
 
     WebDriver driver;
 
-    @Value("")
+    @Value("${chrome.timeOutInSeconds}")
     long timeOutInSeconds;
 
-
+    @Value("${chrome.timeOutInSeconds}")
     long sleepInMillis;
 
 
@@ -46,5 +46,10 @@ public class Chrome {
         driver.quit();
     }
 
+
+    public String get(String url) {
+        driver.get(url);
+        return driver.getPageSource();
+    }
 
 }

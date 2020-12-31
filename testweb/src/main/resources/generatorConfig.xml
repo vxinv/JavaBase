@@ -31,7 +31,7 @@
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
         <!--指定生成model的路径-->
-        <javaModelGenerator targetPackage="com.lixin.testweb.model" targetProject="testweb/src/main/java"/>
+        <javaModelGenerator targetPackage="com.lixin.testweb.github.vxinv.model" targetProject="testweb/src/main/java"/>
         <!--指定生成mapper.xml的路径-->
         <sqlMapGenerator targetPackage="mappers" targetProject="testweb/src/main/resources"/>
         <!--生成全部表tableName设为%-->

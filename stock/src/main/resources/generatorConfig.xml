@@ -31,7 +31,7 @@
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.lixin.stock.model" targetProject="stock/src/main/java"/>
+        <javaModelGenerator targetPackage="com.lixin.stock.github.vxinv.model" targetProject="stock/src/main/java"/>
 
         <sqlMapGenerator targetPackage="com.lixin.stock.mapper" targetProject="stock/src/main/resources"/>
 

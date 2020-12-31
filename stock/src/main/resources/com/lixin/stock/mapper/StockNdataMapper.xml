@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lixin.stock.mapper.StockNdataMapper">
-    <resultMap id="BaseResultMap" type="com.lixin.stock.model.StockNdata">
+    <resultMap id="BaseResultMap" type="com.lixin.stock.github.vxinv.model.StockNdata">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="timestamp" jdbcType="TIMESTAMP" property="timestamp"/>
@@ -87,7 +87,8 @@
         id, code, timestamp, volume, open, high, low, close, chg, percent, turnoverrate,
     amount, pe, pb, ps, pcf, market_capital, hold_volume_cn, hold_ratio_cn, net_volume_cn
     </sql>
-    <select id="selectByExample" parameterType="com.lixin.stock.model.StockNdataExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.lixin.stock.github.vxinv.model.StockNdataExample"
+            resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -112,13 +113,13 @@
         from stock_ndata
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.lixin.stock.model.StockNdataExample">
+    <delete id="deleteByExample" parameterType="com.lixin.stock.github.vxinv.model.StockNdataExample">
         delete from stock_ndata
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.lixin.stock.model.StockNdata">
+    <insert id="insert" parameterType="com.lixin.stock.github.vxinv.model.StockNdata">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -160,7 +161,7 @@
     </insert>
 
 
-    <insert id="insertSelective" parameterType="com.lixin.stock.model.StockNdata">
+    <insert id="insertSelective" parameterType="com.lixin.stock.github.vxinv.model.StockNdata">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -284,7 +285,8 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.lixin.stock.model.StockNdataExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.lixin.stock.github.vxinv.model.StockNdataExample"
+            resultType="java.lang.Long">
         select count(*) from stock_ndata
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -384,7 +386,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.lixin.stock.model.StockNdata">
+    <update id="updateByPrimaryKeySelective" parameterType="com.lixin.stock.github.vxinv.model.StockNdata">
         update stock_ndata
         <set>
             <if test="code != null">
@@ -447,7 +449,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.lixin.stock.model.StockNdata">
+    <update id="updateByPrimaryKey" parameterType="com.lixin.stock.github.vxinv.model.StockNdata">
         update stock_ndata
         set code           = #{code,jdbcType=VARCHAR},
             timestamp      = #{timestamp,jdbcType=TIMESTAMP},
