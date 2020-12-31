@@ -17,6 +17,7 @@
         <module>mbp</module>
         <module>commom</module>
         <module>es</module>
+        <module>bug</module>
     </modules>
 
     <parent>

@@ -51,6 +51,8 @@ public class WebClientService {
         try {
             System.out.println(url);
             HtmlPage page = webClient.getPage(url);
+
+
             webClient.waitForBackgroundJavaScript(time);
 
             return Optional.of(page.asText());

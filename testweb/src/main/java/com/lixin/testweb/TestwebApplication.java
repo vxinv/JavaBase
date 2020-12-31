@@ -11,7 +11,6 @@ public class TestwebApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(TestwebApplication.class, args);
-        context.getBean("person");
     }
 
 }

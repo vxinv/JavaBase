@@ -1,14 +1,8 @@
 package com.lixin.testweb.beanLife;
 
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.beans.factory.config.BeanPostProcessor;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
-
+/*@Component*/
+/*
 public class StudentBean implements BeanPostProcessor, BeanNameAware {
 
 
@@ -44,7 +38,7 @@ public class StudentBean implements BeanPostProcessor, BeanNameAware {
         if (beanName.equals("person")) {
             Person person = (Person) bean;
             if (person.objectMapper != null) {
-                System.out.println("+++++++++++++++++++++++++++++++");
+                System.out.println("postProcessBeforeInitialization");
             }
         }
         return bean;
@@ -52,13 +46,15 @@ public class StudentBean implements BeanPostProcessor, BeanNameAware {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println(beanName);
+        //System.out.println(beanName);
         if (beanName.equals("person")) {
             Person person = (Person) bean;
-            if (person.objectMapper != null) {
-                System.out.println("+++++++++++++++++++++++++++++++");
+            System.out.println("设置person的属性");
+            if (person.objectMapper==null){
+                System.out.println("person的属性不存在");
             }
         }
         return bean;
     }
 }
+*/
