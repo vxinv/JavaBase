@@ -2,8 +2,8 @@ package com.lixin.stock.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class StockNdataExample {
@@ -252,47 +252,47 @@ public class StockNdataExample {
             return (Criteria) this;
         }
 
-        public Criteria andTimestampNotEqualTo(LocalDate value) {
+        public Criteria andTimestampNotEqualTo(LocalDateTime value) {
             addCriterion("timestamp <>", value, "timestamp");
             return (Criteria) this;
         }
 
-        public Criteria andTimestampGreaterThan(LocalDate value) {
+        public Criteria andTimestampGreaterThan(LocalDateTime value) {
             addCriterion("timestamp >", value, "timestamp");
             return (Criteria) this;
         }
 
-        public Criteria andTimestampGreaterThanOrEqualTo(Date value) {
+        public Criteria andTimestampGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("timestamp >=", value, "timestamp");
             return (Criteria) this;
         }
 
-        public Criteria andTimestampLessThan(Date value) {
+        public Criteria andTimestampLessThan(LocalDateTime value) {
             addCriterion("timestamp <", value, "timestamp");
             return (Criteria) this;
         }
 
-        public Criteria andTimestampLessThanOrEqualTo(Date value) {
+        public Criteria andTimestampLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("timestamp <=", value, "timestamp");
             return (Criteria) this;
         }
 
-        public Criteria andTimestampIn(List<Date> values) {
+        public Criteria andTimestampIn(List<LocalDateTime> values) {
             addCriterion("timestamp in", values, "timestamp");
             return (Criteria) this;
         }
 
-        public Criteria andTimestampNotIn(List<Date> values) {
+        public Criteria andTimestampNotIn(List<LocalDateTime> values) {
             addCriterion("timestamp not in", values, "timestamp");
             return (Criteria) this;
         }
 
-        public Criteria andTimestampBetween(Date value1, Date value2) {
+        public Criteria andTimestampBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("timestamp between", value1, value2, "timestamp");
             return (Criteria) this;
         }
 
-        public Criteria andTimestampNotBetween(Date value1, Date value2) {
+        public Criteria andTimestampNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("timestamp not between", value1, value2, "timestamp");
             return (Criteria) this;
         }
@@ -1326,7 +1326,7 @@ public class StockNdataExample {
     }
 
     public static class Criterion {
-        private final String condition;
+        private String condition;
 
         private Object value;
 
@@ -1340,7 +1340,7 @@ public class StockNdataExample {
 
         private boolean listValue;
 
-        private final String typeHandler;
+        private String typeHandler;
 
         public String getCondition() {
             return condition;

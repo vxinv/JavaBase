@@ -16,6 +16,7 @@ public class StockUrl {
 
     //https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=SH603501&begin=1587005237663&period=day&type=before&count=-142&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance,macd,ma
     //https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=SZ000876&begin=1599562290741&period=day&type=before&count=-284&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance
+
     public static String xq_day_K_scode_tcode = "https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol={}&begin={}&period=day&type=before&count=-{}&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance";
 
     public static String em_token = "4f1862fc3b5e77c150a2b985b12db0fd";

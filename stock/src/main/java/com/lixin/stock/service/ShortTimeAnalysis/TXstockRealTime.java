@@ -3,9 +3,9 @@
 //import cn.hutool.http.HttpUtil;
 //import com.lixin.stock.constant.StockUrl;
 //import com.lixin.stock.entity.RealTimeInfo;
-//import com.lixin.stock.utils.Poster;
-//import com.lixin.stock.utils.StockUtils;
-//import com.lixin.stock.utils.YmlUtil;
+//import com.lixin.stock.github.vxinv.utils.Poster;
+//import com.lixin.stock.github.vxinv.utils.StockUtils;
+//import com.lixin.stock.github.vxinv.utils.YmlUtil;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.stereotype.Service;

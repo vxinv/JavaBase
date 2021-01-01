@@ -2,9 +2,8 @@ package com.lixin.stock.mapper;
 
 import com.lixin.stock.model.StockNdata;
 import com.lixin.stock.model.StockNdataExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface StockNdataMapper {
     long countByExample(StockNdataExample example);
@@ -16,8 +15,6 @@ public interface StockNdataMapper {
     int insert(StockNdata record);
 
     int insertSelective(StockNdata record);
-
-    int batchInsert(List<StockNdata> datas);
 
     List<StockNdata> selectByExample(StockNdataExample example);
 

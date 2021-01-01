@@ -10,7 +10,7 @@ spring:
 chrome:
   timeOutInSeconds: 10
   sleepInMillis: 500
-
+  fileUrl: /Users/lixin/javaWeb/JavaBase/bug/bin/chromedriver
 
 mybatis:
   mapper-locations:

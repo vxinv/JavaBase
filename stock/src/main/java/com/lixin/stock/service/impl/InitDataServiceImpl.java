@@ -38,33 +38,33 @@ public class InitDataServiceImpl {
         }
     }
 
-    /**
-     * 过滤不合格的代码
-     */
-    public void filterCode2() {
-        List<StockNcode> StockNcodes = stockNcodeMapper.selectByExample(null);
-        for (StockNcode StockNcode : StockNcodes) {
-            String substring = StockNcode.getCompanyName();
-            if (substring.startsWith("S")) {
-                stockNcodeMapper.deleteByPrimaryKey(StockNcode.getId());
-            }
-        }
-    }
-
-    /**
-     * 过滤重复的
-     */
-    public void filterDuplicateCode() {
-        List<StockNcode> StockNcodes = StockNcodeMapper.selectByExample(null);
-        LinkedHashSet<String> codeSets = new LinkedHashSet<>();
-        StockNcodes.forEach(StockNcode -> {
-            if (!codeSets.contains(StockNcode.getStockCode())) {
-                codeSets.add(StockNcode.getStockCode());
-            } else {
-                StockNcodeMapper.deleteByPrimaryKey(StockNcode.getId());
-                System.out.println("删除重复" + StockNcode.getCompanyName());
-            }
-        });
-    }
+//    /**
+//     * 过滤不合格的代码
+//     */
+//    public void filterCode2() {
+//        List<StockNcode> StockNcodes = stockNcodeMapper.selectByExample(null);
+//        for (StockNcode StockNcode : StockNcodes) {
+//            String substring = StockNcode.getCompanyName();
+//            if (substring.startsWith("S")) {
+//                stockNcodeMapper.deleteByPrimaryKey(StockNcode.getId());
+//            }
+//        }
+//    }
+//
+//    /**
+//     * 过滤重复的
+//     */
+//    public void filterDuplicateCode() {
+//        List<StockNcode> StockNcodes = StockNcodeMapper.selectByExample(null);
+//        LinkedHashSet<String> codeSets = new LinkedHashSet<>();
+//        StockNcodes.forEach(StockNcode -> {
+//            if (!codeSets.contains(StockNcode.getStockCode())) {
+//                codeSets.add(StockNcode.getStockCode());
+//            } else {
+//                StockNcodeMapper.deleteByPrimaryKey(StockNcode.getId());
+//                System.out.println("删除重复" + StockNcode.getCompanyName());
+//            }
+//        });
+//    }
 
 }

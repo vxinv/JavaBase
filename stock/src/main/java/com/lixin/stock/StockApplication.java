@@ -10,6 +10,6 @@ public class StockApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(StockApplication.class, args);
-        ctx.getBean(Judge.class).initDiskData();
+       // ctx.getBean(Judge.class).initDiskData();
     }
 }

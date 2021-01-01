@@ -27,7 +27,7 @@ public class PickUpIndustryServiceTest {
 
     // 获取行业
 
-    @Test
+  /*  @Test
     public void testFilter() {
         initDataService.filterCode2();
     }
@@ -36,7 +36,7 @@ public class PickUpIndustryServiceTest {
     @Test
     public void testRepeat() {
         initDataService.filterDuplicateCode();
-    }
+    }*/
 
 
 }

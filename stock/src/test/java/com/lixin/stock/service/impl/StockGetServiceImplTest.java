@@ -35,12 +35,16 @@ public class StockGetServiceImplTest {
     volatile Boolean isEmpty = false;
     Lock lock = new ReentrantLock();
 
+    /**
+     * 获取当前所有的股票
+     */
     @Test
     public void getHistoryList() {
 
         LocalDate now = LocalDate.now().plusDays(-1);
 
         ThreadPoolExecutor executor = new ThreadPoolExecutor(6, 12, 1000, TimeUnit.MINUTES, new LinkedBlockingDeque<>(10000));
+        // 获取
         List<StockNcode> StockNcodes = codeMapper.selectByExample(null);
         LinkedBlockingQueue<StockNcode> queue = new LinkedBlockingQueue<>(10000);
         StockNcodes.forEach(queue::offer);

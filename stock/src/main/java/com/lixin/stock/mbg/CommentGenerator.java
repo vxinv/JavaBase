@@ -1,4 +1,4 @@
-package com.lixin.stock;
+package com.lixin.stock.mbg;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -15,6 +15,7 @@ import java.util.Properties;
  * Created by macro on 2018/4/26.
  */
 public class CommentGenerator extends DefaultCommentGenerator {
+
     private boolean addRemarkComments = false;
     private static final String EXAMPLE_SUFFIX="Example";
     private static final String API_MODEL_PROPERTY_FULL_CLASS_NAME="io.swagger.annotations.ApiModelProperty";

@@ -81,9 +81,9 @@ public class XQStockHistoryDataGetServiceImpl implements StockHistoryDataGetServ
             HttpUtil.get("https://xueqiu.com/");
             hasLogin = true;
         }
-        String url = StrFormatter.format(StockUrl.xq_day_K_scode_tcode, code, String.valueOf(System.currentTimeMillis()), 7);
+        // 最后一个数字表示获取几天的
+        String url = StrFormatter.format(StockUrl.xq_day_K_scode_tcode, code, String.valueOf(System.currentTimeMillis()), 120);
         String body = HttpUtil.get(url);
-
         XQStockData xqStockData = JsonUtil.convertJsonStringToObject(body, XQStockData.class);
         List<StockNdata> stockData = new ArrayList<>();
 

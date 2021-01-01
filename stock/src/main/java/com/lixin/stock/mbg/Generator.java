@@ -1,4 +1,4 @@
-package com.lixin.stock;
+package com.lixin.stock.mbg;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;

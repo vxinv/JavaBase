@@ -1,6 +1,10 @@
 package github.vxinv.component;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -61,5 +65,54 @@ public class ChromeTest {
     @Test
     public void testChrome() {
         System.out.println(chrome.get(fundInfo));
+    }
+
+    /**
+     * 测试一个不存在的对象 模拟超时
+     */
+    @Test
+    public void testGetNotExit(){
+        String s = chrome.get(fundInfo, "//*[@id=\"bodydiv\"]/div[8]/div[3]/div[2]/div[3]/div");
+        //System.out.println(s);
+        Document doc = Jsoup.parse(s);
+        // 获取一个单独的表格
+        Element cctable = doc.getElementById("cctable");
+        Elements tables = cctable.children();
+        // 去掉最后一个
+        tables.remove(tables.last());
+        // 表格
+        for (Element table : tables) {
+            System.out.println("时间" + table.getElementsByTag("font").get(0).text());
+            // 获取表格所有的列
+            Elements trs = table.getElementsByTag("tr");
+            for (int i = 1; i < trs.size(); i++) {
+                Element tr = trs.get(i);
+                Elements tds = tr.getElementsByTag("td");
+                for (Element td : tds) {
+                    System.out.println(td.text());
+                }
+            }
+        }
+    }
+
+    /**
+     * http://fundf10.eastmoney.com/jdzf_000001.html
+     * 获取基金的基本信息
+     */
+    @Test
+    public void testGetBaseInfo(){
+        String baseinfo = "http://fundf10.eastmoney.com/jdzf_000001.html";
+//        jdzftable
+        String s = chrome.get(baseinfo,"//*[@id=\"jdzftable\"]");
+        Document jdzftable = Jsoup.parse(s);
+        Element ctable = jdzftable.getElementById("jdzftable");
+        Elements uls = ctable.getElementsByTag("ul");
+        for (int i = 1; i < uls.size(); i++) {
+            Element ul = uls.get(i);
+            Elements lis = ul.getElementsByTag("li");
+            for (Element li : lis) {
+                System.out.println(li.text());
+            }
+        }
     }
 }

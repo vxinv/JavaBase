@@ -14,7 +14,7 @@ public class SimpleJDKDynamicProxyDemo {
 
         @Override
         public void sayHello() {
-            System.out.println("hello");
+            System.out.println("hello lixin");
         }
     }
 
@@ -33,7 +33,7 @@ public class SimpleJDKDynamicProxyDemo {
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             System.out.println("entering "+method.getName());
             System.out.println(proxy.getClass().getName());
-            //Object result = method.invoke(realObject, args);
+            Object result = method.invoke(realObject, args);
             System.out.println("leaving "+method.getName());
             return 1;
         }
@@ -42,7 +42,7 @@ public class SimpleJDKDynamicProxyDemo {
     public static void main(String[] args) {
         RealService realService = new RealService();
         Iservice proxyService = (Iservice) Proxy.newProxyInstance(Iservice.class.getClassLoader(), new Class<?>[]{Iservice.class},
-                new SimpleInvocationHandler());
+                new SimpleInvocationHandler(realService));
         System.out.println(proxyService.getClass().getName());
         proxyService.sayHello();
     }

@@ -1,51 +1,50 @@
 package com.lixin.stock.model;
 
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 
 public class StockNcode implements Serializable {
-    public static final long serialVersionUID = 1L;
-    @ApiModelProperty(value = "id")
     public Integer id;
-    @ApiModelProperty(value = "公司名称")
+
     public String companyName;
-    @ApiModelProperty(value = "股票代码")
+
     public String stockCode;
-    @ApiModelProperty(value = "总股本")
+
     public Long totalShares;
-    @ApiModelProperty(value = "总资产")
+
     public Long totalAssets;
-    @ApiModelProperty(value = "销售毛利率")
+
     public Float grossProfitMargin;
-    @ApiModelProperty(value = "净资产收益率")
+
     public Float roe;
-    @ApiModelProperty(value = "每股收益")
+
     public Float earningsPerShare;
-    @ApiModelProperty(value = "每股净资产")
+
     public Float netAssetPerShare;
-    @ApiModelProperty(value = "每股现金流")
+
     public Float cashFlowPerShare;
-    @ApiModelProperty(value = "流通值")
+
     public Long floatMarketCapital;
-    @ApiModelProperty(value = "流通股(元)")
+
     public Long floatShares;
-    @ApiModelProperty(value = "营业总收入(元)")
+
     public Long totalOperatingIncome;
-    @ApiModelProperty(value = "净利润")
+
     public Double netProfitCagr;
-    @ApiModelProperty(value = "一级分类id")
+
     public Integer oneCategoryId;
-    @ApiModelProperty(value = "名称")
+
     public String oneCategory;
-    @ApiModelProperty(value = "二级分类id")
+
     public Integer twoCategoryId;
-    @ApiModelProperty(value = "名称")
+
     public String twoCategory;
-    @ApiModelProperty(value = "三级分类")
+
     public Integer threeCategoryId;
-    @ApiModelProperty(value = "名称")
+
     public String threeCategory;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;
@@ -61,10 +60,6 @@ public class StockNcode implements Serializable {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public String getStockCode() {
@@ -219,7 +214,7 @@ public class StockNcode implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", companyName=").append(companyName);
-        sb.append(", StockNcode=").append(stockCode);
+        sb.append(", stockCode=").append(stockCode);
         sb.append(", totalShares=").append(totalShares);
         sb.append(", totalAssets=").append(totalAssets);
         sb.append(", grossProfitMargin=").append(grossProfitMargin);

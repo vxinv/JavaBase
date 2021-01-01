@@ -6,5 +6,8 @@ package github.vxinv.model;
 public class FundInfoVo {
     String name;
 
+    String managerName;
+
+
 
 }

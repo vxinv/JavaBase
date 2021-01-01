@@ -14,20 +14,20 @@ public class StockNcodeExample {
         oredCriteria = new ArrayList<Criteria>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -234,73 +234,73 @@ public class StockNcodeExample {
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeIsNull() {
+        public Criteria andStockCodeIsNull() {
             addCriterion("stock_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeIsNotNull() {
+        public Criteria andStockCodeIsNotNull() {
             addCriterion("stock_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeEqualTo(String value) {
-            addCriterion("stock_code =", value, "StockNcode");
+        public Criteria andStockCodeEqualTo(String value) {
+            addCriterion("stock_code =", value, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeNotEqualTo(String value) {
-            addCriterion("stock_code <>", value, "StockNcode");
+        public Criteria andStockCodeNotEqualTo(String value) {
+            addCriterion("stock_code <>", value, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeGreaterThan(String value) {
-            addCriterion("stock_code >", value, "StockNcode");
+        public Criteria andStockCodeGreaterThan(String value) {
+            addCriterion("stock_code >", value, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeGreaterThanOrEqualTo(String value) {
-            addCriterion("stock_code >=", value, "StockNcode");
+        public Criteria andStockCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("stock_code >=", value, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeLessThan(String value) {
-            addCriterion("stock_code <", value, "StockNcode");
+        public Criteria andStockCodeLessThan(String value) {
+            addCriterion("stock_code <", value, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeLessThanOrEqualTo(String value) {
-            addCriterion("stock_code <=", value, "StockNcode");
+        public Criteria andStockCodeLessThanOrEqualTo(String value) {
+            addCriterion("stock_code <=", value, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeLike(String value) {
-            addCriterion("stock_code like", value, "StockNcode");
+        public Criteria andStockCodeLike(String value) {
+            addCriterion("stock_code like", value, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeNotLike(String value) {
-            addCriterion("stock_code not like", value, "StockNcode");
+        public Criteria andStockCodeNotLike(String value) {
+            addCriterion("stock_code not like", value, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeIn(List<String> values) {
-            addCriterion("stock_code in", values, "StockNcode");
+        public Criteria andStockCodeIn(List<String> values) {
+            addCriterion("stock_code in", values, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeNotIn(List<String> values) {
-            addCriterion("stock_code not in", values, "StockNcode");
+        public Criteria andStockCodeNotIn(List<String> values) {
+            addCriterion("stock_code not in", values, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeBetween(String value1, String value2) {
-            addCriterion("stock_code between", value1, value2, "StockNcode");
+        public Criteria andStockCodeBetween(String value1, String value2) {
+            addCriterion("stock_code between", value1, value2, "stockCode");
             return (Criteria) this;
         }
 
-        public Criteria andStockNcodeNotBetween(String value1, String value2) {
-            addCriterion("stock_code not between", value1, value2, "StockNcode");
+        public Criteria andStockCodeNotBetween(String value1, String value2) {
+            addCriterion("stock_code not between", value1, value2, "stockCode");
             return (Criteria) this;
         }
 
@@ -1363,14 +1363,53 @@ public class StockNcodeExample {
     }
 
     public static class Criterion {
-        private final String condition;
-        private final String typeHandler;
+        private String condition;
+
         private Object value;
+
         private Object secondValue;
+
         private boolean noValue;
+
         private boolean singleValue;
+
         private boolean betweenValue;
+
         private boolean listValue;
+
+        private String typeHandler;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
 
         protected Criterion(String condition) {
             super();
@@ -1406,38 +1445,6 @@ public class StockNcodeExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }
