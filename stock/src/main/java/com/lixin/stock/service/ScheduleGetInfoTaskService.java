@@ -1,20 +1,19 @@
-package com.lixin.stock.service.impl;
+package com.lixin.stock.service;
 
-import com.lixin.stock.StockApplication;
 import com.lixin.stock.mapper.StockNcodeMapper;
 import com.lixin.stock.mapper.StockNdataMapper;
 import com.lixin.stock.model.StockNcode;
 import com.lixin.stock.model.StockNdata;
+import com.lixin.stock.service.impl.XQStockHistoryDataGetServiceImpl;
 import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.stereotype.Service;
 
+import javax.xml.ws.ServiceMode;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -22,24 +21,31 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = StockApplication.class)
-public class StockGetServiceImplTest {
+/**
+ * 定期执行服务
+ */
+
+@Service
+public class ScheduleGetInfoTaskService {
 
     @Autowired
     StockNcodeMapper codeMapper;
+
     @Autowired
     XQStockHistoryDataGetServiceImpl stockGetService;
+
     @Autowired
     StockNdataMapper stockNdataMapper;
+
     volatile Boolean isEmpty = false;
     Lock lock = new ReentrantLock();
 
     /**
      * 获取当前所有的股票
      */
-    @Test
     public void getHistoryList() {
+
+
 
         LocalDate now = LocalDate.now().plusDays(-1);
 
@@ -58,7 +64,7 @@ public class StockGetServiceImplTest {
                 System.out.println("放弃执行");
                 break;
             }
-            executor.submit(() -> {
+            Future<?> submit = executor.submit(() -> {
                 List<StockNdata> historyList = stockGetService.getHistoryList(poll.getStockCode());
 //                ArrayList<StockNdata> stockDataArrayList = new ArrayList<>();
                 int size = 0;

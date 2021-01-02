@@ -3,8 +3,10 @@ package com.lixin.stock.mapper;
 import com.lixin.stock.model.StockNcode;
 import com.lixin.stock.model.StockNcodeExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface StockNcodeMapper {
     long countByExample(StockNcodeExample example);
 

@@ -101,6 +101,8 @@ public class ChromeTest {
      */
     @Test
     public void testGetBaseInfo(){
+        // 成立日期
+
         String baseinfo = "http://fundf10.eastmoney.com/jdzf_000001.html";
 //        jdzftable
         String s = chrome.get(baseinfo,"//*[@id=\"jdzftable\"]");
