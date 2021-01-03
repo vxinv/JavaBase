@@ -3,11 +3,14 @@ package com.lixin.stock.service.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lixin.stock.StockApplication;
+import com.lixin.stock.entity.SortStockInfo;
 import com.lixin.stock.entity.StockInfoResDTO;
 import com.lixin.stock.mapper.StockNcodeMapper;
 import com.lixin.stock.mapper.StockNdataMapper;
+import com.lixin.stock.model.StockNcode;
 import com.lixin.stock.model.StockNdata;
 import com.lixin.stock.model.StockNdataExample;
+import com.lixin.stock.utils.DataProcess;
 import com.lixin.stock.utils.JsonUtil;
 import com.lixin.stock.utils.TimeUtils;
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
@@ -20,6 +23,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,6 +39,7 @@ public class XQStockHistoryDataGetServiceImplTest {
     StockNdataMapper stockNdataMapper;
     @Autowired
     ObjectMapper objectMapper;
+
 
     @Test
     public void getHistoryList() {
@@ -49,13 +56,13 @@ public class XQStockHistoryDataGetServiceImplTest {
      * 测试周一上涨的概率
      */
     @Test
-    public void theProbabilityOfARiseOnMonday(){
+    public void theProbabilityOfARiseOnMonday() {
         // 从2016年开始统计
         LocalDate f2016 = LocalDate.of(2016, 01, 01);
         LocalDate now = LocalDate.now();
         while (f2016.isBefore(now)) {
             f2016 = f2016.plusDays(1);
-            if (f2016.getDayOfWeek() != DayOfWeek.MONDAY ){
+            if (f2016.getDayOfWeek() != DayOfWeek.MONDAY) {
                 continue;
             }
             StockNdataExample stockNdataExample = new StockNdataExample();
@@ -64,18 +71,18 @@ public class XQStockHistoryDataGetServiceImplTest {
 
             List<StockNdata> stockNdata = stockNdataMapper.selectByExample(stockNdataExample);
             // 统计当前
-            int[] down_flat_up = {0,0,0};
+            int[] down_flat_up = {0, 0, 0};
             for (StockNdata stockNdatum : stockNdata) {
                 int i = stockNdatum.getClose().compareTo(stockNdatum.getOpen());
-                if ( i > 0){
+                if (i > 0) {
                     down_flat_up[2]++;
                 }
-                if (i < 0){
-                    down_flat_up[0] ++;
+                if (i < 0) {
+                    down_flat_up[0]++;
                 }
                 down_flat_up[1]++;
             }
-            System.out.println(f2016.format(TimeUtils.dateTimeFormatter)+"下跌"+down_flat_up[0]+"上涨"+down_flat_up[2]);
+            System.out.println(f2016.format(TimeUtils.dateTimeFormatter) + "下跌" + down_flat_up[0] + "上涨" + down_flat_up[2]);
         }
     }
 
@@ -93,6 +100,60 @@ public class XQStockHistoryDataGetServiceImplTest {
             System.out.println(objectMapper.writeValueAsString(stockNdatum));
         }
     }
+
+    /**
+     * 获取前两月到前一月的方差
+     */
+
+    @Test
+    public void testGetMinVariance() {
+        List<StockNcode> stockNcodes = stockNcodeMapper.selectByExample(null);
+        System.out.println("获取股票共" + stockNcodes.size() + "支");
+        // 获取两个月 月初月末的日期
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime m2 = now.plusMonths(-4);
+        System.out.println(TimeUtils.dateTimeFormatter.format(m2));
+        LocalDateTime m1 = now.plusMonths(-1);
+        System.out.println(TimeUtils.dateTimeFormatter.format(m1));
+        ArrayList<SortStockInfo> sortStockInfos = new ArrayList<>();
+        for (StockNcode snc : stockNcodes) {
+            StockNdataExample sne = new StockNdataExample();
+            sne.createCriteria()
+                    .andTimestampBetween(m2, m1)
+                    .andCodeEqualTo(snc.stockCode);
+
+            sne.setOrderByClause("timestamp asc");
+            List<StockNdata> stockNdatas = stockNdataMapper.selectByExample(sne);
+            // 因为上次爬取数据造成有些时间重复 去重
+            List<StockNdata> nodeData = DataProcess.Deduplication(stockNdatas);
+            //System.out.println(deduplicationData);
+            // 提取 当天成交价格  成交量  月价格方差
+            sortStockInfos.add(DataProcess.extractKeyData(nodeData));
+        }
+        // 对方差进行排序  方差越小  价格波动越小 从大到小
+        sortStockInfos.sort(new Comparator<SortStockInfo>() {
+            @Override
+            public int compare(SortStockInfo o1, SortStockInfo o2) {
+                return   o1.getVariance() - o2.getVariance() >= 0 ? -1 : 1;
+            }
+        });
+        List<SortStockInfo> varianceOrder = sortStockInfos.subList(0, 120);
+        // 20均线 5日均线
+        varianceOrder.sort(new Comparator<SortStockInfo>() {
+            @Override
+            public int compare(SortStockInfo o1, SortStockInfo o2) {
+                return  o1.getSeaTurtleLine() - o2.getSeaTurtleLine() >= 0 ? 1 : -1;
+            }
+        });
+        List<SortStockInfo> seaOrder = sortStockInfos.subList(10, 20);
+        System.out.println(JsonUtil.jsonObj2Sting(seaOrder));
+    }
+
+    /**
+     * 统计当前按照 网格策略
+     */
+
+
 
 
 }

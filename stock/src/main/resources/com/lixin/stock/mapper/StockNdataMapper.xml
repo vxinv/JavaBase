@@ -262,6 +262,8 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+
   <update id="updateByExampleSelective" parameterType="map">
     update stock_ndata
     <set>
@@ -442,4 +444,6 @@
       net_volume_cn = #{netVolumeCn,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
 </mapper>

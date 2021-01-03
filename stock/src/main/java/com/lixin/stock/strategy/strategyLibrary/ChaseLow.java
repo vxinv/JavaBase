@@ -85,7 +85,8 @@ public class ChaseLow implements ChooseStock {
             return chooseResult;
         }
         // 当天的平均价格 偏重于 收盘价 has profit
-        if ((stock.temData.getOpen().floatValue() + stock.temData.getClose().floatValue() * 3) / 4 > positionStock.averageCost * (1 + percentProfitClose)) {
+        if ((stock.temData.getOpen().floatValue() + stock.temData.getClose().floatValue() * 3) / 4 >
+                positionStock.averageCost * (1 + percentProfitClose)) {
             chooseResult.BOS = BOS.SELL;
             chooseResult.percentageSell = percentageSell;
             chooseResult.choose = true;
