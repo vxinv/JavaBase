@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -92,7 +91,7 @@ public class XQStockHistoryDataGetServiceImpl implements StockHistoryDataGetServ
             StockNdata snd = new StockNdata();
             snd.setCode(code);
             Instant instant = Instant.ofEpochMilli(Long.parseLong(Optional.ofNullable(list.get(0)).orElse("0")));
-            snd.setTimestamp(LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate());
+            //snd.setTimestamp(LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate());
             snd.setVolume(Long.parseLong(Optional.ofNullable(list.get(1)).orElse("0")));
             snd.setOpen(BigDecimal.valueOf(Double.parseDouble(Optional.ofNullable(list.get(2)).orElse("0"))));
             snd.setHigh(BigDecimal.valueOf(Double.parseDouble(Optional.ofNullable(list.get(3)).orElse("0"))));

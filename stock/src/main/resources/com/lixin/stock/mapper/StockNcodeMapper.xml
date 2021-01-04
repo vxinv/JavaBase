@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lixin.stock.mapper.StockNcodeMapper">
   <resultMap id="BaseResultMap" type="com.lixin.stock.model.StockNcode">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <id column="id" jdbcType="INTEGER" property="id"/>
+      <result column="company_name" jdbcType="VARCHAR" property="companyName" />
     <result column="stock_code" jdbcType="VARCHAR" property="stockCode" />
     <result column="total_shares" jdbcType="BIGINT" property="totalShares" />
-    <result column="total_assets" jdbcType="BIGINT" property="totalAssets" />
-    <result column="gross_profit_margin" jdbcType="REAL" property="grossProfitMargin" />
+    <result column="total_assets" jdbcType="BIGINT" property="totalAssets"/>
+      <result column="gross_profit_margin" jdbcType="REAL" property="grossProfitMargin" />
     <result column="roe" jdbcType="REAL" property="roe" />
     <result column="earnings_per_share" jdbcType="REAL" property="earningsPerShare" />
     <result column="net_asset_per_share" jdbcType="REAL" property="netAssetPerShare" />
@@ -82,9 +82,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, company_name, stock_code, total_shares, total_assets, gross_profit_margin, roe, 
-    earnings_per_share, net_asset_per_share, cash_flow_per_share, float_market_capital, 
-    float_shares, total_operating_income, net_profit_cagr, one_category_id, one_category, 
+    id, company_name, stock_code, total_shares, total_assets, gross_profit_margin, roe,
+    earnings_per_share, net_asset_per_share, cash_flow_per_share, float_market_capital,
+    float_shares, total_operating_income, net_profit_cagr, one_category_id, one_category,
     two_category_id, two_category, three_category_id, three_category
   </sql>
   <select id="selectByExample" parameterType="com.lixin.stock.model.StockNcodeExample" resultMap="BaseResultMap">
@@ -92,38 +92,49 @@
     <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List" />
-    from stock_ncode
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
+      <include refid="Base_Column_List"/>
+      from stock_ncode
+      <if test="_parameter != null">
+          <include refid="Example_Where_Clause"/>
+      </if>
+      <if test="orderByClause != null">
+          order by ${orderByClause}
+      </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.lixin.stock.model.StockNcodeExample">
-    delete from stock_ncode
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.lixin.stock.model.StockNcode">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into stock_ncode (company_name, stock_code, total_shares, 
-      total_assets, gross_profit_margin, roe, 
-      earnings_per_share, net_asset_per_share, cash_flow_per_share, 
-      float_market_capital, float_shares, total_operating_income, 
-      net_profit_cagr, one_category_id, one_category, 
-      two_category_id, two_category, three_category_id, 
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from stock_ncode
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from stock_ncode
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.lixin.stock.model.StockNcodeExample">
+        delete from stock_ncode
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.lixin.stock.model.StockNcode">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    insert into stock_ncode (company_name, stock_code, total_shares,
+      total_assets, gross_profit_margin, roe,
+      earnings_per_share, net_asset_per_share, cash_flow_per_share,
+      float_market_capital, float_shares, total_operating_income,
+      net_profit_cagr, one_category_id, one_category,
+      two_category_id, two_category, three_category_id,
       three_category)
-    values (#{companyName,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, #{totalShares,jdbcType=BIGINT}, 
-      #{totalAssets,jdbcType=BIGINT}, #{grossProfitMargin,jdbcType=REAL}, #{roe,jdbcType=REAL}, 
-      #{earningsPerShare,jdbcType=REAL}, #{netAssetPerShare,jdbcType=REAL}, #{cashFlowPerShare,jdbcType=REAL}, 
-      #{floatMarketCapital,jdbcType=BIGINT}, #{floatShares,jdbcType=BIGINT}, #{totalOperatingIncome,jdbcType=BIGINT}, 
-      #{netProfitCagr,jdbcType=DOUBLE}, #{oneCategoryId,jdbcType=INTEGER}, #{oneCategory,jdbcType=VARCHAR}, 
-      #{twoCategoryId,jdbcType=INTEGER}, #{twoCategory,jdbcType=VARCHAR}, #{threeCategoryId,jdbcType=INTEGER}, 
+    values (#{companyName,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, #{totalShares,jdbcType=BIGINT},
+      #{totalAssets,jdbcType=BIGINT}, #{grossProfitMargin,jdbcType=REAL}, #{roe,jdbcType=REAL},
+      #{earningsPerShare,jdbcType=REAL}, #{netAssetPerShare,jdbcType=REAL}, #{cashFlowPerShare,jdbcType=REAL},
+      #{floatMarketCapital,jdbcType=BIGINT}, #{floatShares,jdbcType=BIGINT}, #{totalOperatingIncome,jdbcType=BIGINT},
+      #{netProfitCagr,jdbcType=DOUBLE}, #{oneCategoryId,jdbcType=INTEGER}, #{oneCategory,jdbcType=VARCHAR},
+      #{twoCategoryId,jdbcType=INTEGER}, #{twoCategory,jdbcType=VARCHAR}, #{threeCategoryId,jdbcType=INTEGER},
       #{threeCategory,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lixin.stock.model.StockNcode">
@@ -346,8 +357,94 @@
       two_category = #{record.twoCategory,jdbcType=VARCHAR},
       three_category_id = #{record.threeCategoryId,jdbcType=INTEGER},
       three_category = #{record.threeCategory,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+      <if test="_parameter != null">
+          <include refid="Update_By_Example_Where_Clause"/>
+      </if>
   </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lixin.stock.model.StockNcode">
+        update stock_ncode
+        <set>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="stockCode != null">
+                stock_code = #{stockCode,jdbcType=VARCHAR},
+            </if>
+            <if test="totalShares != null">
+                total_shares = #{totalShares,jdbcType=BIGINT},
+            </if>
+            <if test="totalAssets != null">
+                total_assets = #{totalAssets,jdbcType=BIGINT},
+            </if>
+            <if test="grossProfitMargin != null">
+                gross_profit_margin = #{grossProfitMargin,jdbcType=REAL},
+            </if>
+            <if test="roe != null">
+                roe = #{roe,jdbcType=REAL},
+            </if>
+            <if test="earningsPerShare != null">
+                earnings_per_share = #{earningsPerShare,jdbcType=REAL},
+            </if>
+            <if test="netAssetPerShare != null">
+                net_asset_per_share = #{netAssetPerShare,jdbcType=REAL},
+            </if>
+            <if test="cashFlowPerShare != null">
+                cash_flow_per_share = #{cashFlowPerShare,jdbcType=REAL},
+            </if>
+            <if test="floatMarketCapital != null">
+                float_market_capital = #{floatMarketCapital,jdbcType=BIGINT},
+            </if>
+            <if test="floatShares != null">
+                float_shares = #{floatShares,jdbcType=BIGINT},
+            </if>
+            <if test="totalOperatingIncome != null">
+                total_operating_income = #{totalOperatingIncome,jdbcType=BIGINT},
+            </if>
+            <if test="netProfitCagr != null">
+                net_profit_cagr = #{netProfitCagr,jdbcType=DOUBLE},
+            </if>
+            <if test="oneCategoryId != null">
+                one_category_id = #{oneCategoryId,jdbcType=INTEGER},
+            </if>
+            <if test="oneCategory != null">
+                one_category = #{oneCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="twoCategoryId != null">
+                two_category_id = #{twoCategoryId,jdbcType=INTEGER},
+            </if>
+            <if test="twoCategory != null">
+                two_category = #{twoCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="threeCategoryId != null">
+                three_category_id = #{threeCategoryId,jdbcType=INTEGER},
+            </if>
+            <if test="threeCategory != null">
+                three_category = #{threeCategory,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lixin.stock.model.StockNcode">
+        update stock_ncode
+        set company_name           = #{companyName,jdbcType=VARCHAR},
+            stock_code             = #{stockCode,jdbcType=VARCHAR},
+            total_shares           = #{totalShares,jdbcType=BIGINT},
+            total_assets           = #{totalAssets,jdbcType=BIGINT},
+            gross_profit_margin    = #{grossProfitMargin,jdbcType=REAL},
+            roe                    = #{roe,jdbcType=REAL},
+            earnings_per_share     = #{earningsPerShare,jdbcType=REAL},
+            net_asset_per_share    = #{netAssetPerShare,jdbcType=REAL},
+            cash_flow_per_share    = #{cashFlowPerShare,jdbcType=REAL},
+            float_market_capital   = #{floatMarketCapital,jdbcType=BIGINT},
+            float_shares           = #{floatShares,jdbcType=BIGINT},
+            total_operating_income = #{totalOperatingIncome,jdbcType=BIGINT},
+            net_profit_cagr        = #{netProfitCagr,jdbcType=DOUBLE},
+            one_category_id        = #{oneCategoryId,jdbcType=INTEGER},
+            one_category           = #{oneCategory,jdbcType=VARCHAR},
+            two_category_id        = #{twoCategoryId,jdbcType=INTEGER},
+            two_category           = #{twoCategory,jdbcType=VARCHAR},
+            three_category_id      = #{threeCategoryId,jdbcType=INTEGER},
+            three_category         = #{threeCategory,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

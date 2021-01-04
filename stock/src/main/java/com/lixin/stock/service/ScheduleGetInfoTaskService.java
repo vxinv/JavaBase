@@ -6,11 +6,9 @@ import com.lixin.stock.model.StockNcode;
 import com.lixin.stock.model.StockNdata;
 import com.lixin.stock.service.impl.XQStockHistoryDataGetServiceImpl;
 import org.apache.tomcat.util.threads.ThreadPoolExecutor;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.ServiceMode;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.Future;

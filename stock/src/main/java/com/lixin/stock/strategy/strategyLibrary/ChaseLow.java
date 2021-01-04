@@ -112,7 +112,7 @@ public class ChaseLow implements ChooseStock {
      */
     public PositionStock getPositionStock(Set<PositionStock> stocks, Stock stock) {
         for (PositionStock positionStock : stocks) {
-            if (positionStock.code.equals(stock.getSnc().stockCode)) {
+            if (positionStock.code.equals(stock.getSnc().getStockCode())) {
                 return positionStock;
             }
         }

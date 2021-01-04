@@ -1,16 +1,11 @@
 package com.lixin.stock.utils;
 
 import com.lixin.stock.entity.SortStockInfo;
-import com.lixin.stock.entity.StockInfoData;
 import com.lixin.stock.model.StockNdata;
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
-import org.apache.commons.math3.stat.descriptive.moment.Variance;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

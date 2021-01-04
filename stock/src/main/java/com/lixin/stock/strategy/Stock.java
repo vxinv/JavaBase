@@ -63,7 +63,7 @@ public class Stock implements Serializable {
 
         StockNdataExample stockNdataExample = new StockNdataExample();
         StockNdataExample.Criteria criteria = stockNdataExample.createCriteria();
-        criteria.andCodeEqualTo(snc.stockCode);
+        criteria.andCodeEqualTo(snc.getStockCode());
         stockNdataExample.setOrderByClause("timestamp asc");
         List<StockNdata> ls = snm.selectByExample(stockNdataExample);
         historyData.addAll(ls);

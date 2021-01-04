@@ -1,48 +1,69 @@
 package com.lixin.stock.model;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 public class StockNcode implements Serializable {
-    public Integer id;
+    @ApiModelProperty(value = "id")
+    private Integer id;
 
-    public String companyName;
+    @ApiModelProperty(value = "公司名称")
+    private String companyName;
 
-    public String stockCode;
+    @ApiModelProperty(value = "股票代码")
+    private String stockCode;
 
-    public Long totalShares;
+    @ApiModelProperty(value = "总股本")
+    private Long totalShares;
 
-    public Long totalAssets;
+    @ApiModelProperty(value = "总资产")
+    private Long totalAssets;
 
-    public Float grossProfitMargin;
+    @ApiModelProperty(value = "销售毛利率")
+    private Float grossProfitMargin;
 
-    public Float roe;
+    @ApiModelProperty(value = "净资产收益率")
+    private Float roe;
 
-    public Float earningsPerShare;
+    @ApiModelProperty(value = "每股收益")
+    private Float earningsPerShare;
 
-    public Float netAssetPerShare;
+    @ApiModelProperty(value = "每股净资产")
+    private Float netAssetPerShare;
 
-    public Float cashFlowPerShare;
+    @ApiModelProperty(value = "每股现金流")
+    private Float cashFlowPerShare;
 
-    public Long floatMarketCapital;
+    @ApiModelProperty(value = "流通值")
+    private Long floatMarketCapital;
 
-    public Long floatShares;
+    @ApiModelProperty(value = "流通股(元)")
+    private Long floatShares;
 
-    public Long totalOperatingIncome;
+    @ApiModelProperty(value = "营业总收入(元)")
+    private Long totalOperatingIncome;
 
-    public Double netProfitCagr;
+    @ApiModelProperty(value = "净利润")
+    private Double netProfitCagr;
 
-    public Integer oneCategoryId;
+    @ApiModelProperty(value = "一级分类id")
+    private Integer oneCategoryId;
 
-    public String oneCategory;
+    @ApiModelProperty(value = "名称")
+    private String oneCategory;
 
-    public Integer twoCategoryId;
+    @ApiModelProperty(value = "二级分类id")
+    private Integer twoCategoryId;
 
-    public String twoCategory;
+    @ApiModelProperty(value = "名称")
+    private String twoCategory;
 
-    public Integer threeCategoryId;
+    @ApiModelProperty(value = "三级分类")
+    private Integer threeCategoryId;
 
-    public String threeCategory;
+    @ApiModelProperty(value = "名称")
+    private String threeCategory;
 
     private static final long serialVersionUID = 1L;
 

@@ -2,10 +2,9 @@ package com.lixin.stock.mapper;
 
 import com.lixin.stock.model.StockNdata;
 import com.lixin.stock.model.StockNdataExample;
-
-import java.time.LocalDateTime;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface StockNdataMapper {
     long countByExample(StockNdataExample example);
@@ -29,5 +28,4 @@ public interface StockNdataMapper {
     int updateByPrimaryKeySelective(StockNdata record);
 
     int updateByPrimaryKey(StockNdata record);
-
 }

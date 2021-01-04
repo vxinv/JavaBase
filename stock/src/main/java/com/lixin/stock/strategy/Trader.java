@@ -111,9 +111,9 @@ public class Trader implements Trade {
             float currPrice = priceOfTheDay(stock);
             int num = (int) Math.floor(result.percentageBuy * balance / priceOfTheDay(stock) * 100);
             if (num >= 1) {
-                buy(stock.snc.stockCode, current, num, BigDecimal.valueOf(currPrice));
+                buy(stock.snc.getStockCode(), current, num, BigDecimal.valueOf(currPrice));
             } else {
-                System.out.println(current.toString() + "买入" + stock.snc.companyName + "余额不足");
+                System.out.println(current.toString() + "买入" + stock.snc.getCompanyName() + "余额不足");
             }
         }
         ChooseResult throwOut = strategy.throwOut(stock, this);
@@ -122,7 +122,7 @@ public class Trader implements Trade {
             PositionStock positionStock = throwOut.positionStock;
             int num = (int) Math.floor(positionStock.numberOfHoldings * throwOut.percentageSell);
             if (num > 1) {
-                sell(stock.snc.stockCode, current, num, BigDecimal.valueOf(currPrice));
+                sell(stock.snc.getStockCode(), current, num, BigDecimal.valueOf(currPrice));
             }
 
         }

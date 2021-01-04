@@ -97,9 +97,9 @@ public class Judge {
      * Initialize industry collection
      */
     public void initIndustryColl(Stock stock) {
-        String[] strings = {stock.snc.oneCategory,
-                stock.snc.oneCategory + "+" + stock.snc.twoCategory,
-                stock.snc.oneCategory + "+" + stock.snc.twoCategory + "+" + stock.snc.threeCategory};
+        String[] strings = {stock.snc.getOneCategory(),
+                stock.snc.getOneCategory() + "+" + stock.snc.getTwoCategoryId(),
+                stock.snc.getOneCategory() + "+" + stock.snc.getTwoCategoryId() + "+" + stock.snc.getThreeCategoryId()};
         for (String string : strings) {
             if (!industryMap.containsKey(string)) {
                 industryMap.put(string, new ArrayList<>());
@@ -113,7 +113,7 @@ public class Judge {
         for (StockNcode snc : stockNcodes) {
             StockNdataExample stockNdataExample = new StockNdataExample();
             StockNdataExample.Criteria criteria = stockNdataExample.createCriteria();
-            criteria.andCodeEqualTo(snc.stockCode);
+            criteria.andCodeEqualTo(snc.getStockCode());
             stockNdataExample.setOrderByClause("timestamp asc");
             List<StockNdata> ls = sd.selectByExample(stockNdataExample);
 

@@ -13,7 +13,6 @@ import com.lixin.stock.model.StockNdataExample;
 import com.lixin.stock.utils.DataProcess;
 import com.lixin.stock.utils.JsonUtil;
 import com.lixin.stock.utils.TimeUtils;
-import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -110,17 +107,17 @@ public class XQStockHistoryDataGetServiceImplTest {
         List<StockNcode> stockNcodes = stockNcodeMapper.selectByExample(null);
         System.out.println("获取股票共" + stockNcodes.size() + "支");
         // 获取两个月 月初月末的日期
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime m2 = now.plusMonths(-4);
+        LocalDate now = LocalDate.now();
+        LocalDate m2 = now.plusMonths(-4);
         System.out.println(TimeUtils.dateTimeFormatter.format(m2));
-        LocalDateTime m1 = now.plusMonths(-1);
+        LocalDate m1 = now.plusMonths(-1);
         System.out.println(TimeUtils.dateTimeFormatter.format(m1));
         ArrayList<SortStockInfo> sortStockInfos = new ArrayList<>();
         for (StockNcode snc : stockNcodes) {
             StockNdataExample sne = new StockNdataExample();
             sne.createCriteria()
                     .andTimestampBetween(m2, m1)
-                    .andCodeEqualTo(snc.stockCode);
+                    .andCodeEqualTo(snc.getStockCode());
 
             sne.setOrderByClause("timestamp asc");
             List<StockNdata> stockNdatas = stockNdataMapper.selectByExample(sne);
