@@ -1,0 +1,14 @@
+com/goodluck/search/mapper/GoodsMapper.class
+com/goodluck/search/model/GoodsExample$GeneratedCriteria.class
+com/goodluck/search/model/GoodsExample$Criteria.class
+com/goodluck/search/service/EsProductService.class
+com/goodluck/search/nosql/es/EsProductRepository.class
+com/goodluck/search/service/impl/EsProductServiceImpl.class
+com/goodluck/search/ESApplication.class
+com/goodluck/search/domain/EsGoods.class
+com/goodluck/search/model/GoodsExample.class
+com/goodluck/search/config/MyBatisConfig.class
+com/goodluck/search/model/GoodsExample$Criterion.class
+com/goodluck/search/controller/EsGoodsController.class
+com/goodluck/search/model/Goods.class
+com/goodluck/search/config/Swagger2Config.class

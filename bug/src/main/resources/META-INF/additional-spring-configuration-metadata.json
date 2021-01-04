@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "chrome.sleepInMillis",
+      "type": "java.lang.String",
+      "description": "Description for chrome.sleepInMillis."
+    }
+  ]
+}

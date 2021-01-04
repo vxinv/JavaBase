@@ -1,0 +1,18 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /stock
+spring:
+  datasource:
+    url: jdbc:mysql://work:3306/stock?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Wqsci2020@
+    druid:
+      initial-size: 2 #连接池初始化大小
+      min-idle: 1 #最小空闲连接数
+      max-active: 3 #最大连接数
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet: #访问监控网页的登录用户名和密码
+        login-username: druid
+        login-password: druid

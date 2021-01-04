@@ -1,0 +1,11 @@
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/ESApplication.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/service/impl/EsProductServiceImpl.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/nosql/es/EsProductRepository.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/domain/EsGoods.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/controller/EsGoodsController.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/model/GoodsExample.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/model/Goods.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/mapper/GoodsMapper.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/service/EsProductService.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/config/MyBatisConfig.java
+/Volumes/OD_MAC/App/JavaBase/es/src/main/java/com/goodluck/search/config/Swagger2Config.java

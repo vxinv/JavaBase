@@ -1,0 +1,15 @@
+com/goodluck/mbg/Generator.class
+com/goodluck/services/GoodsServices.class
+com/goodluck/config/Swagger2Config.class
+com/goodluck/mbg/CommentGenerator.class
+com/goodluck/services/impl/GoodsServiceImpl.class
+com/goodluck/dto/goodsService/SearchGoodsQueryParam.class
+com/goodluck/Application.class
+com/goodluck/config/MyBatisConfig.class
+com/goodluck/model/Goods.class
+com/goodluck/model/GoodsExample.class
+com/goodluck/mapper/GoodsMapper.class
+com/goodluck/model/GoodsExample$Criteria.class
+com/goodluck/model/GoodsExample$GeneratedCriteria.class
+com/goodluck/controllers/GoodsServiceController.class
+com/goodluck/model/GoodsExample$Criterion.class

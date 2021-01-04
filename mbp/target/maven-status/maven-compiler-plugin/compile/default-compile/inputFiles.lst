@@ -1,0 +1,12 @@
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/services/impl/GoodsServiceImpl.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/services/GoodsServices.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/Application.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/config/Swagger2Config.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/config/MyBatisConfig.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/controllers/GoodsServiceController.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/dto/goodsService/SearchGoodsQueryParam.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/mapper/GoodsMapper.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/model/Goods.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/mbg/CommentGenerator.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/mbg/Generator.java
+/Volumes/OD_MAC/App/JavaBase/mbp/src/main/java/com/goodluck/model/GoodsExample.java

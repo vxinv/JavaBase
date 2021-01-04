@@ -1,0 +1,33 @@
+{
+  "groups": [
+    {
+      "name": "myredis",
+      "type": "MyRedisProperties",
+      "sourceType": "MyRedisProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "myredis.host",
+      "type": "java.lang.String",
+      "sourceType": "MyRedisProperties"
+    },
+    {
+      "name": "myredis.index",
+      "type": "java.lang.Integer",
+      "sourceType": "MyRedisProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "myredis.password",
+      "type": "java.lang.String",
+      "sourceType": "MyRedisProperties"
+    },
+    {
+      "name": "myredis.port",
+      "type": "java.lang.Integer",
+      "sourceType": "MyRedisProperties"
+    }
+  ],
+  "hints": []
+}

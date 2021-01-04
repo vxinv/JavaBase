@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixin.stock.mapper.StockThsGnInfoMapper">
+  <resultMap id="BaseResultMap" type="com.lixin.stock.model.StockThsGnInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gn_name" jdbcType="VARCHAR" property="gnName" />
+    <result column="gn_code" jdbcType="VARCHAR" property="gnCode" />
+    <result column="stock_code" jdbcType="VARCHAR" property="stockCode" />
+    <result column="stock_name" jdbcType="VARCHAR" property="stockName" />
+    <result column="stock_price" jdbcType="DECIMAL" property="stockPrice" />
+    <result column="stock_change" jdbcType="DECIMAL" property="stockChange" />
+    <result column="stock_change_price" jdbcType="DECIMAL" property="stockChangePrice" />
+    <result column="stock_change_speed" jdbcType="DECIMAL" property="stockChangeSpeed" />
+    <result column="stock_handover_scale" jdbcType="DECIMAL" property="stockHandoverScale" />
+    <result column="stock_liang_bi" jdbcType="DECIMAL" property="stockLiangBi" />
+    <result column="stock_amplitude" jdbcType="DECIMAL" property="stockAmplitude" />
+    <result column="stock_deal_amount" jdbcType="DECIMAL" property="stockDealAmount" />
+    <result column="stock_flow_stock_number" jdbcType="DECIMAL" property="stockFlowStockNumber" />
+    <result column="stock_flow_makert_value" jdbcType="DECIMAL" property="stockFlowMakertValue" />
+    <result column="stock_market_ttm" jdbcType="DECIMAL" property="stockMarketTtm" />
+    <result column="crawler_time" jdbcType="VARCHAR" property="crawlerTime" />
+    <result column="crawler_version" jdbcType="VARCHAR" property="crawlerVersion" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lixin.stock.model.StockThsGnInfo">
+    <result column="some_ext" jdbcType="LONGVARCHAR" property="someExt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, gn_name, gn_code, stock_code, stock_name, stock_price, stock_change, stock_change_price, 
+    stock_change_speed, stock_handover_scale, stock_liang_bi, stock_amplitude, stock_deal_amount, 
+    stock_flow_stock_number, stock_flow_makert_value, stock_market_ttm, crawler_time, 
+    crawler_version, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    some_ext
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.lixin.stock.model.StockThsGnInfoExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from stock_ths_gn_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.lixin.stock.model.StockThsGnInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from stock_ths_gn_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from stock_ths_gn_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from stock_ths_gn_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lixin.stock.model.StockThsGnInfoExample">
+    delete from stock_ths_gn_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lixin.stock.model.StockThsGnInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into stock_ths_gn_info (gn_name, gn_code, stock_code, 
+      stock_name, stock_price, stock_change, 
+      stock_change_price, stock_change_speed, stock_handover_scale, 
+      stock_liang_bi, stock_amplitude, stock_deal_amount, 
+      stock_flow_stock_number, stock_flow_makert_value, 
+      stock_market_ttm, crawler_time, crawler_version, 
+      create_time, update_time, some_ext
+      )
+    values (#{gnName,jdbcType=VARCHAR}, #{gnCode,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, 
+      #{stockName,jdbcType=VARCHAR}, #{stockPrice,jdbcType=DECIMAL}, #{stockChange,jdbcType=DECIMAL}, 
+      #{stockChangePrice,jdbcType=DECIMAL}, #{stockChangeSpeed,jdbcType=DECIMAL}, #{stockHandoverScale,jdbcType=DECIMAL}, 
+      #{stockLiangBi,jdbcType=DECIMAL}, #{stockAmplitude,jdbcType=DECIMAL}, #{stockDealAmount,jdbcType=DECIMAL}, 
+      #{stockFlowStockNumber,jdbcType=DECIMAL}, #{stockFlowMakertValue,jdbcType=DECIMAL}, 
+      #{stockMarketTtm,jdbcType=DECIMAL}, #{crawlerTime,jdbcType=VARCHAR}, #{crawlerVersion,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{someExt,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lixin.stock.model.StockThsGnInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into stock_ths_gn_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gnName != null">
+        gn_name,
+      </if>
+      <if test="gnCode != null">
+        gn_code,
+      </if>
+      <if test="stockCode != null">
+        stock_code,
+      </if>
+      <if test="stockName != null">
+        stock_name,
+      </if>
+      <if test="stockPrice != null">
+        stock_price,
+      </if>
+      <if test="stockChange != null">
+        stock_change,
+      </if>
+      <if test="stockChangePrice != null">
+        stock_change_price,
+      </if>
+      <if test="stockChangeSpeed != null">
+        stock_change_speed,
+      </if>
+      <if test="stockHandoverScale != null">
+        stock_handover_scale,
+      </if>
+      <if test="stockLiangBi != null">
+        stock_liang_bi,
+      </if>
+      <if test="stockAmplitude != null">
+        stock_amplitude,
+      </if>
+      <if test="stockDealAmount != null">
+        stock_deal_amount,
+      </if>
+      <if test="stockFlowStockNumber != null">
+        stock_flow_stock_number,
+      </if>
+      <if test="stockFlowMakertValue != null">
+        stock_flow_makert_value,
+      </if>
+      <if test="stockMarketTtm != null">
+        stock_market_ttm,
+      </if>
+      <if test="crawlerTime != null">
+        crawler_time,
+      </if>
+      <if test="crawlerVersion != null">
+        crawler_version,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="someExt != null">
+        some_ext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gnName != null">
+        #{gnName,jdbcType=VARCHAR},
+      </if>
+      <if test="gnCode != null">
+        #{gnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null">
+        #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null">
+        #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockPrice != null">
+        #{stockPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stockChange != null">
+        #{stockChange,jdbcType=DECIMAL},
+      </if>
+      <if test="stockChangePrice != null">
+        #{stockChangePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stockChangeSpeed != null">
+        #{stockChangeSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="stockHandoverScale != null">
+        #{stockHandoverScale,jdbcType=DECIMAL},
+      </if>
+      <if test="stockLiangBi != null">
+        #{stockLiangBi,jdbcType=DECIMAL},
+      </if>
+      <if test="stockAmplitude != null">
+        #{stockAmplitude,jdbcType=DECIMAL},
+      </if>
+      <if test="stockDealAmount != null">
+        #{stockDealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="stockFlowStockNumber != null">
+        #{stockFlowStockNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="stockFlowMakertValue != null">
+        #{stockFlowMakertValue,jdbcType=DECIMAL},
+      </if>
+      <if test="stockMarketTtm != null">
+        #{stockMarketTtm,jdbcType=DECIMAL},
+      </if>
+      <if test="crawlerTime != null">
+        #{crawlerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="crawlerVersion != null">
+        #{crawlerVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="someExt != null">
+        #{someExt,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lixin.stock.model.StockThsGnInfoExample" resultType="java.lang.Long">
+    select count(*) from stock_ths_gn_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update stock_ths_gn_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.gnName != null">
+        gn_name = #{record.gnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gnCode != null">
+        gn_code = #{record.gnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockCode != null">
+        stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockName != null">
+        stock_name = #{record.stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockPrice != null">
+        stock_price = #{record.stockPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockChange != null">
+        stock_change = #{record.stockChange,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockChangePrice != null">
+        stock_change_price = #{record.stockChangePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockChangeSpeed != null">
+        stock_change_speed = #{record.stockChangeSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockHandoverScale != null">
+        stock_handover_scale = #{record.stockHandoverScale,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockLiangBi != null">
+        stock_liang_bi = #{record.stockLiangBi,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockAmplitude != null">
+        stock_amplitude = #{record.stockAmplitude,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockDealAmount != null">
+        stock_deal_amount = #{record.stockDealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockFlowStockNumber != null">
+        stock_flow_stock_number = #{record.stockFlowStockNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockFlowMakertValue != null">
+        stock_flow_makert_value = #{record.stockFlowMakertValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockMarketTtm != null">
+        stock_market_ttm = #{record.stockMarketTtm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.crawlerTime != null">
+        crawler_time = #{record.crawlerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crawlerVersion != null">
+        crawler_version = #{record.crawlerVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.someExt != null">
+        some_ext = #{record.someExt,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update stock_ths_gn_info
+    set id = #{record.id,jdbcType=BIGINT},
+      gn_name = #{record.gnName,jdbcType=VARCHAR},
+      gn_code = #{record.gnCode,jdbcType=VARCHAR},
+      stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      stock_name = #{record.stockName,jdbcType=VARCHAR},
+      stock_price = #{record.stockPrice,jdbcType=DECIMAL},
+      stock_change = #{record.stockChange,jdbcType=DECIMAL},
+      stock_change_price = #{record.stockChangePrice,jdbcType=DECIMAL},
+      stock_change_speed = #{record.stockChangeSpeed,jdbcType=DECIMAL},
+      stock_handover_scale = #{record.stockHandoverScale,jdbcType=DECIMAL},
+      stock_liang_bi = #{record.stockLiangBi,jdbcType=DECIMAL},
+      stock_amplitude = #{record.stockAmplitude,jdbcType=DECIMAL},
+      stock_deal_amount = #{record.stockDealAmount,jdbcType=DECIMAL},
+      stock_flow_stock_number = #{record.stockFlowStockNumber,jdbcType=DECIMAL},
+      stock_flow_makert_value = #{record.stockFlowMakertValue,jdbcType=DECIMAL},
+      stock_market_ttm = #{record.stockMarketTtm,jdbcType=DECIMAL},
+      crawler_time = #{record.crawlerTime,jdbcType=VARCHAR},
+      crawler_version = #{record.crawlerVersion,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      some_ext = #{record.someExt,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update stock_ths_gn_info
+    set id = #{record.id,jdbcType=BIGINT},
+      gn_name = #{record.gnName,jdbcType=VARCHAR},
+      gn_code = #{record.gnCode,jdbcType=VARCHAR},
+      stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      stock_name = #{record.stockName,jdbcType=VARCHAR},
+      stock_price = #{record.stockPrice,jdbcType=DECIMAL},
+      stock_change = #{record.stockChange,jdbcType=DECIMAL},
+      stock_change_price = #{record.stockChangePrice,jdbcType=DECIMAL},
+      stock_change_speed = #{record.stockChangeSpeed,jdbcType=DECIMAL},
+      stock_handover_scale = #{record.stockHandoverScale,jdbcType=DECIMAL},
+      stock_liang_bi = #{record.stockLiangBi,jdbcType=DECIMAL},
+      stock_amplitude = #{record.stockAmplitude,jdbcType=DECIMAL},
+      stock_deal_amount = #{record.stockDealAmount,jdbcType=DECIMAL},
+      stock_flow_stock_number = #{record.stockFlowStockNumber,jdbcType=DECIMAL},
+      stock_flow_makert_value = #{record.stockFlowMakertValue,jdbcType=DECIMAL},
+      stock_market_ttm = #{record.stockMarketTtm,jdbcType=DECIMAL},
+      crawler_time = #{record.crawlerTime,jdbcType=VARCHAR},
+      crawler_version = #{record.crawlerVersion,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lixin.stock.model.StockThsGnInfo">
+    update stock_ths_gn_info
+    <set>
+      <if test="gnName != null">
+        gn_name = #{gnName,jdbcType=VARCHAR},
+      </if>
+      <if test="gnCode != null">
+        gn_code = #{gnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null">
+        stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null">
+        stock_name = #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockPrice != null">
+        stock_price = #{stockPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stockChange != null">
+        stock_change = #{stockChange,jdbcType=DECIMAL},
+      </if>
+      <if test="stockChangePrice != null">
+        stock_change_price = #{stockChangePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stockChangeSpeed != null">
+        stock_change_speed = #{stockChangeSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="stockHandoverScale != null">
+        stock_handover_scale = #{stockHandoverScale,jdbcType=DECIMAL},
+      </if>
+      <if test="stockLiangBi != null">
+        stock_liang_bi = #{stockLiangBi,jdbcType=DECIMAL},
+      </if>
+      <if test="stockAmplitude != null">
+        stock_amplitude = #{stockAmplitude,jdbcType=DECIMAL},
+      </if>
+      <if test="stockDealAmount != null">
+        stock_deal_amount = #{stockDealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="stockFlowStockNumber != null">
+        stock_flow_stock_number = #{stockFlowStockNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="stockFlowMakertValue != null">
+        stock_flow_makert_value = #{stockFlowMakertValue,jdbcType=DECIMAL},
+      </if>
+      <if test="stockMarketTtm != null">
+        stock_market_ttm = #{stockMarketTtm,jdbcType=DECIMAL},
+      </if>
+      <if test="crawlerTime != null">
+        crawler_time = #{crawlerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="crawlerVersion != null">
+        crawler_version = #{crawlerVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="someExt != null">
+        some_ext = #{someExt,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lixin.stock.model.StockThsGnInfo">
+    update stock_ths_gn_info
+    set gn_name = #{gnName,jdbcType=VARCHAR},
+      gn_code = #{gnCode,jdbcType=VARCHAR},
+      stock_code = #{stockCode,jdbcType=VARCHAR},
+      stock_name = #{stockName,jdbcType=VARCHAR},
+      stock_price = #{stockPrice,jdbcType=DECIMAL},
+      stock_change = #{stockChange,jdbcType=DECIMAL},
+      stock_change_price = #{stockChangePrice,jdbcType=DECIMAL},
+      stock_change_speed = #{stockChangeSpeed,jdbcType=DECIMAL},
+      stock_handover_scale = #{stockHandoverScale,jdbcType=DECIMAL},
+      stock_liang_bi = #{stockLiangBi,jdbcType=DECIMAL},
+      stock_amplitude = #{stockAmplitude,jdbcType=DECIMAL},
+      stock_deal_amount = #{stockDealAmount,jdbcType=DECIMAL},
+      stock_flow_stock_number = #{stockFlowStockNumber,jdbcType=DECIMAL},
+      stock_flow_makert_value = #{stockFlowMakertValue,jdbcType=DECIMAL},
+      stock_market_ttm = #{stockMarketTtm,jdbcType=DECIMAL},
+      crawler_time = #{crawlerTime,jdbcType=VARCHAR},
+      crawler_version = #{crawlerVersion,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      some_ext = #{someExt,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lixin.stock.model.StockThsGnInfo">
+    update stock_ths_gn_info
+    set gn_name = #{gnName,jdbcType=VARCHAR},
+      gn_code = #{gnCode,jdbcType=VARCHAR},
+      stock_code = #{stockCode,jdbcType=VARCHAR},
+      stock_name = #{stockName,jdbcType=VARCHAR},
+      stock_price = #{stockPrice,jdbcType=DECIMAL},
+      stock_change = #{stockChange,jdbcType=DECIMAL},
+      stock_change_price = #{stockChangePrice,jdbcType=DECIMAL},
+      stock_change_speed = #{stockChangeSpeed,jdbcType=DECIMAL},
+      stock_handover_scale = #{stockHandoverScale,jdbcType=DECIMAL},
+      stock_liang_bi = #{stockLiangBi,jdbcType=DECIMAL},
+      stock_amplitude = #{stockAmplitude,jdbcType=DECIMAL},
+      stock_deal_amount = #{stockDealAmount,jdbcType=DECIMAL},
+      stock_flow_stock_number = #{stockFlowStockNumber,jdbcType=DECIMAL},
+      stock_flow_makert_value = #{stockFlowMakertValue,jdbcType=DECIMAL},
+      stock_market_ttm = #{stockMarketTtm,jdbcType=DECIMAL},
+      crawler_time = #{crawlerTime,jdbcType=VARCHAR},
+      crawler_version = #{crawlerVersion,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

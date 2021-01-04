@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixin.stock.mapper.StockNdataMapper">
+  <resultMap id="BaseResultMap" type="com.lixin.stock.model.StockNdata">
+      <id column="id" jdbcType="BIGINT" property="id"/>
+      <result column="code" jdbcType="VARCHAR" property="code"/>
+      <result column="timestamp" jdbcType="DATE" property="timestamp"/>
+      <result column="volume" jdbcType="BIGINT" property="volume"/>
+      <result column="open" jdbcType="DECIMAL" property="open"/>
+      <result column="high" jdbcType="DECIMAL" property="high"/>
+      <result column="low" jdbcType="DECIMAL" property="low"/>
+      <result column="close" jdbcType="DECIMAL" property="close"/>
+      <result column="chg" jdbcType="REAL" property="chg"/>
+      <result column="percent" jdbcType="REAL" property="percent"/>
+      <result column="turnoverrate" jdbcType="REAL" property="turnoverrate"/>
+      <result column="amount" jdbcType="DOUBLE" property="amount"/>
+      <result column="pe" jdbcType="REAL" property="pe"/>
+    <result column="pb" jdbcType="REAL" property="pb" />
+    <result column="ps" jdbcType="REAL" property="ps" />
+    <result column="pcf" jdbcType="REAL" property="pcf" />
+    <result column="market_capital" jdbcType="REAL" property="marketCapital" />
+    <result column="hold_volume_cn" jdbcType="DOUBLE" property="holdVolumeCn" />
+    <result column="hold_ratio_cn" jdbcType="REAL" property="holdRatioCn" />
+    <result column="net_volume_cn" jdbcType="BIGINT" property="netVolumeCn" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, code, timestamp, volume, open, high, low, close, chg, percent, turnoverrate,
+    amount, pe, pb, ps, pcf, market_capital, hold_volume_cn, hold_ratio_cn, net_volume_cn
+  </sql>
+  <select id="selectByExample" parameterType="com.lixin.stock.model.StockNdataExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from stock_ndata
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from stock_ndata
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from stock_ndata
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lixin.stock.model.StockNdataExample">
+    delete from stock_ndata
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lixin.stock.model.StockNdata">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+      insert into stock_ndata (code, timestamp, volume,
+      open, high, low, close,
+      chg, percent, turnoverrate,
+      amount, pe, pb, ps,
+      pcf, market_capital, hold_volume_cn,
+      hold_ratio_cn, net_volume_cn)
+      values (#{code,jdbcType=VARCHAR}, #{timestamp,jdbcType=DATE}, #{volume,jdbcType=BIGINT},
+      #{open,jdbcType=DECIMAL}, #{high,jdbcType=DECIMAL}, #{low,jdbcType=DECIMAL}, #{close,jdbcType=DECIMAL},
+      #{chg,jdbcType=REAL}, #{percent,jdbcType=REAL}, #{turnoverrate,jdbcType=REAL},
+      #{amount,jdbcType=DOUBLE}, #{pe,jdbcType=REAL}, #{pb,jdbcType=REAL}, #{ps,jdbcType=REAL},
+      #{pcf,jdbcType=REAL}, #{marketCapital,jdbcType=REAL}, #{holdVolumeCn,jdbcType=DOUBLE},
+      #{holdRatioCn,jdbcType=REAL}, #{netVolumeCn,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lixin.stock.model.StockNdata">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into stock_ndata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="timestamp != null">
+        timestamp,
+      </if>
+      <if test="volume != null">
+        volume,
+      </if>
+      <if test="open != null">
+        open,
+      </if>
+      <if test="high != null">
+        high,
+      </if>
+      <if test="low != null">
+        low,
+      </if>
+      <if test="close != null">
+        close,
+      </if>
+      <if test="chg != null">
+        chg,
+      </if>
+      <if test="percent != null">
+        percent,
+      </if>
+      <if test="turnoverrate != null">
+        turnoverrate,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="pe != null">
+        pe,
+      </if>
+      <if test="pb != null">
+        pb,
+      </if>
+      <if test="ps != null">
+        ps,
+      </if>
+      <if test="pcf != null">
+        pcf,
+      </if>
+      <if test="marketCapital != null">
+        market_capital,
+      </if>
+      <if test="holdVolumeCn != null">
+        hold_volume_cn,
+      </if>
+      <if test="holdRatioCn != null">
+        hold_ratio_cn,
+      </if>
+      <if test="netVolumeCn != null">
+        net_volume_cn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+          #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+          #{timestamp,jdbcType=DATE},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=BIGINT},
+      </if>
+      <if test="open != null">
+        #{open,jdbcType=DECIMAL},
+      </if>
+      <if test="high != null">
+        #{high,jdbcType=DECIMAL},
+      </if>
+      <if test="low != null">
+        #{low,jdbcType=DECIMAL},
+      </if>
+      <if test="close != null">
+        #{close,jdbcType=DECIMAL},
+      </if>
+      <if test="chg != null">
+        #{chg,jdbcType=REAL},
+      </if>
+      <if test="percent != null">
+        #{percent,jdbcType=REAL},
+      </if>
+      <if test="turnoverrate != null">
+        #{turnoverrate,jdbcType=REAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="pe != null">
+        #{pe,jdbcType=REAL},
+      </if>
+      <if test="pb != null">
+        #{pb,jdbcType=REAL},
+      </if>
+      <if test="ps != null">
+        #{ps,jdbcType=REAL},
+      </if>
+      <if test="pcf != null">
+        #{pcf,jdbcType=REAL},
+      </if>
+      <if test="marketCapital != null">
+        #{marketCapital,jdbcType=REAL},
+      </if>
+      <if test="holdVolumeCn != null">
+        #{holdVolumeCn,jdbcType=DOUBLE},
+      </if>
+      <if test="holdRatioCn != null">
+        #{holdRatioCn,jdbcType=REAL},
+      </if>
+      <if test="netVolumeCn != null">
+        #{netVolumeCn,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lixin.stock.model.StockNdataExample" resultType="java.lang.Long">
+    select count(*) from stock_ndata
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update stock_ndata
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null">
+          code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timestamp != null">
+          timestamp = #{record.timestamp,jdbcType=DATE},
+      </if>
+      <if test="record.volume != null">
+        volume = #{record.volume,jdbcType=BIGINT},
+      </if>
+      <if test="record.open != null">
+        open = #{record.open,jdbcType=DECIMAL},
+      </if>
+      <if test="record.high != null">
+        high = #{record.high,jdbcType=DECIMAL},
+      </if>
+      <if test="record.low != null">
+        low = #{record.low,jdbcType=DECIMAL},
+      </if>
+      <if test="record.close != null">
+        close = #{record.close,jdbcType=DECIMAL},
+      </if>
+      <if test="record.chg != null">
+        chg = #{record.chg,jdbcType=REAL},
+      </if>
+      <if test="record.percent != null">
+        percent = #{record.percent,jdbcType=REAL},
+      </if>
+      <if test="record.turnoverrate != null">
+        turnoverrate = #{record.turnoverrate,jdbcType=REAL},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pe != null">
+        pe = #{record.pe,jdbcType=REAL},
+      </if>
+      <if test="record.pb != null">
+        pb = #{record.pb,jdbcType=REAL},
+      </if>
+      <if test="record.ps != null">
+        ps = #{record.ps,jdbcType=REAL},
+      </if>
+      <if test="record.pcf != null">
+        pcf = #{record.pcf,jdbcType=REAL},
+      </if>
+      <if test="record.marketCapital != null">
+        market_capital = #{record.marketCapital,jdbcType=REAL},
+      </if>
+      <if test="record.holdVolumeCn != null">
+        hold_volume_cn = #{record.holdVolumeCn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.holdRatioCn != null">
+        hold_ratio_cn = #{record.holdRatioCn,jdbcType=REAL},
+      </if>
+      <if test="record.netVolumeCn != null">
+        net_volume_cn = #{record.netVolumeCn,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+      update stock_ndata
+      set id = #{record.id,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      timestamp = #{record.timestamp,jdbcType=DATE},
+      volume = #{record.volume,jdbcType=BIGINT},
+      open = #{record.open,jdbcType=DECIMAL},
+      high = #{record.high,jdbcType=DECIMAL},
+      low = #{record.low,jdbcType=DECIMAL},
+      close = #{record.close,jdbcType=DECIMAL},
+      chg = #{record.chg,jdbcType=REAL},
+      percent = #{record.percent,jdbcType=REAL},
+      turnoverrate = #{record.turnoverrate,jdbcType=REAL},
+      amount = #{record.amount,jdbcType=DOUBLE},
+      pe = #{record.pe,jdbcType=REAL},
+      pb = #{record.pb,jdbcType=REAL},
+      ps = #{record.ps,jdbcType=REAL},
+      pcf = #{record.pcf,jdbcType=REAL},
+      market_capital = #{record.marketCapital,jdbcType=REAL},
+      hold_volume_cn = #{record.holdVolumeCn,jdbcType=DOUBLE},
+      hold_ratio_cn = #{record.holdRatioCn,jdbcType=REAL},
+      net_volume_cn = #{record.netVolumeCn,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lixin.stock.model.StockNdata">
+    update stock_ndata
+    <set>
+      <if test="code != null">
+          code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+          timestamp = #{timestamp,jdbcType=DATE},
+      </if>
+      <if test="volume != null">
+        volume = #{volume,jdbcType=BIGINT},
+      </if>
+      <if test="open != null">
+        open = #{open,jdbcType=DECIMAL},
+      </if>
+      <if test="high != null">
+        high = #{high,jdbcType=DECIMAL},
+      </if>
+      <if test="low != null">
+        low = #{low,jdbcType=DECIMAL},
+      </if>
+      <if test="close != null">
+        close = #{close,jdbcType=DECIMAL},
+      </if>
+      <if test="chg != null">
+        chg = #{chg,jdbcType=REAL},
+      </if>
+      <if test="percent != null">
+        percent = #{percent,jdbcType=REAL},
+      </if>
+      <if test="turnoverrate != null">
+        turnoverrate = #{turnoverrate,jdbcType=REAL},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="pe != null">
+        pe = #{pe,jdbcType=REAL},
+      </if>
+      <if test="pb != null">
+        pb = #{pb,jdbcType=REAL},
+      </if>
+      <if test="ps != null">
+        ps = #{ps,jdbcType=REAL},
+      </if>
+      <if test="pcf != null">
+        pcf = #{pcf,jdbcType=REAL},
+      </if>
+      <if test="marketCapital != null">
+        market_capital = #{marketCapital,jdbcType=REAL},
+      </if>
+      <if test="holdVolumeCn != null">
+        hold_volume_cn = #{holdVolumeCn,jdbcType=DOUBLE},
+      </if>
+      <if test="holdRatioCn != null">
+        hold_ratio_cn = #{holdRatioCn,jdbcType=REAL},
+      </if>
+      <if test="netVolumeCn != null">
+        net_volume_cn = #{netVolumeCn,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lixin.stock.model.StockNdata">
+      update stock_ndata
+      set code         = #{code,jdbcType=VARCHAR},
+          timestamp    = #{timestamp,jdbcType=DATE},
+          volume       = #{volume,jdbcType=BIGINT},
+          open         = #{open,jdbcType=DECIMAL},
+          high         = #{high,jdbcType=DECIMAL},
+          low          = #{low,jdbcType=DECIMAL},
+          close        = #{close,jdbcType=DECIMAL},
+          chg          = #{chg,jdbcType=REAL},
+          percent      = #{percent,jdbcType=REAL},
+          turnoverrate = #{turnoverrate,jdbcType=REAL},
+          amount       = #{amount,jdbcType=DOUBLE},
+          pe           = #{pe,jdbcType=REAL},
+      pb = #{pb,jdbcType=REAL},
+      ps = #{ps,jdbcType=REAL},
+      pcf = #{pcf,jdbcType=REAL},
+      market_capital = #{marketCapital,jdbcType=REAL},
+      hold_volume_cn = #{holdVolumeCn,jdbcType=DOUBLE},
+      hold_ratio_cn = #{holdRatioCn,jdbcType=REAL},
+      net_volume_cn = #{netVolumeCn,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
