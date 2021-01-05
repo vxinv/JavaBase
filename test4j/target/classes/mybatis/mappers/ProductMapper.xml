@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lixin.mapper.ProductDao">
 
-    <resultMap id="baseResultMap" type="com.lixin.model.Product">
+    <resultMap id="baseResultMap" type="com.lixin.github.vxinv.model.Product">
         <id column="id" property="id" javaType="java.lang.Long" jdbcType="INTEGER"/>
         <result column="name" property="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result column="price" property="price" javaType="java.lang.Long" jdbcType="BIGINT"/>
@@ -16,7 +16,7 @@
     </insert>
 
 
-    <select id="select" resultType="com.lixin.model.Product">
+    <select id="select" resultType="com.lixin.github.vxinv.model.Product">
         SELECT *
         FROM product
         WHERE id = #{id}

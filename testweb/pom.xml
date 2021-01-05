@@ -8,6 +8,7 @@
         <version>2.3.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.lixin</groupId>
     <artifactId>testweb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
