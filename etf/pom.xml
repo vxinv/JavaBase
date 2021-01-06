@@ -32,6 +32,13 @@
             <version>1.10.2</version>
         </dependency>
 
+        <!--   验证码识别     -->
+        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>4.15.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

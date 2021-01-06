@@ -18,3 +18,8 @@ spring:
         login-username: druid
         login-password: druid
 
+
+orc:
+  APP_ID: 23494965
+  API_KEY: KPGc5aF3ygcvgzxGcmWyA1ZU
+  SECRET_KEY: 9Gh2FfKHlNEK7FHrEOkuRz7tswqTbj5d

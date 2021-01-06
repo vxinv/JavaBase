@@ -40,8 +40,6 @@ public class Chrome {
     /**
      * 显示的等待某个元素
      */
-
-
     @PostConstruct
     public void init() {
         if (!useChrome) {
