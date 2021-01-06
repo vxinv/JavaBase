@@ -34,6 +34,9 @@ public class Chrome {
     @Value("${chrome.fileUrl}")
     String chromeUrl;
 
+    @Value("${chrome.open}")
+    boolean useChrome;
+
     /**
      * 显示的等待某个元素
      */
@@ -41,6 +44,10 @@ public class Chrome {
 
     @PostConstruct
     public void init() {
+        if (!useChrome) {
+            log.info("当前不开启Chrome");
+            return;
+        }
         System.setProperty("webdriver.chrome.driver", chromeUrl);
         //System.setProperty("webdriver.chrome.driver", "/Users/admin/Documents/selenium/chrome/79.0.3945.36/chromedriver");
         ChromeOptions options = new ChromeOptions();

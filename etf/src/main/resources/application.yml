@@ -10,7 +10,8 @@ spring:
 chrome:
   timeOutInSeconds: 10
   sleepInMillis: 500
-  fileUrl: /Volumes/OD_MAC/App/JavaBase/bug/bin/chromedriver
+  fileUrl: /Volumes/OD_MAC/App/JavaBase/etf/src/main/java/com/goodluck/etf/bin/chromedriver
+  open: false
 
 mybatis:
   mapper-locations:
