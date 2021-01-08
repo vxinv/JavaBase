@@ -1,5 +1,10 @@
 package com.goodluck.etf.component;
 
+/**
+ * 百度验证码识别 自动登录
+ */
+
+
 import com.baidu.aip.ocr.AipOcr;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,9 +13,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 
-/**
- * 百度验证码识别 自动登录
- */
 @Component
 public class OrcCode {
 
@@ -44,9 +46,6 @@ public class OrcCode {
     }
 
 
-    /**
-     * 识别
-     */
     public String discrern() {
         String path = "test.jpg";
         JSONObject res = client.basicGeneral(path, new HashMap<String, String>());

@@ -1,19 +1,16 @@
 package com.goodluck.etf.component;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class WebHttpClientTest {
-
+public class OrcCodeTest {
 
     @Autowired
-    WebHttpClient client;
+    OrcCode orcCode;
 
-    @Test
-    public void realTimeGet() {
+    public void testdiscrern() {
 
-        System.out.println(client.realTimeGet("sh512690"));
     }
+
 }
